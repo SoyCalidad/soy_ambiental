@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="programa_ambiental_report_print_view" model="ir.ui.view">
+        <field name="name">Reporte de programa de saneamiento ambiental</field>
+        <field name="model">programar.ambiental</field>
+        <field name="arch" type="xml">
+          <form>
+          <group>
+                <field name="programa_ambiental" />
+            </group>
+            <footer>
+                    <button name="print_report" string="Imprimir reporte" type="object" default_focus="1" class="oe_highlight"/>
+                    <button string="Cancelar" class="btn btn-default" special="cancel"/>
+            </footer>
+        </form>
+        </field>
+    </record>
+
+    <record id="programar_ambiental_report_print" model="ir.actions.act_window">
+        <field name="name">Reporte de programa de saneamiento ambiental</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">programar.ambiental</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="programa_ambiental_report_print_view"/>
+        <field name="target">new</field>
+    </record>
+
+
+    <menuitem
+        id="report_print_programa_ambiental"
+        name="Reporte de programa ambiental"
+        action="programar_ambiental_report_print"
+        parent="plan_sanitation.reporte_menu"
+        sequence="1" />
+
+</odoo>

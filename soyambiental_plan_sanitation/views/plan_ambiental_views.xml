@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="plan_ambiental_view_form" model="ir.ui.view">
+        <field name="name">plan.ambiental.view.form.inherit</field>
+        <field name="model">plan.ambiental</field>
+        <field name="inherit_id" ref="plan_sanitation.plan_ambiental_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_responsible']" position="attributes">
+                <attribute name="string">Responsable</attribute>
+            </xpath>
+            <xpath expr="//group[1]" position="replace">
+                <h1>
+                    <field name="code"/>
+                </h1>
+                <div class="oe_title">
+                    <label for="name"/>
+                    <h2>
+                        <field name="name" required="1"/>
+                    </h2>
+                </div>
+            </xpath>
+            <xpath expr="//field[@name='month']" position="attributes">
+                <attribute name="required">1</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

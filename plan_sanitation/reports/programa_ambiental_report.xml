@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+         <report id="programa_ambiental_action_report"
+                model="programa.ambiental"
+                string="Reporte Programa de saneamiento ambiental"
+                report_type="qweb-pdf"
+                name="plan_sanitation.report_template_programa_ambiental"
+                file="Programa de Saneamiento Ambiental"
+                print_report_name="'Programa de saneamiento ambiental'" />
+
+        <template id="report_template_programa_ambiental">
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="doc">
+                        <t t-if="doc and 'company_id' in doc">
+                            <t t-set="company" t-value="doc.company_id" />
+                        </t>
+                        <t t-if="not doc or not 'company_id' in doc">
+                            <t t-set="company" t-value="res_company" />
+                        </t>
+                        <div class="header">
+                            <style type="text/css">
+                                .tg  {border-collapse:collapse;border-spacing:0;margin:0px auto;width:100%;}
+                                .tg td{border-color:black;border-style:solid;border-width:1px;font-family: Palatino, Palatino Linotype, Palatino LT STD, Book Antiqua, Georgia, serif;font-size:11px;
+                                overflow:hidden;padding:10px 5px;word-break:normal;text-align:middle;align:center;}
+                                .tg th{border-color:black;border-style:solid;border-width:1px;font-family: Palatino, Palatino Linotype, Palatino LT STD, Book Antiqua, Georgia, serif;font-size:11px;
+                                font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+                                .tg .tg-9wq8{border-color:inherit;text-align:center;vertical-align:middle}
+                                .tg .tg-1wig{border-color:inherit;text-align:center;vertical-align:middle;font-size:16px;font-weight:bold;}
+                                .tg .tg-0lax{border-color:inherit;text-align:center;vertical-align:middle;font-size:12px;}
+                            </style>
+                            <table class="tg">
+                                <tbody>
+                                    <tr>
+                                        <td class="tg-1wig" rowspan="3" width="20%" style="width:15%">
+                                            <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % to_text(company.logo)" style="max-width:100px;vertical-align:middle;" />
+                                        </td>
+                                        <td class="tg-1wig" rowspan="3" width="80%" style="width:65%;">
+                                            <p style="font-size:15px;font-weight:bold;">PROGRAMA DE SANEAMIENTO AMBIENTAL</p>
+                                            <span t-field="doc.name" style="font-size:15px;font-weight:bold;"/>
+                                        </td>
+                                        <td class="tg-0lax" width="20%" style="width:20%">
+                                            Código:
+                                            <span t-field="doc.code" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0lax">
+                                            <span>Versión:</span>
+                                            <span t-field="doc.version" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tg-0lax">
+                                            <span>Fecha de validación:</span>
+                                            <t t-foreach="doc.validation_step" t-as="o">
+                                                <span t-field="o.date" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <t t-call="web.external_layout">
+                            <style t-if="doc.state=='cancel'">
+                                .cover {
+                                position: relative;
+                                }
+                                .cover::after {
+                                content: "";
+                                background: url('/hola_calidad/static/src/img/obsoletdoc.png');
+                                opacity: 0.25;
+                                top: 0;
+                                left: 0;
+                                bottom: 0;
+                                right: 0;
+                                position: absolute;
+                                z-index: -1;
+                                }
+                            </style>
+                            <div class="cover" style="page-break-after: always;">
+                                <center>
+                                    <style type="text/css">
+                                        .tg  {border-collapse:collapse;border-spacing:0;}
+                                        .tg td{font-family: Palatino, Palatino Linotype, Palatino LT STD, Book Antiqua, Georgia, serif;font-size:16px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+                                        .tg th{font-family: Palatino, Palatino Linotype, Palatino LT STD, Book Antiqua, Georgia, serif;font-size:16px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+                                        .tg .tg-zv36{font-weight:bold;background-color:#ffffff;border-color:inherit;text-align:left;vertical-align:top;width:33%}
+                                        .tg .tg-nrix{text-align:center;vertical-align:middle;font-weight: bold;border-style: none;font-size:25px;}
+                                        .tg .tg-rq3n{background-color:#ffffff;text-align:center;vertical-align:middle;border-style: none;font-size:20px;}
+                                        .tg .tg-7g6k{font-weight:bold;background-color:#efefef;border-color:inherit;text-align:center;vertical-align:top;font-size:16px;}
+                                        .tg .tg-3xi5{background-color:#ffffff;border-color:inherit;text-align:center;vertical-align:middle;font-size:11px;}
+                                    </style>
+                                </center>
+                            </div>
+                            <br/>
+                            <div name="principal">
+                                       <table class="tg">
+                                                    <thead>
+                                                    </thead>
+                                                    <tbody >
+                                                        <tr>
+                                                            <th class="tg-d14o"><strong>ACTIVIDAD</strong></th>
+                                                            <th class="tg-d14o"><strong>RESPONSABLE</strong></th>
+                                                            <th class="tg-d14o"><strong>MES</strong></th>
+                                                            <th class="tg-d14o"><strong>FECHA</strong></th>
+                                                            <th class="tg-d14o"><strong>DURACIÓN</strong></th>
+                                                            <th class="tg-d14o"><strong>FRECUENCIA</strong></th>
+                                                        </tr>  
+                                                        <t t-foreach="doc.plans" t-as="p">
+                                                        <tr>
+                                                            <td class="tg-wo30"><span t-field="p.name" /></td>
+                                                            <td class="tg-wo30"><span t-field="p.user_responsible" /></td>
+                                                            <td class="tg-wo30"><span t-field="p.month" /></td>
+                                                            <td class="tg-wo30"><span t-field="p.date" /></td>
+                                                            <td class="tg-wo30"><span t-field="p.duration" /></td>
+                                                            <td class="tg-wo30"><span t-field="p.frequency" /></td>
+                                                        </tr>
+                                                        </t>
+                                                    </tbody>
+                                        </table>          
+                            </div>
+                            <div class="footer" style="border-top: 1px solid black;font-size: 8px;">
+                                <div class="text-center" style="border-top: 1px solid black;font-size: 10px;text-align:center;">
+                                    ©
+                                    <span t-field="company.name" />
+                                    . All Rights Reserved.
+                                    PROHIBIDA SU REPRODUCCIÓN SIN AUTORIZACIÓN EXPRESA DE LA DIRECCIÓN.
+                                    CUALQUIER COPIA IMPRESA NO CONTROLADA. DEBE SER ROTULADA COMO "COPIA NO CONTROLADA".
+                                    CONSULTE VERSIÓN ELECTRÓNICA
+                                </div>
+                            </div>
+                        </t>
+                    </t>
+                </t>
+    </template>
+   </data>
+
+</odoo>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="module_category_sga_base" model="ir.module.category">
+        <field name="name">Soy Ambiental</field>
+        <field name="description">Accesos para módulos de Soy Ambiental</field>
+        <field name="sequence">50</field>
+    </record>
+
+    <record id="group_sga_onlyread" model="res.groups">
+        <field name="name">Usuario: Solo lectura</field>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
+        <field name="category_id" ref="soyambiental_base.module_category_sga_base" />
+    </record>
+
+    <record id="group_sga_onlyread_printreport" model="res.groups">
+        <field name="name">Usuario interno: Lectura e impresión</field>
+        <field name="implied_ids" eval="[(4, ref('soyambiental_base.group_sga_onlyread'))]" />
+        <field name="category_id" ref="soyambiental_base.module_category_sga_base" />
+    </record>
+
+    <record id="group_sga_write_printreport" model="res.groups">
+        <field name="name">Usuario secundario: Lectura Edición de documentos propios</field>
+        <field name="implied_ids" eval="[(4, ref('soyambiental_base.group_sga_onlyread_printreport'))]" />
+        <field name="category_id" ref="soyambiental_base.module_category_sga_base" />
+    </record>
+
+    <record id="group_sga_all" model="res.groups">
+        <field name="name">Responsable: Lectura y edición</field>
+        <field name="implied_ids" eval="[(4, ref('soyambiental_base.group_sga_write_printreport'))]" />
+        <field name="category_id" ref="soyambiental_base.module_category_sga_base" />
+    </record>
+</odoo>

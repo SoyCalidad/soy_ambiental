@@ -1,0 +1,18 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_sga_matrix_evaluation_item_criterio_all,Todos los permisos,model_sga_matrix_evaluation_item_criterio,,1,1,1,1
+access_sga_matrix_evaluation_item_value_all,Todos los permisos,model_sga_matrix_evaluation_item_value,,1,1,1,1
+access_sga_matrix_evaluation_item_all,Todos los permisos,model_sga_matrix_evaluation_item,,1,1,1,1
+access_sga_matrix_evaluation_all,Todos los permisos,model_sga_matrix_evaluation,,1,1,1,1
+
+access_sga_matrix_aspect_all,Todos los permisos,model_sga_matrix_aspect,,1,1,1,1
+access_sga_matrix_impact_all,Todos los permisos,model_sga_matrix_impact,,1,1,1,1
+access_sga_matrix_stage_all,Todos los permisos,model_sga_matrix_stage,,1,1,1,1
+access_sga_matrix_stage_activity_all,Todos los permisos,model_sga_matrix_stage_activity,,1,1,1,1
+access_sga_matrix_stage_task_all,Todos los permisos,model_sga_matrix_stage_task,,1,1,1,1
+access_sga_matrix_stage_process_all,Todos los permisos,model_sga_matrix_stage_process,,1,1,1,1
+
+access_sga_matrix_process_evaluation_control_all,Todos los permisos,model_sga_matrix_process_evaluation_control,,1,1,1,1
+access_sga_matrix_process_all,Todos los permisos,model_sga_matrix_process,,1,1,1,1
+
+access_sga_ideaa_matrix_all,Todos los permisos,model_sga_ideaa_matrix,,1,1,1,1

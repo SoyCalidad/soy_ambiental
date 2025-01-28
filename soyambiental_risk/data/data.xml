@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="evaluation_main" model="sga.matrix.evaluation">
+        <field name="name">Matriz de evaluación IDEAA</field>
+    </record>
+
+    <record id="evaluation_item_1" model="sga.matrix.evaluation.item">
+        <field name="name">Probabilidad de ocurrencia</field>
+        <field name="evaluation_id" ref="soyambiental_risk.evaluation_main"/>
+    </record>
+
+    <record id="evaluation_item1_value_1" model="sga.matrix.evaluation.item.value">
+        <field name="name">Improbable (1)</field>
+        <field name="value">1</field>
+        <field name="description">Muy improbable que ocurra durante la vida de una operación / proyecto.</field>
+        <field name="item_id" ref="soyambiental_risk.evaluation_item_1"/>
+    </record>
+
+    <record id="evaluation_item1_value_2" model="sga.matrix.evaluation.item.value">
+        <field name="name">Posible (2)</field>
+        <field name="value">2</field>
+        <field name="description">Evento que puede ocurrir durante la vida de una operación / proyecto.</field>
+        <field name="item_id" ref="soyambiental_risk.evaluation_item_1"/>
+    </record>
+
+    <record id="evaluation_item1_value_3" model="sga.matrix.evaluation.item.value">
+        <field name="name">Probable (3)</field>
+        <field name="value">3</field>
+        <field name="description">Evento que puede ocurrir (una vez al año).</field>
+        <field name="item_id" ref="soyambiental_risk.evaluation_item_1"/>
+    </record>
+
+    <record id="evaluation_item1_value_4" model="sga.matrix.evaluation.item.value">
+        <field name="name">Casi Seguro (4)</field>
+        <field name="value">4</field>
+        <field name="description">Evento recurrente durante la vida de la operación/ proyecto o mas de una vez al año.</field>
+        <field name="item_id" ref="soyambiental_risk.evaluation_item_1"/>
+    </record>
+
+    <record id="evaluation_item_2" model="sga.matrix.evaluation.item">
+        <field name="name">Consecuencia</field>
+        <field name="has_criterios">True</field>
+        <field name="evaluation_id" ref="soyambiental_risk.evaluation_main"/>
+    </record>
+
+     <record id="evaluation_item2_value_1" model="sga.matrix.evaluation.item.value">
+        <field name="name">Menor (1)</field>
+        <field name="value">1</field>
+        <field name="description">No es  incumplimiento, con requisitos regulatorios menores o notificación informal</field>
+        <field name="item_id" ref="soyambiental_risk.evaluation_item_2"/>
+    </record>
+
+    <record id="evaluation_item2_value_2" model="sga.matrix.evaluation.item.value">
+        <field name="name">Moderado (2)</field>
+        <field name="value">2</field>
+        <field name="description">Asunto de incumplimiento moderado con requisitos regulatorios NOV/NOC con multa mínima.</field>
+        <field name="item_id" ref="soyambiental_risk.evaluation_item_2"/>
+    </record>
+
+    <record id="evaluation_item2_value_3" model="sga.matrix.evaluation.item.value">
+        <field name="name">Significativo (3)</field>
+        <field name="value">3</field>
+        <field name="description">Asunto de incumplimiento significativo con requisito regulatorio NOV con potencial de multa >$100K</field>
+        <field name="item_id" ref="soyambiental_risk.evaluation_item_2"/>
+    </record>
+
+    <record id="evaluation_item2_value_4" model="sga.matrix.evaluation.item.value">
+        <field name="name">Castastrófico (4)</field>
+        <field name="value">4</field>
+        <field name="description">Asunto de incumplimiento mayor y/o crónico, acción de clase/ orden administrativo, demanda legal con fundamentos.</field>
+        <field name="item_id" ref="soyambiental_risk.evaluation_item_2"/>
+    </record>
+
+    <record id="evaluation_item2_criterio1" model="sga.matrix.evaluation.item.criterio">
+        <field name="name">Legal/Cumplimiento</field>
+        <field name="item_value_id" ref="soyambiental_risk.evaluation_item2_value_1"/>
+        <field name="item_id" ref="soyambiental_risk.evaluation_item_2"/>
+    </record>
+
+    <record id="evaluation_item2_criterio2" model="sga.matrix.evaluation.item.criterio">
+        <field name="name">Medio ambiente</field>
+        <field name="item_value_id" ref="soyambiental_risk.evaluation_item2_value_2"/>
+        <field name="item_id" ref="soyambiental_risk.evaluation_item_2"/>
+    </record>
+
+    <record id="evaluation_item2_criterio3" model="sga.matrix.evaluation.item.criterio">
+        <field name="name">Partes interesadas</field>
+        <field name="item_value_id" ref="soyambiental_risk.evaluation_item2_value_3"/>
+        <field name="item_id" ref="soyambiental_risk.evaluation_item_2"/>
+    </record>
+
+    <record id="evaluation_item2_criterio4" model="sga.matrix.evaluation.item.criterio">
+        <field name="name">Capacidad de producción</field>
+        <field name="item_value_id" ref="soyambiental_risk.evaluation_item2_value_4"/>
+        <field name="item_id" ref="soyambiental_risk.evaluation_item_2"/>
+    </record>
+
+    <record id="evaluation_item2_criterio5" model="sga.matrix.evaluation.item.criterio">
+        <field name="name">Financiera</field>
+        <field name="item_value_id" ref="soyambiental_risk.evaluation_item2_value_1"/>
+        <field name="item_id" ref="soyambiental_risk.evaluation_item_2"/>
+    </record>
+</odoo>

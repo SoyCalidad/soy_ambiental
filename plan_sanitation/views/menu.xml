@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem
+        id="plan_sanidad_menu"
+        name="Sanidad"
+        sequence="-1"
+        web_icon="plan_sanitation,static/description/icon.png" />
+
+
+    <menuitem
+        id="saneamiento_menu"
+        name="Saneamiento"
+        parent="plan_sanidad_menu"
+        sequence="5" />
+
+    <menuitem
+        id="reporte_menu"
+        name="Reportes"
+        parent="plan_sanidad_menu"
+        sequence="10" />
+
+    <menuitem
+        id="plan_ambiental_menu"
+        action="plan_ambiental_action" 
+        name="Plan de saneamiento ambiental"
+        parent="saneamiento_menu"
+        sequence="2" />
+
+    <menuitem
+        id="programa_ambiental_menu"
+        name="Programa de saneamiento ambiental"
+        action="programa_ambiental_action"
+        parent="saneamiento_menu"
+        sequence="1" />
+
+    
+
+    
+
+    
+</odoo>

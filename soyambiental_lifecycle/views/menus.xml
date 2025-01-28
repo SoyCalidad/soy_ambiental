@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="sga_lifecycle_menu"
+              name="Ciclo de vida"
+              parent="soyambiental_base.sga_do_menu"
+              sequence="45" />
+
+    <menuitem id="sga_lifecycle_menu_action"
+              name="Ciclo de vida"
+              parent="sga_lifecycle_menu"
+              action="project.open_view_project_all"
+              sequence="1"/>
+</odoo>

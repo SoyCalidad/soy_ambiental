@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="policy_system_sga" model="mgmtsystem.context.system">
+        <field name="name">Soy Ambiental</field>
+    </record>
+
+    <record id="policy_template_sga" model="mgmtsystem.context.policy.template">
+        <field name="name">Política Ambiental</field>
+        <field name="sga_organization_context">Nuestra organización fue establecida en Fecha de fundación para proporcionar Productos o servicios que ofrece. Tenemos Indique sus sedes y clientes.</field>
+        <field name="sga_direction_help">Es compromiso de la Dirección que el sistema ambiental esté alineado y apoye en el logro de sus objetivos.</field>
+        <field name="sga_env_protection_commitment">Prevenir la contaminación destinada de los recursos necesarios para el sostenimiento y el control del SGA con la intención de mitigar los impactos ambientales resultantes de nuestras actividades.</field>
+        <field name="sga_legal_req">Es compromiso de la Alta Dirección de " " cumplir con los requisitos del cliente y con los requisitos legales y reglamentarios aplicables a la empresa. Actuando con transparencia y lealtad en todo momento, con nuestros clientes, por los servicios otorgados.</field>
+        <field name="sga_standard_commitment">Nuestra organización adopta como modelos para la gestión de la calidad la norma ISO 9001:2015 y se compromete a cumplir sus requisitos, así como el resto de normativa vigente aplicable.</field>
+        <field name="sga_continuous_improvement">La Gerencia General se compromete a mejorar continuamente el sistema de gestión ambiental.</field>
+        <field name="sga_env_goals">Esta política ambiental se basa en el cumplimiento de los siguientes objetivos:</field>
+        <field name="sga_communication">La presente política será difundida a todo nuestro personal para su respectivo conocimiento y comprensión, así como a nuestros clientes y partes interesadas.</field>
+    </record>
+</odoo>

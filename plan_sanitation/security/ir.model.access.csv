@@ -1,0 +1,17 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_programa_ambiental_onlyread,Solo lectura,model_programa_ambiental,plan_sanitation.group_sanitation_onlyread,1,0,0,0
+access_programa_ambiental_report,Impresión de reportes,model_programa_ambiental,plan_sanitation.group_sanitation_onlyread_printreport,1,0,0,0
+access_programa_ambiental_write,Documentos propios,model_programa_ambiental,plan_sanitation.group_sanitation_write_printreport,1,1,1,0
+access_programa_ambiental_all,Todos los permisos,model_programa_ambiental,plan_sanitation.group_sanitation_all,1,1,1,1
+
+access_plan_ambiental_onlyread,Solo lectura,model_plan_ambiental,plan_sanitation.group_sanitation_onlyread,1,0,0,0
+access_plan_ambiental_report,Impresión de reportes,model_plan_ambiental,plan_sanitation.group_sanitation_onlyread_printreport,1,0,0,0
+access_plan_ambiental_write,Documentos propios,model_plan_ambiental,plan_sanitation.group_sanitation_write_printreport,1,1,1,0
+access_plan_ambiental_all,Todos los permisos,model_plan_ambiental,plan_sanitation.group_sanitation_all,1,1,1,1
+
+access_am_ambient_onlyread,Solo lectura,model_am_ambient,plan_sanitation.group_sanitation_onlyread,1,0,0,0
+access_am_ambient_report,Impresión de reportes,model_am_ambient,plan_sanitation.group_sanitation_onlyread_printreport,1,0,0,0
+access_am_ambient_write,Documentos propios,model_am_ambient,plan_sanitation.group_sanitation_write_printreport,1,1,1,0
+access_am_ambient_all,Todos los permisos,model_am_ambient,plan_sanitation.group_sanitation_all,1,1,1,1
+

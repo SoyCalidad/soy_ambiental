@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="plan_ambiental_view_form" model="ir.ui.view">
+        <field name="name">plan.ambiental.view.form</field>
+        <field name="model">plan.ambiental</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="elaborate,review,validate,validate_ok,in_process,final" />
+                    <button string="Notificar por email" name="send_email" type="object" class="oe_highlight" attrs="{'invisible':[('state','not in', ('in_process'))]}" />
+                    <button string="Notificar por sistema" name="action_notify_employee" type="object" class="btn-success" attrs="{'invisible':[('state','not in', ('in_process'))]}" />
+                    <button string="Enviar a Revisar" name="send_review" type="object" class="btn-primary" states="elaborate" />
+                    <button string="Enviar a Validar" name="send_validate" type="object" class="btn-primary" states="review" />
+                    <button string="Validar" name="send_validate_ok" type="object" class="btn-primary" states="validate" />
+                    <button string="Iniciar" name="send_process" type="object" class="btn-primary" attrs="{'invisible':[('state','not in', ('validate_ok'))]}" />
+                    <button string="Finalizar" name="send_final" type="object" class="btn-primary" attrs="{'invisible':[('state','not in', ('in_process'))]}" />
+                    <button name="button_new_version" type="object" string="Nueva versión" attrs="{'invisible':[('state', '!=', 'final')]}" class="oe_highlight" />
+                    <button string="Caducado" name="send_cancel" confirm="Esto volverá obsoleto el presente registro. ¿Está seguro(a)?" type="object" class="btn-second" attrs="{'invisible':[('state','in', ('cancel'))]}" />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" position="inside">
+                        <button type="object" name="openviews" context="{'type_action':'target'}" class="oe_stat_button" icon="fa-bar-chart-o">
+                            <field name="target_counts" widget="statinfo" string="Objetivos" />
+                        </button>
+                        <button type="object" name="openviews" context="{'type_action':'non_conformity'}" class="oe_stat_button" icon="fa-frown-o">
+                            <field name="nonconformities_counts" widget="statinfo" string="No conformidades" />
+                        </button>
+                        <button type="object" name="openviews" context="{'type_action':'actions'}" class="oe_stat_button" icon="fa-edit">
+                            <field name="actions_counts" widget="statinfo" string="Acciones" />
+                        </button>
+                        <button type="object" name="openviews" context="{'type_action':'document'}" class="oe_stat_button" icon="fa-file-text-o">
+                            <field name="document_counts" widget="statinfo" string="Documentos" />
+                        </button>
+                        <button type="object" name="openviews" context="{'type_action':'change_request'}" class="oe_stat_button" icon="fa-book">
+                            <field name="change_request_counts" widget="statinfo" string="Solicitudes de cambio" />
+                        </button>
+                    </div>
+                    <group>
+                        <h1>
+                            <field name="code" />
+                        </h1>
+                        <field name="name" />
+                    </group>
+                    <group col="4">
+                        <field name="program" />
+                        <field name="month" />
+                        <field name="user_responsible" />
+                        <field name="date" />
+                        <field name="external_responsible" />
+                        <field name="duration" />
+                        <field name="responsible" attrs="{'invisible':[('external_responsible','=',False)]}" />
+                        <field name="frequency" />
+                    </group>
+                    <group>
+                        <field name="observations" />
+                    </group>
+                    <notebook>
+                        <page string="Ambiente">
+                            <field name="ambient" />
+                        </page>
+                        <page string="Validación y versión">
+                            <group>
+                                <field name="version" />
+                            </group>
+                            <separator string="Elaboración" />
+                            <field name="elaboration_step" />
+                            <separator string="Revisión" />
+                            <field name="review_step" />
+                            <separator string="Validación" />
+                            <field name="validation_step" />
+                        </page>
+                        <page string="Acciones">
+                            <field name="actions" />
+                        </page>
+                        <page string="No conformidades">
+                            <field name="non_conformity" />
+                        </page>
+                        <page string="Objetivos">
+                            <field name="target" />
+                        </page>
+                        <page string="Documentos">
+                            <field name="document" mode="kanban" />
+                        </page>
+                        <page string="Solicitudes de cambio">
+                            <field name="change_request" />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="plan_ambiental_view_tree" model="ir.ui.view">
+        <field name="name">plan.ambiental.view.tree</field>
+        <field name="model">plan.ambiental</field>
+        <field name="arch" type="xml">
+            <tree string="Plan ambiental" banner_route="/plan_ambiental/principal">
+                <field name="name" />
+                <field name="ambient" />
+                <field name="user_responsible" />
+                <field name="program" />
+                <field name="month" />
+                <field name="date" />
+                <field name="duration" />
+                <field name="frequency" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="plan_ambiental_action" model="ir.actions.act_window">
+        <field name="name">Plan de saneamiento ambiental</field>
+        <field name="res_model">plan.ambiental</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <h1>Plan de saneamiento ambiental</h1>
+        </field>
+    </record>
+
+
+</odoo>

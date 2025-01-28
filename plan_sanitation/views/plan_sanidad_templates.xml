@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <template id="template_programa_ambiental">
+        <t t-call="base.onboarding_step">
+            <t t-set="title">Programa de saneamiento ambiental</t>
+            <t t-set="description">Cree un programa de saneamiento ambiental</t>
+            <t t-set="done_icon" t-value="'fa-star'" />
+            <t t-set="btn_text">Crear</t>
+            <t t-set="done_text">Se ve bien!</t>
+            <t t-set="method" t-value="'action_open_programa_ambiental'" />
+            <t t-set="model" t-value="'res.company'" />
+            <t t-set="state" t-value="state.get('programa_ambiental_p')" />
+        </t>
+    </template>
+
+    <template id="template_plan_ambiental">
+        <t t-call="base.onboarding_step">
+            <t t-set="title">Plan de saneamiento ambiental</t>
+            <t t-set="description">Cree un plan de saneamiento ambiental</t>
+            <t t-set="done_icon" t-value="'fa-star'" />
+            <t t-set="btn_text">Crear</t>
+            <t t-set="done_text">Se ve bien!</t>
+            <t t-set="method" t-value="'action_open_plan_ambiental'" />
+            <t t-set="model" t-value="'res.company'" />
+            <t t-set="state" t-value="state.get('plan_ambiental_p')" />
+        </t>
+    </template>
+
+    
+
+    <template id="plan_sanidad_template" name="plan_sanidad_onboarding_vista">
+        <t t-call="base.onboarding_container">
+            <t t-set="classes" t-value="'o_onboarding_blue'"/>
+            <t t-set="bg_image" t-value="'/account/static/src/img/account_invoice_onboarding_bg.jpg'"/>
+            <t t-set="close_method" t-value="'action_close_plan_sanidad'"/>
+            <t t-set="close_model" t-value="'res.company'"/>
+            <t t-set="text_completed">Felicitaciones! Ha completado todo.</t>
+            <t t-call="plan_sanitation.template_programa_ambiental" name="programa_ambiental_principal" />
+            <t t-call="plan_sanitation.template_plan_ambiental" name="plan_ambiental_principal" />            
+        </t>
+    </template>
+
+    <record id="principal_programa_ambiental" model="ir.ui.view">
+        <field name="name">programa.ambiental.inherit.view.form</field>
+        <field name="model">programa.ambiental</field>
+        <field name="inherit_id" ref="plan_sanitation.programa_ambiental_view_form"/>
+        <field name="priority">1000</field>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <form position="inside">
+                <footer position="replace">
+                    <button name="action_save_programa_ambiental" class="btn btn-primary" type="object" string="Crear" />
+                    <button special="cancel" string="Cancelar" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_principal_programa_ambiental" model="ir.actions.act_window">
+        <field name="type">ir.actions.act_window</field>
+        <field name="name">Vista principal de programa ambiental</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="res_model">programa.ambiental</field>
+        <field name="view_id" ref="plan_sanitation.principal_programa_ambiental"/>
+    </record>
+
+    <record id="principal_plan_ambiental" model="ir.ui.view">
+        <field name="name">plan.ambiental.inherit.view.form</field>
+        <field name="model">plan.ambiental</field>
+        <field name="inherit_id" ref="plan_sanitation.plan_ambiental_view_form"/>
+        <field name="priority">1000</field>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <form position="inside">
+                <footer position="replace">
+                    <button name="action_save_plan_ambiental" class="btn btn-primary" type="object" string="Crear" />
+                    <button special="cancel" string="Cancelar" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_principal_plan_ambiental" model="ir.actions.act_window">
+        <field name="type">ir.actions.act_window</field>
+        <field name="name">Vista principal de plan ambiental</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="res_model">plan.ambiental</field>
+        <field name="view_id" ref="plan_sanitation.principal_plan_ambiental"/>
+    </record>
+
+</odoo>

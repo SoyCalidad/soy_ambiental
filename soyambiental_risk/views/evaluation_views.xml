@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sga_matrix_evaluation_item_criterio_view_form" model="ir.ui.view">
+        <field name="name">sga.matrix.evaluation.item.criterio.view.form</field>
+        <field name="model">sga.matrix.evaluation.item.criterio</field>
+        <field name="arch" type="xml">
+            <form string="Valor de criterio de la matriz SGA">
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="item_value_id" />
+                        <field name="item_id" invisible="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="sga_matrix_evaluation_item_criterio_view_tree" model="ir.ui.view">
+        <field name="name">sga.matrix.evaluation.item.criterio.view.tree</field>
+        <field name="model">sga.matrix.evaluation.item.criterio</field>
+        <field name="arch" type="xml">
+            <tree string="Valor de criterio de la matriz SGA">
+                <field name="name" />
+                <field name="item_value_id" />
+                <field name="item_id" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="sga_matrix_evaluation_item_criterio_action" model="ir.actions.act_window">
+        <field name="name">Criterios</field>
+        <field name="res_model">sga.matrix.evaluation.item.criterio</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record id="sga_matrix_evaluation_item_values_view_form" model="ir.ui.view">
+        <field name="name">sga.matrix.evaluation.item.value.view.form</field>
+        <field name="model">sga.matrix.evaluation.item.value</field>
+        <field name="arch" type="xml">
+            <form string="Valor de la evaluación de la matriz SGA">
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="description" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="sga_matrix_evaluation_item_values_view_tree" model="ir.ui.view">
+        <field name="name">sga.matrix.evaluation.item.value.view.tree</field>
+        <field name="model">sga.matrix.evaluation.item.value</field>
+        <field name="arch" type="xml">
+            <tree string="Valor de la evaluación de la matriz SGA">
+                <field name="name" />
+                <field name="description" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="sga_matrix_evaluation_item_values_action" model="ir.actions.act_window">
+        <field name="name">Evaluación</field>
+        <field name="res_model">sga.matrix.evaluation.item.value</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record id="sga_matrix_evaluation_item_view_form" model="ir.ui.view">
+        <field name="name">sga.matrix.evaluation.item.view.form</field>
+        <field name="model">sga.matrix.evaluation.item</field>
+        <field name="arch" type="xml">
+            <form string="Evaluación">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="values_ids"/>
+                        <field name="has_criterios"/>
+                        <field name="criterio_ids" attrs="{'invisible': [('has_criterios', '=', False)]}"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="sga_matrix_evaluation_item_view_tree" model="ir.ui.view">
+        <field name="name">sga.matrix.evaluation.item.view.tree</field>
+        <field name="model">sga.matrix.evaluation.item</field>
+        <field name="arch" type="xml">
+            <tree string="Evaluación">
+                <field name="name" />
+                <field name="values_ids" widget="many2many_tags" />
+                <field name="has_criterios"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="sga_matrix_evaluation_item_action" model="ir.actions.act_window">
+        <field name="name">Evaluación</field>
+        <field name="res_model">sga.matrix.evaluation.item</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record id="sga_matrix_evaluation_view_form" model="ir.ui.view">
+        <field name="name">sga.matrix.evaluation.view.form</field>
+        <field name="model">sga.matrix.evaluation</field>
+        <field name="arch" type="xml">
+            <form string="Evaluación">
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="item_ids" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="sga_matrix_evaluation_view_tree" model="ir.ui.view">
+        <field name="name">sga.matrix.evaluation.view.tree</field>
+        <field name="model">sga.matrix.evaluation</field>
+        <field name="arch" type="xml">
+            <tree string="Evaluación">
+                <field name="name" />
+                <field name="item_ids" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="sga_matrix_evaluation_action" model="ir.actions.act_window">
+        <field name="name">Evaluación</field>
+        <field name="res_model">sga.matrix.evaluation</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+</odoo>

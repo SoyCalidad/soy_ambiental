@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="context_internal_issue_view_form" model="ir.ui.view">
+        <field name="name">mgmtsystem.context.internal_issue.view.form.inherit</field>
+        <field name="model">mgmtsystem.context.internal_issue</field>
+        <field name="inherit_id" ref="mgmtsystem_context.context_internal_issue_view_form"/>
+        <field name="arch" type="xml">
+            <field name="vision" position="after">
+                <field style="height:100px; !important" name="sga_scope" attrs="{'readonly': [('state','in',('validate_ok','cancel'))]}"/>
+                <field name="is_sga_context" invisible="1"/>
+            </field>
+            <field name="quality_policy" position="attributes">
+                <attribute name="string">Política</attribute>
+                <attribute name="attrs">{'invisible': [('is_sga_context', '=', True)], 'required': [('state', 'in', ['validate'])]}</attribute>
+            </field>
+            <field name="quality_policy" position="after">
+                <field name="quality_policy" string="Política ambiental" attrs="{'invisible': [('is_sga_context', '!=', True)], 'required': [('state', 'in', ['validate'])]}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="context_internal_issue_action" model="ir.actions.act_window">
+        <field name="name">Contexto Interno</field>
+        <field name="res_model">mgmtsystem.context.internal_issue</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'default_is_sga_context': True}</field>
+    </record>
+</odoo>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_sst_contigency_plan" inherit_id="soyseguridad_contigency_plan.report_sst_contigency_plan">
+        <xpath expr="//div[hasclass('index')]//p" position="replace">
+            <p t-if="doc.is_sga_context" style="font-size:16px;color:black;">
+                1. Objetivo
+                <br/>
+                2. Alcance
+                <br/>
+                3. Identificación y evaluación del riesgo
+                <br/>
+                4. Medios de prevención y protección
+                <br/>
+                5. Organización: Funciones y conformación de Brigadas*
+                <br/>
+                6. Procedimientos de respuesta
+                <br/>
+                7. Anexos
+                <br/>
+                a. Teléfonos de emergencia
+                <br/>
+                b. Programa de capacitaciones
+                <br/>
+                c. Programa de simulacros
+                <br/>
+            </p>
+            <p t-if="not doc.is_sga_context" style="font-size:16px;color:black;">
+                1. Objetivo
+                <br/>
+                2. Alcance
+                <br/>
+                3. Identificación y evaluación del riesgo
+                <br/>
+                4. Medios de prevención y protección
+                <br/>
+                5. Organización: Funciones y conformación de Brigadas*
+                <br/>
+                6. Procedimientos de respuesta
+                <br/>
+                7. Anexos
+                <br/>
+                a. Teléfonos de emergencia
+                <br/>
+                b. Programas de inspecciones
+                <br/>
+                c. Programa de capacitaciones
+                <br/>
+                d. Programa de simulacros
+                <br/>
+                e. Planos de evacuación
+                <br/>
+                f. Planos de señalización
+                <br/>
+            </p>
+        </xpath>
+        <xpath expr="//div[hasclass('anexo')]//div[2]//div[hasclass('anexo_title')]" position="replace">
+            <div t-if="not doc.is_sga_context" class="anexo_title">
+                b. Inspecciones
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('anexo')]//div[3]//div[hasclass('anexo_title')]" position="replace">
+            <div t-if="doc.is_sga_context" class="anexo_title">
+                b. Programa de capacitaciones
+            </div>
+            <div t-if="not doc.is_sga_context" class="anexo_title">
+                c. Programa de capacitaciones
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('anexo')]//div[4]//div[hasclass('anexo_title')]" position="replace">
+            <div t-if="doc.is_sga_context" class="anexo_title">
+                c. Programa de simulacros
+            </div>
+            <div t-if="not doc.is_sga_context" class="anexo_title">
+                d. Programa de capacitaciones
+            </div>
+        </xpath>
+    </template>
+</odoo>

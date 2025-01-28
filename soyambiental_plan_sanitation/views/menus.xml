@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="sga_saneamiento_menu"
+              name="Saneamiento ambiental"
+              parent="soyambiental_base.sga_do_menu"
+              sequence="5"/>
+
+    <menuitem id="sga_programa_ambiental_menu_action"
+              name="Programa de saneamiento ambiental"
+              action="plan_sanitation.programa_ambiental_action"
+              parent="sga_saneamiento_menu"
+              sequence="1"/>
+</odoo>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="edit_project" model="ir.ui.view">
+        <field name="name">project.project.form.inherit</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_title')]" position="after">
+                <group>
+                    <group>
+                        <field name="department_id"/>
+                        <field name="process_id"/>
+                        <field name="project_manager_id"/>
+                    </group>
+                    <group>
+                        <field name="start_date"/>
+                        <field name="deadline_date"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="project_project_view_form_simplified" model="ir.ui.view">
+        <field name="name">project.project.view.form.simplified.inherit</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.project_project_view_form_simplified"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="inside">
+                <group>
+                    <field name="department_id"/>
+                    <field name="process_id"/>
+                    <field name="project_manager_id"/>
+                    <field name="start_date"/>
+                    <field name="deadline_date"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_task_form2" model="ir.ui.view">
+        <field name="name">project.task.form.inherit</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="risk_opp" string="Riesgos y oportunidades">
+                    <separator string="Riesgos"/>
+                    <field name="risk_ids"/>
+                    <separator string="Oportunidades"/>
+                    <field name="opp_ids"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="sga_mgmtsystem_context_context_internal_issue_menu_action"
+              name="Contexto interno"
+              action="context_internal_issue_action"
+              parent="soyambiental_base.sga_context_menu"
+              sequence="0"/>
+</odoo>

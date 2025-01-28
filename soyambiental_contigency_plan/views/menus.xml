@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="sga_contigency_plan_menu_action"
+              name="Plan de contingencia"
+              action="sst_contigency_plan_action"
+              parent="soyambiental_base.sga_contigency_plan_menu"
+              sequence="10"/>
+</odoo>

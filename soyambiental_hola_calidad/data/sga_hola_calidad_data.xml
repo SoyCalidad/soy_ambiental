@@ -1,0 +1,7 @@
+<odoo>
+    <data noupdate="1">
+        <record id="xls_helper" model="sga.hola_calidad.xls_helper">
+            <field name="name">Archivo excel de apoyo</field>
+        </record>
+    </data>
+</odoo>

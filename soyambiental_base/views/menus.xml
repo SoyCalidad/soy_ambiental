@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="sga_menu_root"
+              name="Sistema de gestión ambiental"
+              web_icon="soyambiental_base,static/description/icon.png"
+              sequence="-100"/>
+
+    <!-- Planificar -->
+    <menuitem id="sga_plan_menu"
+              name="Planificar"
+              parent="soyambiental_base.sga_menu_root"
+              sequence="20"/>
+
+        <!-- Empleados -->
+        <menuitem id="sga_employees_menu"
+                  name="Empleados"
+                  parent="sga_plan_menu"
+                  groups="mgmtsystem_employees.group_employees_onlyread,mgmtsystem_employees.group_employees_onlyread_printreport,mgmtsystem_employees.group_employees_write_printreport,mgmtsystem_employees.group_employees_all"
+                  sequence="10"/>
+
+            <menuitem id="sga_mgmtsystem_employee_employee_menu_action"
+                      name="Empleados"
+                      parent="sga_employees_menu"
+                      action="hr.open_view_employee_list_my"
+                      sequence="1"/>
+
+            <menuitem id="sga_mgmtsystem_employee_job_menu_action"
+                      name="Puestos"
+                      parent="sga_employees_menu"
+                      action="hr.action_hr_job"
+                      sequence="2"/>
+
+            <menuitem id="sga_mgmtsystem_employee_department_menu_action"
+                      name="Departamentos"
+                      parent="sga_employees_menu"
+                      action="hr.open_module_tree_department"
+                      sequence="3"/>
+
+        <!-- Procesos -->
+        <menuitem id="sga_process_menu"
+                  name="Procesos"
+                  parent="sga_plan_menu"
+                  groups="mgmtsystem_process.group_process_all,mgmtsystem_process.group_process_readonly,mgmtsystem_process.group_process_readonly_printreport,mgmtsystem_process.group_process_owner"
+                  sequence="30"/>
+
+            <menuitem id="sga_mgmtsystem_process_categ_menu_action"
+                      name="Mapa de procesos"
+                      parent="sga_process_menu"
+                      action="mgmtsystem_process.action_mgmt_categ_procedures"
+                      sequence="1"/>
+
+            <menuitem id="sga_mgmtsystem_process_process_menu_action"
+                      name="Procedimientos"
+                      parent="sga_process_menu"
+                      action="mgmtsystem_process.action_mgmt_procedures"
+                      sequence="2"/>
+
+            <menuitem id="sga_process_documentary_menu_action"
+                      name="Lista Maestra"
+                      parent="sga_process_menu"
+                      action="mgmtsystem_process.documentary_control_action"
+                      sequence="3"
+                      groups="base.group_no_one,mgmtsystem_process.group_process_readonly,mgmtsystem_process.group_process_readonly_printreport,mgmtsystem_process.group_process_owner,mgmtsystem_process.group_process_all"/>
+
+        <!-- Contexto Organizacional -->
+        <menuitem id="sga_context_menu"
+                  name="Contexto Organizacional"
+                  parent="sga_plan_menu"
+                  groups="mgmtsystem_context.group_context_onlyread,mgmtsystem_context.group_context_onlyread_printreport,mgmtsystem_context.group_context_write_printreport,mgmtsystem_context.group_context_all"
+                  sequence="30"/>
+
+            <menuitem id="sga_mgmtsystem_context_stakeholder_menu_action"
+                      name="Partes interesadas"
+                      action="mgmtsystem_context.stakeholder_action"
+                      parent="sga_context_menu"
+                      sequence="1"/>
+
+            <menuitem id="sga_mgmtsystem_context_quality_manual_menu_action"
+                      name="Manual de calidad"
+                      parent="sga_context_menu"
+                      action="mgmtsystem_qualitymanual.action_mgmtsystem_qualitymanual"
+                      sequence="3"/>
+
+            <menuitem id="sga_mgmtsystem_context_internal_factors_menu_action"
+                      name="Factores internos"
+                      parent="sga_context_menu"
+                      action="mgmtsystem_context.context_internal_issue_action"
+                      sequence="5"/>
+
+            <menuitem id="sga_mgmtsystem_context_external_factors_menu_action"
+                      name="Factores externos"
+                      parent="sga_context_menu"
+                      action="mgmtsystem_context.context_external_issue_action"
+                      sequence="6"/>
+
+
+        <!-- Riesgos y Oportunidades -->
+        <menuitem id="sga_opp_menu"
+                  name="Riesgos y Oportunidades"
+                  parent="sga_plan_menu"
+                  groups="mgmtsystem_opportunity.group_opportunity_onlyread,mgmtsystem_opportunity.group_opportunity_onlyread_printreport,mgmtsystem_opportunity.group_opportunity_user_secundario,mgmtsystem_opportunity.group_opportunity_write_printreport"
+                  sequence="40"/>
+
+            <menuitem id="sga_mgmtsystem_opp_risk_menu_action"
+                      name="Matriz de Riesgos"
+                      parent="sga_opp_menu"
+                      action="mgmtsystem_opportunity.matrix_block_line_risk_action"
+                      sequence="1"/>
+
+            <menuitem id="sga_mgmtsystem_opp_opp_menu_action"
+                      name="Matriz de Oportunidades"
+                      parent="sga_opp_menu"
+                      action="mgmtsystem_opportunity.matrix_block_line_opportunity_action"
+                      sequence="2"/>
+
+        <!-- Requisitos Legales -->
+        <menuitem id="sga_legal_menu"
+                  name="Requisitos Legales"
+                  parent="sga_plan_menu"
+                  groups="mgmtsystem_legal.group_legal_onlyread,mgmtsystem_legal.group_legal_onlyread_printreport,mgmtsystem_legal.group_legal_write_printreport,mgmtsystem_legal.group_legal_all"
+                  sequence="50"/>
+
+            <menuitem id="sga_mgmtsystem_legal_menu_action"
+                      name="Requisitos Legales"
+                      action="mgmtsystem_legal.legal_plan_action"
+                      parent="sga_legal_menu"
+                      sequence="1"/>
+
+        <!-- Políticas -->
+        <menuitem id="sga_policy_menu"
+                  name="Políticas"
+                  parent="sga_plan_menu"
+                  groups="mgmtsystem_context.group_context_onlyread,mgmtsystem_context.group_context_onlyread_printreport,mgmtsystem_context.group_context_write_printreport,mgmtsystem_context.group_context_all"
+                  sequence="60"/>
+
+            <menuitem id="sga_mgmtsystem_policy_menu_action"
+                      name="Política"
+                      action="mgmtsystem_context.context_policy_action_action"
+                      parent="sga_policy_menu"
+                      sequence="1"/>
+
+    <!-- Hacer -->
+    <menuitem id="sga_do_menu"
+              name="Hacer"
+              parent="soyambiental_base.sga_menu_root"
+              sequence="30"/>
+
+        <menuitem id="sga_contigency_plan_menu"
+                  name="Plan de contingencia"
+                  parent="sga_do_menu"
+                  sequence="10"/>
+
+            <menuitem id="sga_threat_menu_action"
+                      name="Amenaza"
+                      action="soyseguridad_contigency_plan.sst_threat_action"
+                      parent="sga_contigency_plan_menu"
+                      sequence="20"/>
+
+            <menuitem id="sga_vulnerability_menu_action"
+                      name="Vulnerabilidad"
+                      action="soyseguridad_contigency_plan.sst_vulnerability_action"
+                      parent="sga_contigency_plan_menu"
+                      sequence="30"/>
+
+            <menuitem id="sga_simulacrum_menu_action"
+                      name="Programa de simulacros"
+                      action="soyseguridad_contigency_plan.sst_simulacrum_action"
+                      parent="sga_contigency_plan_menu"
+                      sequence="40"/>
+
+        <menuitem id="sga_comunication_menu"
+                  name="Comunicaciones"
+                  parent="sga_do_menu"
+                  groups="mgmtsystem_comunication.group_comunication_onlyread,mgmtsystem_comunication.group_comunication_onlyread_printreport,mgmtsystem_comunication.group_comunication_write_printreport,mgmtsystem_comunication.group_comunication_all"
+                  sequence="20"/>
+
+            <menuitem id="sga_mgmtsystem_comunication_comunication_plan_menu_action"
+                      name="Programa de comunicaciones"
+                      parent="sga_comunication_menu"
+                      action="mgmtsystem_comunication.comunication_plan_action"
+                      sequence="1"/>
+
+            <menuitem id="sga_mgmtsystem_comunication_record_meeting_menu_action"
+                      name="Actas de reunión"
+                      parent="sga_comunication_menu"
+                      action="mgmtsystem_comunication.record_meeting_action"
+                      sequence="2"/>
+
+        <menuitem id="sga_training_menu"
+                  name="Capacitaciones"
+                  parent="sga_do_menu"
+                  groups="mgmtsystem_employees.group_employees_onlyread,mgmtsystem_employees.group_employees_onlyread_printreport,mgmtsystem_employees.group_employees_write_printreport,mgmtsystem_employees.group_employees_all"
+                  sequence="30"/>
+
+            <menuitem id="sga_mgmtsystem_training_plan_menu_action"
+                      name="Programa anual de capacitaciones"
+                      parent="sga_training_menu"
+                      action="mgmtsystem_employees.hr_item_plan_action"
+                      groups="base.group_no_one,mgmtsystem_employees.group_employees_onlyread,mgmtsystem_employees.group_employees_onlyread_printreport,mgmtsystem_employees.group_employees_write_printreport,mgmtsystem_employees.group_employees_all"
+                      sequence="1"/>
+
+            <menuitem id="sga_mgmtsystem_training_training_menu_action"
+                      name="Plan de Capacitaciones"
+                      parent="sga_training_menu"
+                      action="mgmtsystem_employees.hr_item_training_action"
+                      sequence="2"/>
+
+        <menuitem id="sga_maintenance_menu"
+              name="Mantenimiento"
+              parent="sga_do_menu"
+              groups="mgmtsystem_infrastructure.group_infrastructure_onlyread,mgmtsystem_infrastructure.group_infrastructure_onlyread_printreport,mgmtsystem_infrastructure.group_infrastructure_write_printreport,mgmtsystem_infrastructure.group_infrastructure_all"
+              sequence="40" />
+
+        <menuitem id="sga_mgmtsystem_maintenance_plan_menu_action"
+                  name="Programa de mantenimientos"
+                  parent="sga_maintenance_menu"
+                  groups="base.group_no_one,mgmtsystem_infrastructure.group_infrastructure_onlyread,mgmtsystem_infrastructure.group_infrastructure_onlyread_printreport,mgmtsystem_infrastructure.group_infrastructure_write_printreport,mgmtsystem_infrastructure.group_infrastructure_all"
+                  action="mgmtsystem_infrastructure.mgmtsystem_maintenance_plan_action"
+                  sequence="1"/>
+
+        <menuitem id="sga_mgmtsystem_maintenance_maintenance_menu_action"
+                  name="Plan de Mantenimiento"
+                  parent="sga_maintenance_menu"
+                  action="mgmtsystem_infrastructure.mgmtsystem_maintenance_action"
+                  sequence="2"/>
+
+        <menuitem id="sga_mgmtsystem_maintenance_calendar_menu_action"
+                  name="Calendarios"
+                  parent="sga_maintenance_menu"
+                  action="maintenance.hr_equipment_request_action_cal"
+                  sequence="3"/>
+
+    <!-- Verificar -->
+    <menuitem id="sga_check_menu"
+              name="Verificar"
+              parent="soyambiental_base.sga_menu_root"
+              sequence="40"/>
+
+        <menuitem id="sga_target_menu"
+                  name="Objetivos y medición"
+                  parent="sga_check_menu"
+                  groups="mgmtsystem_target.group_target_onlyread,mgmtsystem_target.group_target_user_interno,mgmtsystem_target.group_target_write_printreport,mgmtsystem_target.group_target_all"
+                  sequence="10"/>
+
+            <menuitem id="sga_mgmtsystem_target_indicator_menu_action"
+                      name="Indicadores"
+                      action="mgmtsystem_target.indicator_action_2"
+                      parent="sga_target_menu"
+                      sequence="1"/>
+
+            <menuitem id="sga_mgmtsystem_target_target_menu_action"
+                      name="Objetivos"
+                      action="mgmtsystem_target.target_action"
+                      parent="sga_target_menu"
+                      sequence="2"/>
+
+        <menuitem id="sga_audit_menu"
+                  name="Auditorías"
+                  parent="sga_check_menu"
+                  groups="mgmtsystem_audit.group_audit_onlyread,mgmtsystem_audit.group_audit_onlyread_printreport,mgmtsystem_audit.group_audit_write_printreport,mgmtsystem_audit.group_audit_all"
+                  sequence="20" />
+
+            <menuitem id="sga_mgmtsystem_audit_plan_menu_action"
+                      name="Programa de auditorías"
+                      action="mgmtsystem_audit.audit_plan_action"
+                      parent="sga_audit_menu"
+                      sequence="1"/>
+
+            <menuitem id="sga_mgmtsystem_audit_audit_menu_action"
+                      name="Auditorías"
+                      action="mgmtsystem_audit.audit_audit_action"
+                      parent="sga_audit_menu"
+                      sequence="2"/>
+
+        <menuitem id="sga_review_menu"
+                  name="Revisión por la dirección"
+                  parent="sga_check_menu"
+                  groups="mgmtsystem_management_review.group_management_review_onlyread,mgmtsystem_management_review.group_management_review_write_printreport,mgmtsystem_management_review.group_management_review_all"
+                  sequence="30"/>
+
+            <menuitem id="sga_mgmtsystem_review_plan_menu_action"
+                      name="Programa de revisiones"
+                      action="mgmtsystem_management_review.mgmtsystem_review_plan_action1"
+                      parent="sga_review_menu"
+                      sequence="1"/>
+
+            <menuitem id="sga_mgmtsystem_review_review_menu_action"
+                      name="Revisión por la dirección"
+                      action="mgmtsystem_management_review.action_management_review"
+                      parent="sga_review_menu"
+                      sequence="2"/>
+
+            <menuitem id="sga_mgmtsystem_review_act_menu_action"
+                      name="Actas"
+                      action="mgmtsystem_comunication.record_meeting_action"
+                      parent="sga_review_menu"
+                      sequence="3"/>
+
+    <!-- Actuar -->
+    <menuitem id="sga_act_menu"
+              name="Actuar"
+              parent="soyambiental_base.sga_menu_root"
+              sequence="50"/>
+
+        <menuitem id="sga_nc_menu"
+                  name="No conformidades"
+                  parent="sga_act_menu"
+                  groups="mgmtsystem_nonconformity.group_nonconformity_onlyread,mgmtsystem_nonconformity.group_nonconformity_user_secundario,mgmtsystem_nonconformity.group_nonconformity_write_printreport"
+                  sequence="10"/>
+
+            <menuitem id="sga_mgmtsystem_nc_nc_menu_action"
+                      name="No conformidades"
+                      action="mgmtsystem_nonconformity.open_mgmtsystem_nonconformity_list"
+                      parent="sga_nc_menu"
+                      sequence="1"/>
+
+            <menuitem id="sga_mgmtsystem_nc_cause_menu_action"
+                      name="Causas"
+                      action="mgmtsystem_nonconformity.open_mgmtsystem_nonconformity_cause_list"
+                      parent="sga_nc_menu"
+                      sequence="3"/>
+
+        <menuitem id="sga_actions_menu"
+                  name="Acciones"
+                  parent="sga_act_menu"
+                  groups="mgmtsystem_action.group_action_readonly,mgmtsystem_action.group_action_owner,mgmtsystem_action.group_action_readonly_printreport"
+                  sequence="20"/>
+
+            <menuitem id="sga_mgmtsystem_action_action_menu_action"
+                      name="Acciones"
+                      action="mgmtsystem_action.open_mgmtsystem_action_list"
+                      parent="sga_actions_menu"
+                      sequence="1"/>
+
+    <!-- Configuración -->
+    <menuitem id="sga_configuration_menu"
+              name="Configuración"
+              parent="soyambiental_base.sga_menu_root"
+              sequence="100"/>
+
+        <menuitem id="sga_mgmtsystem_settings_menu"
+                  name="Ajustes"
+                  parent="sga_configuration_menu"
+                  action="hola_calidad.action_mgmtsystem_configuration"
+                  sequence="10"/>
+</odoo>

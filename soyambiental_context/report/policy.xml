@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="politica_de_calidad" inherit_id="mgmtsystem_context.politica_de_calidad">
+        <xpath expr="//div[@name='principal']" position="inside">
+            <t t-if="doc.system_id.name == 'Soy Ambiental'">
+                <div style="right:20px; left:20px;font-size:18px;text-align: justify;text-justify: inter-word; padding-left: 2em; ">
+                    <t t-if="doc.sga_organization_context">
+                        <div>
+                            <dt>
+                                <span style="font-weight: bold; text-align: justify;text-justify: inter-word;">
+                                    Contexto de la organización
+                                </span>
+                            </dt>
+                            <dd>
+                                <span t-field="doc.sga_organization_context"/>
+                            </dd>
+                        </div>
+                    </t>
+                    <t t-if="doc.sga_direction_help">
+                        <div>
+                            <dl>
+                                <dt>
+                                    <span style="font-weight: bold; text-align: justify;text-justify: inter-word;">
+                                        Apoyo para la dirección
+                                    </span>
+                                </dt>
+                                <dd>
+                                    <span t-field="doc.sga_direction_help"/>
+                                </dd>
+                            </dl>
+                        </div>
+                    </t>
+                    <t t-if="doc.sga_env_protection_commitment">
+                        <div>
+                            <dt>
+                                <span style="font-weight: bold; text-align: justify;text-justify: inter-word;">
+                                    Compromiso protección medio ambiente
+                                </span>
+                            </dt>
+                            <dd>
+                                <span t-field="doc.sga_env_protection_commitment"/>
+                            </dd>
+                        </div>
+                    </t>
+                    <t t-if="doc.sga_legal_req">
+                        <div>
+                            <dl>
+                                <dt>
+                                    <span style="font-weight: bold; text-align: justify;text-justify: inter-word;">
+                                        Requisitos Legales
+                                    </span>
+                                </dt>
+                                <dd>
+                                    <span t-field="doc.sga_legal_req"/>
+                                </dd>
+                            </dl>
+                        </div>
+                    </t>
+                    <t t-if="doc.sga_standard_commitment">
+                        <div>
+                            <dl>
+                                <dt>
+                                    <span style="font-weight: bold; text-align: justify;text-justify: inter-word;">
+                                        Compromiso para los requisitos de la norma
+                                    </span>
+                                </dt>
+                                <dd>
+                                    <span t-field="doc.sga_standard_commitment"/>
+                                </dd>
+                            </dl>
+                        </div>
+                    </t>
+                    <t t-if="doc.sga_continuous_improvement">
+                        <div>
+                            <dl>
+                                <dt>
+                                    <span style="font-weight: bold; text-align: justify;text-justify: inter-word;">
+                                        Mejora Continua
+                                    </span>
+                                </dt>
+                                <dd>
+                                    <span t-field="doc.sga_continuous_improvement"/>
+                                </dd>
+                            </dl>
+                        </div>
+                    </t>
+                    <t t-if="doc.sga_env_goals">
+                        <div>
+                            <dl>
+                                <dt>
+                                    <span style="font-weight: bold; text-align: justify;text-justify: inter-word;">
+                                        Objetivos ambientales
+                                    </span>
+                                </dt>
+                                <dd>
+                                    <span t-field="doc.sga_env_goals"/>
+                                </dd>
+                            </dl>
+                        </div>
+                    </t>
+                    <t t-if="doc.sga_communication">
+                        <span style="font-weight: bold; text-align: justify;text-justify: inter-word;">
+                            Comunicación
+                        </span>
+                        <div>
+                            <span t-field="doc.sga_communication"/>
+                        </div>
+                    </t>
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="politica_de_calidad_simple" inherit_id="mgmtsystem_context.politica_de_calidad_simple">
+        <xpath expr="//div[@name='principal']" position="inside">
+            <t t-if="doc.system_id.name == 'Soy Ambiental'">
+                <div style="right:20px; left:20px;font-size:18px;text-align: justify;text-justify: inter-word; padding-left: 2em; ">
+                    <t t-if="doc.sga_organization_context">
+                        <div>
+                            <dt>
+                                <span style="font-weight: bold; text-align: justify;text-justify: inter-word;">
+                                    Contexto de la organización
+                                </span>
+                            </dt>
+                            <dd>
+                                <span t-field="doc.sga_organization_context"/>
+                            </dd>
+                        </div>
+                    </t>
+                    <t t-if="doc.sga_direction_help">
+                        <div>
+                            <dl>
+                                <dt>
+                                    <span style="font-weight: bold; text-align: justify;text-justify: inter-word;">
+                                        Apoyo para la dirección
+                                    </span>
+                                </dt>
+                                <dd>
+                                    <span t-field="doc.sga_direction_help"/>
+                                </dd>
+                            </dl>
+                        </div>
+                    </t>
+                    <t t-if="doc.sga_env_protection_commitment">
+                        <div>
+                            <dt>
+                                <span style="font-weight: bold; text-align: justify;text-justify: inter-word;">
+                                    Compromiso protección medio ambiente
+                                </span>
+                            </dt>
+                            <dd>
+                                <span t-field="doc.sga_env_protection_commitment"/>
+                            </dd>
+                        </div>
+                    </t>
+                    <t t-if="doc.sga_legal_req">
+                        <div>
+                            <dl>
+                                <dt>
+                                    <span style="font-weight: bold; text-align: justify;text-justify: inter-word;">
+                                        Requisitos Legales
+                                    </span>
+                                </dt>
+                                <dd>
+                                    <span t-field="doc.sga_legal_req"/>
+                                </dd>
+                            </dl>
+                        </div>
+                    </t>
+                    <t t-if="doc.sga_standard_commitment">
+                        <div>
+                            <dl>
+                                <dt>
+                                    <span style="font-weight: bold; text-align: justify;text-justify: inter-word;">
+                                        Compromiso para los requisitos de la norma
+                                    </span>
+                                </dt>
+                                <dd>
+                                    <span t-field="doc.sga_standard_commitment"/>
+                                </dd>
+                            </dl>
+                        </div>
+                    </t>
+                    <t t-if="doc.sga_continuous_improvement">
+                        <div>
+                            <dl>
+                                <dt>
+                                    <span style="font-weight: bold; text-align: justify;text-justify: inter-word;">
+                                        Mejora Continua
+                                    </span>
+                                </dt>
+                                <dd>
+                                    <span t-field="doc.sga_continuous_improvement"/>
+                                </dd>
+                            </dl>
+                        </div>
+                    </t>
+                    <t t-if="doc.sga_env_goals">
+                        <div>
+                            <dl>
+                                <dt>
+                                    <span style="font-weight: bold; text-align: justify;text-justify: inter-word;">
+                                        Objetivos ambientales
+                                    </span>
+                                </dt>
+                                <dd>
+                                    <span t-field="doc.sga_env_goals"/>
+                                </dd>
+                            </dl>
+                        </div>
+                    </t>
+                    <t t-if="doc.sga_communication">
+                        <span style="font-weight: bold; text-align: justify;text-justify: inter-word;">
+                            Comunicación
+                        </span>
+                        <div>
+                            <span t-field="doc.sga_communication"/>
+                        </div>
+                    </t>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>
