@@ -7,6 +7,7 @@
     'license': 'Other proprietary',
     'category': 'soyambiental',
     'depends': [
+        'soyambiental_base',
         'mgmtsystem_process_integration',
         'mgmtsystem_survey',
         'mgmtsystem_opportunity',
