@@ -8,7 +8,7 @@
     <menuitem id="sga_ideaa_matrix_menu"
               name="Matriz IDEAA"
               action="sga_ideaa_matrix_action"
-              parent="soyambiental_base.sga_aspect_menu"
+              parent="sga_aspect_menu"
               sequence="1"/>
 
 
