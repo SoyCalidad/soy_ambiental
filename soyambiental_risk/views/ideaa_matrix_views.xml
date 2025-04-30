@@ -6,54 +6,54 @@
         <field name="arch" type="xml">
             <form string="Matriz">
                 <header>
-                    <field name="matrix_state" widget="statusbar" attrs="{'invisible':[('state','!=','elaborate')]}"/>
+                    <field name="matrix_state" widget="statusbar" invisible="state != 'elaborate'"/>
                     <field name="state" widget="statusbar" statusbar_visible="elaborate,review,validate,validate_ok"
-                           attrs="{'invisible':[('state','=','elaborate')]}"/>
+                           invisible="state == 'elaborate'"/>
                     <button string="Validar proceso"
                             name="init_preparation"
                             type="object"
                             class="btn-primary"
-                            attrs="{'invisible':[('matrix_state','!=', 'draft')]}"/>
+                            invisible="matrix_state != 'draft'"/>
                     <button string="Identificar aspectos e impactos"
                             name="action_identify_aspect_impact"
                             type="object"
                             class="btn-primary"
-                            attrs="{'invisible':[('matrix_state','!=', 'process')]}"/>
+                            invisible="matrix_state != 'process'"/>
                     <button string="Evaluar impactos"
                             name="evaluate_impacts"
                             type="object"
                             class="btn-primary"
-                            attrs="{'invisible':[('matrix_state','!=', 'identification')]}"/>
+                            invisible="matrix_state != 'identification'"/>
                     <button string="Establecer controles"
                             name="controlate_risks"
                             type="object"
                             class="btn-primary"
-                            attrs="{'invisible':[('matrix_state','!=', 'evaluation')]}"/>
+                            invisible="matrix_state != 'evaluation'"/>
                     <button string="Enviar a Revisar"
                             name="send_review"
                             type="object"
                             class="btn-primary"
-                            attrs="{'invisible':['|', ('matrix_state','!=', 'control'), ('state','!=', 'elaborate')]}"/>
+                            invisible="matrix_state != 'control' or state != 'elaborate'"/>
                     <button string="Enviar a Validar"
                             name="send_validate"
                             type="object"
                             class="btn-primary"
-                            attrs="{'invisible':[('state','not in', ('review'))]}"/>
+                            invisible="state != 'review'"/>
                     <button string="Validar"
                             name="send_validate_ok"
                             type="object"
                             class="btn-primary"
-                            attrs="{'invisible':[('state','not in', ('validate'))]}"/>
+                            invisible="state != 'validate'"/>
                     <button string="Volver Obsoleto"
                             name="send_cancel"
                             type="object"
                             class="btn-second"
-                            attrs="{'invisible': [('state','in',('cancel'))] }"/>
+                            invisible="state == 'cancel'"/>
                     <button name="button_new_version"
                             type="object"
                             string="Nueva versión"
                             class="oe_highlight"
-                            attrs="{'invisible': [('state','not in',('validate_ok'))] }"/>
+                            invisible="state != 'validate_ok'"/>
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
@@ -143,27 +143,20 @@
                         <page name="version_info" string="Validación y versión">
                             <group col="4">
                                 <group colspan="4">
-                                    <field name="version"
-                                           attrs="{'readonly': [('state','in',('validate_ok','cancel'))]}"/>
+                                    <field name="version" readonly="state in ('validate_ok','cancel')"/>
                                 </group>
                                 <group colspan="4">
                                     <separator string="Elaboración"/>
-                                    <field name="elaboration_step" colspan="4" nolabel="1"
-                                           attrs="{'readonly': [('state','not in',('elaborate'))]}"/>
+                                    <field name="elaboration_step" colspan="4" nolabel="1" readonly="state != 'elaborate'"/>
                                     <separator string="Revisión"/>
-                                    <field name="review_step" colspan="4" nolabel="1"
-                                           attrs="{'readonly': [('state','not in',('elaborate', 'review'))]}"/>
+                                    <field name="review_step" colspan="4" nolabel="1" readonly="state not in ('elaborate', 'review')"/>
                                     <separator string="Validación"/>
-                                    <field name="validation_step" colspan="4" nolabel="1"
-                                           attrs="{'readonly': [('state','not in',('elaborate', 'review', 'validate'))]}"/>
+                                    <field name="validation_step" colspan="4" nolabel="1" readonly="state not in ('elaborate', 'review', 'validate')"/>
                                 </group>
                                 <group colspan="2">
-                                    <field name="date_elaborate"
-                                           attrs="{'required': [('state','in',('elaborate'))], 'readonly': True}"/>
-                                    <field name="date_review"
-                                           attrs="{'required': [('state','in',('review'))], 'readonly': True, 'invisible': [('state','in',('elaborate'))] }"/>
-                                    <field name="date_validate" groups="base.group_no_one,base.user_admin"
-                                           attrs="{'invisible': [('state','in',('elaborate','review'))] }"/>
+                                    <field name="date_elaborate" required="state == 'elaborate'" readonly="1"/>
+                                    <field name="date_review" required="state == 'review'" readonly="1" invisible="state == 'elaborate'"/>
+                                    <field name="date_validate" groups="base.group_no_one,base.user_admin" invisible="state in ('elaborate', 'review')"/>
                                 </group>
                             </group>
                         </page>
@@ -197,9 +190,10 @@
         <field name="res_model">sga.ideaa_matrix</field>
         <field name="view_mode">tree,form</field>
         <field name="domain">[]</field>
-        <!--        <field name="context" eval="{'default_evaluation_id':ref('soyseguridad_risk.evaluation_main')}" />-->
         <field name="help" type="html">
-            <p>MATRIZ DE IDENTIFICACIÓN DE ASPECTOS AMBIENTALES</p>
+            <p class="o_view_nocontent_smiling_face">
+                MATRIZ DE IDENTIFICACIÓN DE ASPECTOS AMBIENTALES
+            </p>
         </field>
     </record>
 
@@ -214,5 +208,4 @@
         <field name="res_model">sga.matrix.impact</field>
         <field name="view_mode">tree,form</field>
     </record>
-
 </odoo>

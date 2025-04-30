@@ -1,36 +1,36 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-    <!-- Mail template are declared in a NOUPDATE block
-         so users can freely customize/delete them -->
     <data noupdate="1">
-        <!--Email template -->
         <record id="email_plan_ambiental" model="mail.template">
             <field name="name">Plan ambiental: Enviar por correo electrónico</field>
-            <field name="model_id" ref="plan_sanitation.model_plan_ambiental" />
-            <field name="email_from">"${object.company_id.name | safe}" &lt;${(object.company_id.email or user.email) | safe}&gt;</field>
-            <field name="email_to">${object.user_responsible.login}</field>
-            <field name="subject">${object.company_id.name} Plan ambiental (Ref ${object.name or 'n/a'})</field>
-             <field name="body_html" type="html">
-                <div style="margin: 0px; padding: 0px;">
-                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
-        Estimado/a
-        % if object.user_responsible.parent_id:
-            ${object.user_responsible.name} (${object.user_responsible.parent_id.name}),
-        % else:
-            ${object.user_responsible.name},
-        % endif
-                        <br />
-                        <br />
-        Aquí se le envía el plan ambiental.
+            <field name="model_id" ref="plan_sanitation.model_plan_ambiental"/>
+            <field name="email_from">
+                {{ object.company_id.email_formatted or user.email_formatted }}
+            </field>
+            <field name="email_to">
+                {{ object.user_responsible.login }}
+            </field>
+            <field name="subject">
+                {{ object.company_id.name }} Plan ambiental (Ref {{ object.name or 'n/a' }})
+            </field>
+            <field name="body_html" type="html">
+                <div style="margin:0; padding:0;">
+                    <p style="font-size:13px; margin:0; padding:0;">
+                        Estimado/a
+                        <t t-if="object.user_responsible.parent_id">
+                            <t t-out="object.user_responsible.name or ''"/> (<t t-out="object.user_responsible.parent_id.name or ''"/>),
+                        </t>
+                        <t t-else="">
+                            <t t-out="object.user_responsible.name or ''"/>,
+                        </t>
+                        <br/><br/>
+                        Aquí se le envía el plan ambiental.
                     </p>
                 </div>
             </field>
-            <field name="report_template" ref="plan_ambiental_report_action" />
-            <field name="report_name">Plan ambiental_${(object.name or '').replace('/','_')}</field>
-            <field name="lang">${object.user_responsible.lang}</field>
-            <field name="user_signature" eval="False" />
-            <field name="auto_delete" eval="True" />
+            <field name="report_template_ids" eval="[(4, ref('plan_sanitation.plan_ambiental_report_action'))]"/>
+            <field name="lang">{{ object.user_responsible.lang }}</field>
+            <field name="auto_delete" eval="True"/>
         </record>
     </data>
 </odoo>

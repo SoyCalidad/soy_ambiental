@@ -25,7 +25,8 @@ class Principal(models.Model):
     @api.model
     def action_close_plan_sanidad(self):
         """ Mark the invoice onboarding panel as closed. """
-        self.env.company.plan_sanidad_state = 'closed'
+        pass
+        #self.env.company.plan_sanidad_state = 'closed'
 
     def get_and_update_sanidad_state(self):
         """ This method is called on the controller rendering method and ensures that the animations

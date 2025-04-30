@@ -9,7 +9,7 @@
                 <field name="is_sga_context" invisible="1"/>
             </xpath>
             <xpath expr="//field[@name='inspection_ids']" position="attributes">
-                <attribute name="attrs">{'invisible': [('stage','in',('ide','ana')), ('is_sga_context', '=', True)]}</attribute>
+                <attribute name="invisible">stage in ('ide','ana') and is_sga_context</attribute>
             </xpath>
         </field>
     </record>

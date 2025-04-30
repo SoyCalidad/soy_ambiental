@@ -33,7 +33,7 @@
             <menuitem id="sga_mgmtsystem_employee_department_menu_action"
                       name="Departamentos"
                       parent="sga_employees_menu"
-                      action="hr.open_module_tree_department"
+                      action="hr.hr_department_tree_action"
                       sequence="3"/>
 
         <!-- Procesos -->

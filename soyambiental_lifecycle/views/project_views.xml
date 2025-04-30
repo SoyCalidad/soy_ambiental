@@ -26,7 +26,7 @@
         <field name="model">project.project</field>
         <field name="inherit_id" ref="project.project_project_view_form_simplified"/>
         <field name="arch" type="xml">
-            <xpath expr="//group" position="inside">
+            <xpath expr="//div[hasclass('oe_title')]" position="inside">
                 <group>
                     <field name="department_id"/>
                     <field name="process_id"/>

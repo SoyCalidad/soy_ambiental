@@ -24,10 +24,6 @@
         'mgmtsystem_nonconformity',
         'mgmtsystem_action',
         'soyseguridad_contigency_plan',
-
-        # 'soyambiental_context',
-        # 'soyambiental_contigency_plan',
-        # 'soyambiental_risk',
     ],
     'data': [
         'security/security.xml',

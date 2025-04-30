@@ -80,7 +80,7 @@
                         <field name="name"/>
                         <field name="values_ids"/>
                         <field name="has_criterios"/>
-                        <field name="criterio_ids" attrs="{'invisible': [('has_criterios', '=', False)]}"/>
+                        <field name="criterio_ids" invisible="not has_criterios"/>
                     </group>
                 </sheet>
             </form>

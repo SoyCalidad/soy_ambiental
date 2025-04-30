@@ -6,10 +6,8 @@
     'author': 'Soy Calidad',
     'website': 'www.soycalidad.com',
     'license': 'Other proprietary',
-    'category': 'biosafe',
+    'category': 'ambiental',
     'depends': [
-        'backend_theme_v13',
-        'hr_employee_geolocation',
         'mgmtsystem_process_integration',
         'dms',
         'soycalidad_improve',
@@ -18,6 +16,7 @@
     'data': [
         'security/groups.xml',
         'security/ir.model.access.csv',
+        'data/onboarding_data.xml',
         'views/plan_ambiental.xml',
         'views/programa_ambiental.xml',
         'views/ambient.xml',

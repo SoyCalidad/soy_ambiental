@@ -1,75 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
     <record id="programa_ambiental_view_form" model="ir.ui.view">
         <field name="name">programa.ambiental.view.form</field>
         <field name="model">programa.ambiental</field>
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <field name="state" widget="statusbar" statusbar_visible="elaborate,review,validate,validate_ok" />
-                    <button string="Enviar a Revisar" name="send_review" type="object" class="btn-primary" states="elaborate" />
-                    <button string="Enviar a Validar" name="send_validate" type="object" class="btn-primary" states="review" />
-                    <button string="Validar" name="send_validate_ok" type="object" class="btn-primary" states="validate" />
-                    <button name="button_new_version" type="object" string="Nueva versión" class="oe_highlight" states="validate_ok" />
-                    <button string="Caducado" confirm="Esto cancelerá el presente registro. ¿Está seguro(a)?" name="send_cancel" type="object" class="btn-second" attrs="{'invisible': [('state','in',('cancel'))] }" />
+                    <field name="state" widget="statusbar" statusbar_visible="elaborate,review,validate,validate_ok"/>
+                    <button string="Enviar a Revisar" name="send_review" type="object" class="btn-primary"
+                            invisible="state != 'elaborate'"/>
+                    <button string="Enviar a Validar" name="send_validate" type="object" class="btn-primary"
+                            invisible="state != 'review'"/>
+                    <button string="Validar" name="send_validate_ok" type="object" class="btn-primary"
+                            invisible="state != 'validate'"/>
+                    <button name="button_new_version" type="object" string="Nueva versión" class="oe_highlight"
+                            invisible="state != 'validate_ok'"/>
+                    <button string="Caducado" confirm="Esto cancelerá el presente registro. ¿Está seguro(a)?"
+                            name="send_cancel"
+                            type="object" class="btn-second" invisible="state == 'cancel'"/>
                 </header>
                 <sheet>
                     <div class="oe_button_box" position="inside">
-                        <button type="object" name="openviews" context="{'type_action':'plans'}" class="oe_stat_button" icon="fa-file">
-                            <field name="plans_counts" widget="statinfo" string="Planes" />
+                        <button type="object" name="openviews" context="{'type_action':'plans'}" class="oe_stat_button"
+                                icon="fa-file">
+                            <field name="plans_counts" widget="statinfo" string="Planes"/>
                         </button>
-                        <button type="object" name="openviews" context="{'type_action':'target'}" class="oe_stat_button" icon="fa-bar-chart-o">
-                            <field name="target_counts" widget="statinfo" string="Objetivos" />
+                        <button type="object" name="openviews" context="{'type_action':'target'}" class="oe_stat_button"
+                                icon="fa-bar-chart-o">
+                            <field name="target_counts" widget="statinfo" string="Objetivos"/>
                         </button>
-                        <button type="object" name="openviews" context="{'type_action':'non_conformities'}" class="oe_stat_button" icon="fa-frown-o">
-                            <field name="nonconformities_counts" widget="statinfo" string="No conformidades" />
+                        <button type="object" name="openviews" context="{'type_action':'non_conformities'}"
+                                class="oe_stat_button" icon="fa-frown-o">
+                            <field name="nonconformities_counts" widget="statinfo" string="No conformidades"/>
                         </button>
-                        <button type="object" name="openviews" context="{'type_action':'actions'}" class="oe_stat_button" icon="fa-edit">
-                            <field name="actions_counts" widget="statinfo" string="Acciones" />
+                        <button type="object" name="openviews" context="{'type_action':'actions'}"
+                                class="oe_stat_button" icon="fa-edit">
+                            <field name="actions_counts" widget="statinfo" string="Acciones"/>
                         </button>
-                        <button type="object" name="openviews" context="{'type_action':'documents'}" class="oe_stat_button" icon="fa-file-text-o">
-                            <field name="documents_counts" widget="statinfo" string="Documentos" />
+                        <button type="object" name="openviews" context="{'type_action':'documents'}"
+                                class="oe_stat_button" icon="fa-file-text-o">
+                            <field name="documents_counts" widget="statinfo" string="Documentos"/>
                         </button>
-                        <button type="object" name="openviews" context="{'type_action':'change_requests'}" class="oe_stat_button" icon="fa-book">
-                            <field name="change_requests_counts" widget="statinfo" string="Solicitudes de cambio" />
+                        <button type="object" name="openviews" context="{'type_action':'change_requests'}"
+                                class="oe_stat_button" icon="fa-book">
+                            <field name="change_requests_counts" widget="statinfo" string="Solicitudes de cambio"/>
                         </button>
                     </div>
                     <group>
                         <h1>
-                            <field name="code" />
+                            <field name="code"/>
                         </h1>
-                        <field name="name" />
+                        <field name="name"/>
                     </group>
                     <notebook>
                         <page string="Planes">
-                            <field name="plans" />
+                            <field name="plans"/>
                         </page>
                         <page string="Validación">
                             <group>
-                                <field name="version" />
+                                <field name="version"/>
                             </group>
-                            <separator string="Elaboración" />
-                            <field name="elaboration_step" />
-                            <separator string="Revisión" />
-                            <field name="review_step" />
-                            <separator string="Validación" />
-                            <field name="validation_step" />
+                            <separator string="Elaboración"/>
+                            <field name="elaboration_step"/>
+                            <separator string="Revisión"/>
+                            <field name="review_step"/>
+                            <separator string="Validación"/>
+                            <field name="validation_step"/>
                         </page>
                         <page string="Acciones">
-                            <field name="actions" />
+                            <field name="actions"/>
                         </page>
                         <page string="No conformidades">
-                            <field name="non_conformities" />
+                            <field name="non_conformities"/>
                         </page>
                         <page string="Objetivos">
-                            <field name="target" />
+                            <field name="target"/>
                         </page>
                         <page string="Documentos">
-                            <field name="documents" mode="kanban" />
+                            <field name="documents" mode="kanban"/>
                         </page>
                         <page string="Solicitudes de cambio">
-                            <field name="change_requests" />
+                            <field name="change_requests"/>
                         </page>
                     </notebook>
                 </sheet>
@@ -81,11 +92,11 @@
         <field name="name">programa.ambiental.view.tree</field>
         <field name="model">programa.ambiental</field>
         <field name="arch" type="xml">
-            <tree string="Programa ambiental" banner_route="/plan_ambiental/principal">
-                <field name="name" />
-                <field name="plans" />
-                <field name="version" />
-                <field name="state" />
+            <tree string="Programa ambiental" banner_route="/onboarding/plan_sanitation">
+                <field name="name"/>
+                <field name="plans"/>
+                <field name="version"/>
+                <field name="state"/>
             </tree>
         </field>
     </record>
@@ -97,9 +108,7 @@
         <field name="domain">[]</field>
         <field name="context">{}</field>
         <field name="help" type="html">
-            <h1>Programa de saneamiento ambiental</h1>
+            <p class="o_view_nocontent_smiling_face">Crear un programa de saneamiento ambiental</p>
         </field>
     </record>
-
-
 </odoo>

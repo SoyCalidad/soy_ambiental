@@ -6,15 +6,15 @@
         <field name="inherit_id" ref="mgmtsystem_context.context_policy_view_form"/>
         <field name="arch" type="xml">
             <page name="document" position="inside">
-                <group attrs="{'invisible': [('system_id', '!=', %(soyambiental_context.policy_system_sga)d)]}">
-                    <field name="sga_organization_context" attrs="{'readonly': [('state', 'in', ('validate_ok', 'cancel'))]}"/>
-                    <field name="sga_direction_help" attrs="{'readonly': [('state','in', ('validate_ok', 'cancel'))]}"/>
-                    <field name="sga_env_protection_commitment" attrs="{'readonly': [('state', 'in', ('validate_ok', 'cancel'))]}"/>
-                    <field name="sga_legal_req" attrs="{'readonly': [('state', 'in', ('validate_ok', 'cancel'))]}"/>
-                    <field name="sga_standard_commitment" attrs="{'readonly': [('state', 'in', ('validate_ok', 'cancel'))]}"/>
-                    <field name="sga_continuous_improvement" attrs="{'readonly': [('state', 'in', ('validate_ok', 'cancel'))]}"/>
-                    <field name="sga_env_goals" attrs="{'readonly': [('state', 'in', ('validate_ok', 'cancel'))]}"/>
-                    <field name="sga_communication" attrs="{'readonly': [('state', 'in', ('validate_ok', 'cancel'))]}"/>
+	            <group invisible="system_id != '%(soyambiental_context.policy_system_sga)d)'">
+                    <field name="sga_organization_context" readonly="state in ('validate_ok', 'cancel')"/>
+                    <field name="sga_direction_help" readonly="state in ('validate_ok', 'cancel')"/>
+                    <field name="sga_env_protection_commitment" readonly="state in ('validate_ok', 'cancel')"/>
+                    <field name="sga_legal_req" readonly="state in ('valsidate_ok', 'cancel')"/>
+                    <field name="sga_standard_commitment" readonly="state in ('validate_ok', 'cancel')"/>
+                    <field name="sga_continuous_improvement" readonly="state in ('validate_ok', 'cancel')"/>
+                    <field name="sga_env_goals" readonly="state in ('validate_ok', 'cancel')"/>
+                    <field name="sga_communication" readonly="state in ('validate_ok', 'cancel')"/>
                 </group>
             </page>
         </field>
@@ -26,7 +26,7 @@
         <field name="inherit_id" ref="mgmtsystem_context.policy_template_view_form" />
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
-                <group attrs="{'invisible': [('system_id', '!=', %(soyambiental_context.policy_system_sga)d)]}">
+                <group invisible="system_id != '%(soyambiental_context.policy_system_sga)d)'">
                     <field name="sga_organization_context"/>
                     <field name="sga_direction_help"/>
                     <field name="sga_env_protection_commitment"/>

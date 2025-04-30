@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data noupdate="1">
+    <record id="onboarding_onboarding_step_programa_ambiental" model="onboarding.onboarding.step">
+        <field name="title">Programa de saneamiento ambiental</field>
+        <field name="description">Cree un programa de saneamiento ambiental</field>
+        <field name="button_text">Crear</field>
+        <field name="done_text">Se ve bien!</field>
+        <field name="panel_step_open_action_name">action_open_step_programa_ambiental</field>
+        <field name="step_image" type="base64" file="base/static/img/onboarding_default.png"></field>
+        <field name="step_image_filename">onboarding_default.png</field>
+        <field name="step_image_alt">Onboarding Programa ambiental</field>
+        <field name="sequence">1</field>
+    </record>
+
+    <record id="onboarding_onboarding_step_plan_ambiental" model="onboarding.onboarding.step">
+        <field name="title">Plan de saneamiento ambiental</field>
+        <field name="description">Cree un plan de saneamiento ambiental</field>
+        <field name="button_text">Crear</field>
+        <field name="done_text">Se ve bien!</field>
+        <field name="panel_step_open_action_name">action_open_step_plan_ambiental</field>
+        <field name="step_image" type="base64" file="base/static/img/onboarding_default.png"></field>
+        <field name="step_image_filename">onboarding_default.png</field>
+        <field name="step_image_alt">Onboarding Plan ambiental</field>
+        <field name="sequence">2</field>
+    </record>
+
+    <record id="onboarding_onboarding_plan_sanitation" model="onboarding.onboarding">
+        <field name="name">Sanidad</field>
+        <field name="step_ids" eval="[
+            Command.link(ref('plan_sanitation.onboarding_onboarding_step_programa_ambiental')),
+            Command.link(ref('plan_sanitation.onboarding_onboarding_step_plan_ambiental')),
+        ]"/>
+        <field name="route_name">plan_sanitation</field>
+        <field name="panel_close_action_name">action_close_panel_plan_sanitation</field>
+    </record>
+</data>
+</odoo>
