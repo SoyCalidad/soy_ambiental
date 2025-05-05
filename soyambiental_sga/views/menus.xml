@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="sga_simplified_menu_root"
+              name="Sistema de gestión ambiental"
+              web_icon="soyambiental_base,static/description/icon.png"
+              sequence="-100"/>
+
+    <!--    Matriz IDEAA-->
+    <menuitem id="sga_ideaa_matrix_menu"
+              name="Matriz IDEAA"
+              parent="sga_simplified_menu_root"
+              sequence="1"/>
+
+    <menuitem id="sga_ideaa_matrix_menu_action"
+              name="Matriz IDEAA"
+              action="soyambiental_risk.sga_ideaa_matrix_action"
+              parent="sga_ideaa_matrix_menu"
+              sequence="1"/>
+
+    <menuitem id="sga_matrix_aspect_menu_action"
+              name="Aspectos"
+              action="soyambiental_risk.sga_matrix_aspect_action"
+              parent="sga_ideaa_matrix_menu"
+              sequence="2"/>
+
+    <menuitem id="sga_matrix_impact_menu_action"
+              name="Impactos"
+              action="soyambiental_risk.sga_matrix_impact_action"
+              parent="sga_ideaa_matrix_menu"
+              sequence="3"/>
+
+    <menuitem id="sga_matrix_stage_task_impact_menu_action"
+              name="Tareas"
+              action="soyambiental_risk.sga_matrix_stage_task_action"
+              parent="sga_ideaa_matrix_menu"
+              sequence="4"/>
+
+    <!--    Plan de contingencia-->
+    <menuitem id="sga_contigency_plan_menu"
+              name="Plan de contingencia"
+              parent="sga_simplified_menu_root"
+              sequence="2"/>
+
+    <menuitem id="sga_contigency_plan_menu_action"
+              name="Plan de contingencia"
+              action="soyseguridad_contigency_plan.sst_contigency_plan_action"
+              parent="sga_contigency_plan_menu"
+              sequence="1"/>
+
+    <menuitem id="sga_threat_menu_action"
+              name="Amenaza"
+              action="soyseguridad_contigency_plan.sst_threat_action"
+              parent="sga_contigency_plan_menu"
+              sequence="2"/>
+
+    <menuitem id="sga_vulnerability_menu_action"
+              name="Vulnerabilidad"
+              action="soyseguridad_contigency_plan.sst_vulnerability_action"
+              parent="sga_contigency_plan_menu"
+              sequence="3"/>
+
+    <menuitem id="sga_simulacrum_menu_action"
+              name="Programa de simulacros"
+              action="soyseguridad_contigency_plan.sst_simulacrum_action"
+              parent="sga_contigency_plan_menu"
+              sequence="4"/>
+
+    <!--   Ciclo de vida-->
+    <menuitem id="sga_lifecycle_menu_action"
+              name="Ciclo de vida"
+              action="project.open_view_project_all"
+              parent="sga_simplified_menu_root"
+              sequence="3"/>
+
+    <!--   Saneamiento ambiental-->
+    <menuitem id="saneamiento_menu"
+              name="Saneamiento ambiental"
+              parent="sga_simplified_menu_root"
+              sequence="4"/>
+
+    <menuitem id="programa_ambiental_menu"
+              name="Programa de saneamiento ambiental"
+              action="plan_sanitation.programa_ambiental_action"
+              parent="saneamiento_menu"
+              sequence="1" />
+
+    <menuitem id="plan_ambiental_menu"
+              name="Plan de saneamiento ambiental"
+              action="plan_sanitation.plan_ambiental_action"
+              parent="saneamiento_menu"
+              sequence="2" />
+
+    <!--   Reportes-->
+    <menuitem id="sga_report_menu"
+              name="Reportes"
+              parent="sga_simplified_menu_root"
+              sequence="5"/>
+</odoo>

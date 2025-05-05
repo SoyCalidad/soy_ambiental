@@ -201,11 +201,32 @@
         <field name="name">Aspectos</field>
         <field name="res_model">sga.matrix.aspect</field>
         <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No se encontraron aspectos. ¡Creemos uno!"
+            </p>
+        </field>
     </record>
 
     <record id="sga_matrix_impact_action" model="ir.actions.act_window">
         <field name="name">Impactos</field>
         <field name="res_model">sga.matrix.impact</field>
         <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No se encontraron impactos. ¡Creemos uno!"
+            </p>
+        </field>
+    </record>
+
+    <record id="sga_matrix_stage_task_action" model="ir.actions.act_window">
+        <field name="name">Tareas</field>
+        <field name="res_model">sga.matrix.stage.task</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No se encontraron tareas. ¡Creemos una!"
+            </p>
+        </field>
     </record>
 </odoo>

@@ -3,6 +3,7 @@
     <record id="module_category_sga_base" model="ir.module.category">
         <field name="name">Soy Ambiental</field>
         <field name="description">Accesos para módulos de Soy Ambiental</field>
+        <field name="parent_id" ref="hola_calidad.module_mgmt_management"/>
         <field name="sequence">50</field>
     </record>
 

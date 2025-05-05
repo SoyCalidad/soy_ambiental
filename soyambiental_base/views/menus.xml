@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <menuitem id="sga_menu_root"
-              name="Sistema de gestión ambiental"
+              name="Sistema SGA"
               web_icon="soyambiental_base,static/description/icon.png"
               sequence="-100"/>
 

@@ -10,22 +10,4 @@
               action="sga_ideaa_matrix_action"
               parent="sga_aspect_menu"
               sequence="1"/>
-
-
-    <menuitem id="sga_ideaa_matrix_settings_menu"
-              name="Aspectos ambientales"
-              parent="soyambiental_base.sga_configuration_menu"
-              sequence="20"/>
-
-    <menuitem id="sga_matrix_aspect_menu_action"
-              name="Aspectos"
-              action="sga_matrix_aspect_action"
-              parent="sga_ideaa_matrix_settings_menu"
-              sequence="1"/>
-
-    <menuitem id="sga_matrix_impact_menu_action"
-              name="Impactos"
-              action="sga_matrix_impact_action"
-              parent="sga_ideaa_matrix_settings_menu"
-              sequence="2"/>
 </odoo>
