@@ -95,4 +95,28 @@
               name="Reportes"
               parent="sga_simplified_menu_root"
               sequence="5"/>
+
+    <menuitem id="sga_ideaa_matrix_wizard_menu_action"
+              name="Matriz de identificación de aspectos ambientales"
+              action="sga_ideaa_matrix_wizard_action"
+              parent="sga_report_menu"
+              sequence="1"/>
+
+    <menuitem id="sga_contigency_plan_wizard_menu_action"
+              name="Plan de contingencia"
+              action="sga_contigency_plan_wizard_action"
+              parent="sga_report_menu"
+              sequence="2"/>
+
+    <menuitem id="programa_ambiental_wizard_menu_action"
+              name="Programa de saneamiento ambiental"
+              action="programa_ambiental_wizard_action"
+              parent="sga_report_menu"
+              sequence="3"/>
+
+    <menuitem id="plan_ambiental_wizard_menu_action"
+              name="Plan de saneamiento ambiental"
+              action="plan_ambiental_wizard_action"
+              parent="sga_report_menu"
+              sequence="4"/>
 </odoo>

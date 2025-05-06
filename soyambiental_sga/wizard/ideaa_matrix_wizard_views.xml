@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sga_ideaa_matrix_wizard_view_form" model="ir.ui.view">
+        <field name="name">sga.ideaa_matrix.wizard.view.form</field>
+        <field name="model">sga.ideaa_matrix.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="ideaa_matrix_id" required="1"/>
+                </group>
+                <footer>
+                    <button name="action_export_xlsx" string="XLSX" type="object" class="oe_highlight"/>
+                    <button string="Cancelar" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="sga_ideaa_matrix_wizard_action" model="ir.actions.act_window">
+        <field name="name">Asistente de Matriz de identificación de aspectos ambientales</field>
+        <field name="res_model">sga.ideaa_matrix.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

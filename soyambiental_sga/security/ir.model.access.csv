@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sga_ideaa_matrix_wizard,sga.ideaa_matrix.wizard,model_sga_ideaa_matrix_wizard,base.group_user,1,1,1,1
+access_sga_contigency_plan_wizard,sga.contigency_plan.wizard,model_sga_contigency_plan_wizard,base.group_user,1,1,1,1
+access_programa_ambiental_wizard,programa.ambiental.wizard,model_programa_ambiental_wizard,base.group_user,1,1,1,1
+access_plan_ambiental_wizard,plan.ambiental.wizard,model_plan_ambiental_wizard,base.group_user,1,1,1,1
