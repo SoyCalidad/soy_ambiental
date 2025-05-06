@@ -5,18 +5,14 @@
         <field name="model">project.project</field>
         <field name="inherit_id" ref="project.edit_project"/>
         <field name="arch" type="xml">
-            <xpath expr="//div[hasclass('oe_title')]" position="after">
-                <group>
-                    <group>
-                        <field name="department_id"/>
-                        <field name="process_id"/>
-                        <field name="project_manager_id"/>
-                    </group>
-                    <group>
-                        <field name="start_date"/>
-                        <field name="deadline_date"/>
-                    </group>
-                </group>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="department_id"/>
+                <field name="process_id"/>
+                <field name="project_manager_id"/>
+            </xpath>
+            <xpath expr="//group/group[2]" position="inside">
+                <field name="start_date"/>
+                <field name="deadline_date"/>
             </xpath>
         </field>
     </record>
