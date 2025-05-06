@@ -147,11 +147,11 @@
                                 </group>
                                 <group colspan="4">
                                     <separator string="Elaboración"/>
-                                    <field name="elaboration_step" colspan="4" nolabel="1" readonly="state != 'elaborate'"/>
+                                    <field name="elaboration_step" colspan="2" nolabel="1" readonly="state != 'elaborate'"/>
                                     <separator string="Revisión"/>
-                                    <field name="review_step" colspan="4" nolabel="1" readonly="state not in ('elaborate', 'review')"/>
+                                    <field name="review_step" colspan="2" nolabel="1" readonly="state not in ('elaborate', 'review')"/>
                                     <separator string="Validación"/>
-                                    <field name="validation_step" colspan="4" nolabel="1" readonly="state not in ('elaborate', 'review', 'validate')"/>
+                                    <field name="validation_step" colspan="2" nolabel="1" readonly="state not in ('elaborate', 'review', 'validate')"/>
                                 </group>
                                 <group colspan="2">
                                     <field name="date_elaborate" required="state == 'elaborate'" readonly="1"/>
