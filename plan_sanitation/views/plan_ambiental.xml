@@ -18,7 +18,7 @@
                     <button string="Caducado" name="send_cancel" confirm="Esto volverá obsoleto el presente registro. ¿Está seguro(a)?" type="object" class="btn-second" invisible="state == 'cancel'" />
                 </header>
                 <sheet>
-                    <div class="oe_button_box" position="inside">
+                    <div class="oe_button_box" name="button_box">
                         <button type="object" name="openviews" context="{'type_action':'target'}" class="oe_stat_button" icon="fa-bar-chart-o">
                             <field name="target_counts" widget="statinfo" string="Objetivos" />
                         </button>
@@ -41,15 +41,19 @@
                         </h1>
                         <field name="name" />
                     </group>
-                    <group col="4">
-                        <field name="program" />
-                        <field name="month" />
-                        <field name="user_responsible" />
-                        <field name="date" />
-                        <field name="external_responsible" />
-                        <field name="duration" />
-                        <field name="responsible" invisible="not external_responsible" />
-                        <field name="frequency" />
+                    <group>
+                        <group>
+                            <field name="program" />
+                            <field name="user_responsible" />
+                            <field name="external_responsible" />
+                            <field name="responsible" invisible="not external_responsible" />
+                        </group>
+                        <group>
+                            <field name="month" />
+                            <field name="date" />
+                            <field name="duration" />
+                            <field name="frequency" />
+                        </group>
                     </group>
                     <group>
                         <field name="observations" />
