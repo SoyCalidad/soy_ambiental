@@ -118,7 +118,7 @@
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
                                     <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" invisible="1"/>
+                                    <field name="is_page" column_invisible="1"/>
                                     <field name="observation"/>
                                 </tree>
                             </field>
@@ -129,7 +129,7 @@
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
                                     <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" invisible="1"/>
+                                    <field name="is_page" column_invisible="1"/>
                                     <field name="observation"/>
                                 </tree>
                             </field>
@@ -140,7 +140,7 @@
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
                                     <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" invisible="1"/>
+                                    <field name="is_page" column_invisible="1"/>
                                     <field name="observation"/>
                                 </tree>
                             </field>
@@ -151,7 +151,7 @@
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
                                     <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" invisible="1"/>
+                                    <field name="is_page" column_invisible="1"/>
                                     <field name="observation"/>
                                 </tree>
                             </field>
@@ -178,9 +178,9 @@
                                 <tree editable="bottom" delete="false">
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
-                                    <field name="is_page" invisible="1"/>
+                                    <field name="is_page" column_invisible="1"/>
                                     <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" invisible="1"/>
+                                    <field name="is_page" column_invisible="1"/>
                                     <field name="observation"/>
                                 </tree>
                             </field>
@@ -190,9 +190,9 @@
                                 <tree editable="bottom" delete="false">
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
-                                    <field name="is_page" invisible="1"/>
+                                    <field name="is_page" column_invisible="1"/>
                                     <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" invisible="1"/>
+                                    <field name="is_page" column_invisible="1"/>
                                     <field name="observation"/>
                                 </tree>
                             </field>
@@ -202,9 +202,9 @@
                                 <tree editable="bottom" delete="false">
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
-                                    <field name="is_page" invisible="1"/>
+                                    <field name="is_page" column_invisible="1"/>
                                     <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" invisible="1"/>
+                                    <field name="is_page" column_invisible="1"/>
                                     <field name="observation"/>
                                 </tree>
                             </field>
@@ -231,7 +231,7 @@
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
                                     <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" invisible="1"/>
+                                    <field name="is_page" column_invisible="1"/>
                                     <field name="observation"/>
                                 </tree>
                             </field>
@@ -242,7 +242,7 @@
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
                                     <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" invisible="1"/>
+                                    <field name="is_page" column_invisible="1"/>
                                     <field name="observation"/>
                                 </tree>
                             </field>
@@ -253,7 +253,7 @@
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
                                     <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" invisible="1"/>
+                                    <field name="is_page" column_invisible="1"/>
                                     <field name="observation"/>
                                 </tree>
                             </field>
@@ -264,7 +264,7 @@
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
                                     <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" invisible="1"/>
+                                    <field name="is_page" column_invisible="1"/>
                                     <field name="observation"/>
                                 </tree>
                             </field>
@@ -276,7 +276,7 @@
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
                                     <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" invisible="1"/>
+                                    <field name="is_page" column_invisible="1"/>
                                     <field name="observation"/>
                                 </tree>
                             </field>
@@ -288,7 +288,7 @@
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
                                     <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" invisible="1"/>
+                                    <field name="is_page" column_invisible="1"/>
                                     <field name="observation"/>
                                 </tree>
                             </field>
@@ -313,7 +313,7 @@
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
                                     <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" invisible="1"/>
+                                    <field name="is_page" column_invisible="1"/>
                                     <field name="observation"/>
                                 </tree>
                             </field>
@@ -324,7 +324,7 @@
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
                                     <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" invisible="1"/>
+                                    <field name="is_page" column_invisible="1"/>
                                     <field name="observation"/>
                                 </tree>
                             </field>
@@ -337,7 +337,7 @@
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
                                     <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" invisible="1"/>
+                                    <field name="is_page" column_invisible="1"/>
                                     <field name="observation"/>
                                 </tree>
                             </field>
@@ -351,7 +351,7 @@
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
                                     <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" invisible="1"/>
+                                    <field name="is_page" column_invisible="1"/>
                                     <field name="observation"/>
                                 </tree>
                             </field>
@@ -362,7 +362,7 @@
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
                                     <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" invisible="1"/>
+                                    <field name="is_page" column_invisible="1"/>
                                     <field name="observation"/>
                                 </tree>
                             </field>
@@ -372,7 +372,7 @@
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
                                     <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" invisible="1"/>
+                                    <field name="is_page" column_invisible="1"/>
                                     <field name="observation"/>
                                 </tree>
                             </field>
@@ -384,7 +384,7 @@
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
                                     <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" invisible="1"/>
+                                    <field name="is_page" column_invisible="1"/>
                                     <field name="observation"/>
                                 </tree>
                             </field>
@@ -397,7 +397,7 @@
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
                                     <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" invisible="1"/>
+                                    <field name="is_page" column_invisible="1"/>
                                     <field name="observation"/>
                                 </tree>
                             </field>
@@ -410,7 +410,7 @@
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
                                     <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" invisible="1"/>
+                                    <field name="is_page" column_invisible="1"/>
                                     <field name="observation"/>
                                 </tree>
                             </field>
@@ -439,7 +439,7 @@
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
                                     <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" invisible="1"/>
+                                    <field name="is_page" column_invisible="1"/>
                                     <field name="observation"/>
                                 </tree>
                             </field>
@@ -450,7 +450,7 @@
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
                                     <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" invisible="1"/>
+                                    <field name="is_page" column_invisible="1"/>
                                     <field name="observation"/>
                                 </tree>
                             </field>
@@ -477,7 +477,7 @@
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
                                     <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" invisible="1"/>
+                                    <field name="is_page" column_invisible="1"/>
                                     <field name="observation"/>
                                 </tree>
                             </field>
@@ -488,7 +488,7 @@
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
                                     <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" invisible="1"/>
+                                    <field name="is_page" column_invisible="1"/>
                                     <field name="observation"/>
                                 </tree>
                             </field>
@@ -502,7 +502,7 @@
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
                                     <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" invisible="1"/>
+                                    <field name="is_page" column_invisible="1"/>
                                     <field name="observation"/>
                                 </tree>
                             </field>
@@ -513,7 +513,7 @@
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
                                     <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" invisible="1"/>
+                                    <field name="is_page" column_invisible="1"/>
                                     <field name="observation"/>
                                 </tree>
                             </field>
@@ -524,7 +524,7 @@
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
                                     <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" invisible="1"/>
+                                    <field name="is_page" column_invisible="1"/>
                                     <field name="observation"/>
                                 </tree>
                             </field>
@@ -549,7 +549,7 @@
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
                                     <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" invisible="1"/>
+                                    <field name="is_page" column_invisible="1"/>
                                     <field name="observation"/>
                                 </tree>
                             </field>
@@ -560,7 +560,7 @@
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
                                     <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" invisible="1"/>
+                                    <field name="is_page" column_invisible="1"/>
                                     <field name="observation"/>
                                 </tree>
                             </field>
@@ -570,7 +570,7 @@
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
                                     <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" invisible="1"/>
+                                    <field name="is_page" column_invisible="1"/>
                                     <field name="observation"/>
                                 </tree>
                             </field>

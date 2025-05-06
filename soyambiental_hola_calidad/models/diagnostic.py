@@ -362,6 +362,21 @@ class Diagnostic(models.Model):
     diagnostic10_ids_0 = fields.Integer(
         string=u'Total Planificacion 0%', compute='_get_diagnostic')
 
+    diagnostic4_ids_total = fields.Integer(
+        string=u'Total Punto 4', compute='_get_diagnostic', store=True)
+    diagnostic5_ids_total = fields.Integer(
+        string=u'Total Punto 5', compute='_get_diagnostic', store=True)
+    diagnostic6_ids_total = fields.Integer(
+        string=u'Total Punto 6', compute='_get_diagnostic', store=True)
+    diagnostic7_ids_total = fields.Integer(
+        string=u'Total Punto 7', compute='_get_diagnostic', store=True)
+    diagnostic8_ids_total = fields.Integer(
+        string=u'Total Punto 8', compute='_get_diagnostic', store=True)
+    diagnostic9_ids_total = fields.Integer(
+        string=u'Total Punto 9', compute='_get_diagnostic', store=True)
+    diagnostic10_ids_total = fields.Integer(
+        string=u'Total Punto 10', compute='_get_diagnostic', store=True)
+
     def _get_diagnostic(self):
         fields_ = dir(self)
         field_suffixes = ['4', '5', '6', '7', '8', '9', '10']
@@ -491,7 +506,7 @@ class Diagnostic(models.Model):
             with open(tmp.name, 'rb') as f:
                 xls_filelike = BytesIO(f.read())
 
-        out = base64.encodestring(xls_filelike.getvalue())
+        out = base64.b64encode(xls_filelike.getvalue()).decode()
 
         self.xls_helper.write({'datas': out, 'datas_fname': filename})
         filename += '%2Exlsx'
