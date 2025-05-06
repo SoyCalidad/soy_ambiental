@@ -10,7 +10,6 @@
     'depends': [
         'soyambiental_risk',
         'soyseguridad_contigency_plan',
-        'soyseguridad_organization',
         'project',
         'plan_sanitation',
     ],
