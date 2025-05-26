@@ -23,7 +23,7 @@
             <tree string="Valor de criterio de la matriz SGA">
                 <field name="name" />
                 <field name="item_value_id" />
-                <field name="item_id" invisible="1"/>
+                <field name="item_id" column_invisible="1"/>
             </tree>
         </field>
     </record>
