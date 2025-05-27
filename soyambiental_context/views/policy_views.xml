@@ -6,7 +6,8 @@
         <field name="inherit_id" ref="mgmtsystem_context.context_policy_view_form"/>
         <field name="arch" type="xml">
             <page name="document" position="inside">
-	            <group invisible="system_id != '%(soyambiental_context.policy_system_sga)d)'">
+                <field name="is_sga_policy_system" invisible="1"/>
+	            <group invisible="not is_sga_policy_system">
                     <field name="sga_organization_context" readonly="state in ('validate_ok', 'cancel')"/>
                     <field name="sga_direction_help" readonly="state in ('validate_ok', 'cancel')"/>
                     <field name="sga_env_protection_commitment" readonly="state in ('validate_ok', 'cancel')"/>
@@ -25,8 +26,9 @@
         <field name="model">mgmtsystem.context.policy.template</field>
         <field name="inherit_id" ref="mgmtsystem_context.policy_template_view_form" />
         <field name="arch" type="xml">
-            <xpath expr="//notebook" position="inside">
-                <group invisible="system_id != '%(soyambiental_context.policy_system_sga)d)'">
+            <xpath expr="//notebook/page[@name='content']" position="inside">
+                <field name="is_sga_policy_system" invisible="1"/>
+                <group invisible="not is_sga_policy_system">
                     <field name="sga_organization_context"/>
                     <field name="sga_direction_help"/>
                     <field name="sga_env_protection_commitment"/>

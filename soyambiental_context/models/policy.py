@@ -13,6 +13,14 @@ class Policy(models.Model):
     sga_env_goals = fields.Text(string='Objetivos ambientales')
     sga_communication = fields.Text(string='Comunicación')
 
+    is_sga_policy_system = fields.Boolean(compute="_compute_is_sga_policy_system")
+
+    @api.depends('system_id')
+    def _compute_is_sga_policy_system(self):
+        target_id = self.env.ref('soyambiental_context.policy_system_sga').id
+        for rec in self:
+            rec.is_sga_policy_system = (rec.system_id.id == target_id)
+
     @api.onchange('template_')
     def _onchange_template_(self):
         super()._onchange_template_()
@@ -38,3 +46,11 @@ class PolicyTemplate(models.Model):
     sga_continuous_improvement = fields.Text(string='Mejora Continua')
     sga_env_goals = fields.Text(string='Objetivos ambientales')
     sga_communication = fields.Text(string='Comunicación')
+
+    is_sga_policy_system = fields.Boolean(compute="_compute_is_sga_policy_system")
+
+    @api.depends('system_id')
+    def _compute_is_sga_policy_system(self):
+        target_id = self.env.ref('soyambiental_context.policy_system_sga').id
+        for rec in self:
+            rec.is_sga_policy_system = (rec.system_id.id == target_id)
