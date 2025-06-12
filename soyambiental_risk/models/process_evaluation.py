@@ -12,6 +12,22 @@ class MatrixProcessEvaluationControl(models.Model):
     evaluation_process_id = fields.Many2one('sga.matrix.process', string='Proceso de la matriz SGA (Evaluación)')
     reevaluation_process_id = fields.Many2one('sga.matrix.process', string='Proceso de la matriz SGA (Reevaluación)')
 
+    # Campo computed para controlar readonly
+    criterio_readonly = fields.Boolean(compute='_compute_criterio_readonly', store=False)
+
+    @api.depends('evaluation_item_id', 'evaluation_item_id.has_criterios')
+    def _compute_criterio_readonly(self):
+        for record in self:
+            # Si no hay item seleccionado o el item no tiene criterios, hacer readonly
+            record.criterio_readonly = not record.evaluation_item_id or not record.evaluation_item_id.has_criterios
+
+    @api.onchange('evaluation_item_id')
+    def _onchange_evaluation_item_id(self):
+        # Limpiar el criterio si el item no tiene criterios
+        if self.evaluation_item_id and not self.evaluation_item_id.has_criterios:
+            self.evaluation_item_criterio_id = False
+    
+    
     @api.onchange('evaluation_item_criterio_id')
     def _onchange_evaluation_item_criterio_id(self):
         for record in self:
