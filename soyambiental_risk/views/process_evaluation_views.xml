@@ -241,7 +241,8 @@
                                 <field name="evaluation_ids">
                                     <tree editable="bottom">
                                         <field name="evaluation_item_id"/>
-                                        <field name="evaluation_item_criterio_id"/>
+                                        <field name="criterio_readonly" column_invisible="1"/>
+                                        <field name="evaluation_item_criterio_id" readonly="criterio_readonly"/>
                                         <field name="evaluation_value_id"/>
                                     </tree>
                                 </field>
