@@ -144,23 +144,60 @@ class IDEAAMatrixXLSXReport(models.AbstractModel):
                         "Financiera": 12
                     }
 
-                    for x in process.evaluation_ids:
-                        if x.evaluation_item_id.name == 'Consecuencia':
-                            for criterio in x.evaluation_item_id.criterio_ids:
-                                col_index = criterio_columns.get(criterio.name)
-                                if col_index:
-                                    value = criterio.item_value_id.name if criterio.item_value_id else ''
-                                    sheet.write(row, col_index, value, format_cell_left)
+                    # for x in process.evaluation_ids:
+                    #     if x.evaluation_item_id.name == 'Consecuencia':
+                    #         for criterio in x.evaluation_item_id.criterio_ids:
+                    #             col_index = criterio_columns.get(criterio.name)
+                    #             if col_index:
+                    #                 value = criterio.item_value_id.name if criterio.item_value_id else ''
+                    #                 sheet.write(row, col_index, value, format_cell_left)
 
-                    consecuencia = next(
-                        (
-                            x.evaluation_value_id.name
-                            for x in process.evaluation_ids
-                            if x.evaluation_item_id.name == 'Consecuencia' and x.evaluation_value_id
-                        ),
-                        ''
-                    )
+                    # Para cada criterio, buscar el valor más alto entre todas las evaluaciones
+                    for criterio_name, col_index in criterio_columns.items():
+                        valores_criterio = []
+                        
+                        # Buscar en todas las evaluaciones de tipo que coincida con el criterio
+                        for x in process.evaluation_ids:
+                            if x.evaluation_item_criterio_id.name == criterio_name and x.evaluation_value_id:
+                                # Recopilar el valor de la evaluación
+                                valores_criterio.append(x.evaluation_value_id)
+                        
+                        # Obtener el valor más alto para este criterio específico
+                        if valores_criterio:
+                            max_valor = max(valores_criterio, key=lambda x: x.value)
+                            value = max_valor.name
+                        else:
+                            value = ''
+                        
+                        sheet.write(row, col_index, value, format_cell_left)
+                        
+
+                    # consecuencia = next(
+                    #     (
+                    #         x.evaluation_value_id.name
+                    #         for x in process.evaluation_ids
+                    #         if x.evaluation_item_id.name == 'Consecuencia' and x.evaluation_value_id
+                    #     ),
+                    #     ''
+                    # )
+                    # sheet.write(row, 13, consecuencia, format_cell_left)
+
+                    evaluaciones_consecuencia = [
+                        x.evaluation_value_id
+                        for x in process.evaluation_ids
+                        if x.evaluation_item_id.name == 'Consecuencia' and x.evaluation_value_id
+                    ]
+
+                    if evaluaciones_consecuencia:
+                        # Obtiene la evaluación con el mayor valor numérico
+                        max_evaluacion = max(evaluaciones_consecuencia, key=lambda x: x.value)
+                        consecuencia = max_evaluacion.name
+                    else:
+                        consecuencia = ''
+
                     sheet.write(row, 13, consecuencia, format_cell_left)
+
+
                     sheet.write(row, 14, process.level, format_cell_left)
                     sheet.write(row, 15, process.evaluation_pxc, format_cell_left)
                     sheet.write(row, 16, '\n'.join(['- ' + x.name for x in process.legal_ids]), format_cell_left)
