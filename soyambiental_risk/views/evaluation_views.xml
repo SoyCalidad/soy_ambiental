@@ -7,8 +7,8 @@
             <form string="Valor de criterio de la matriz SGA">
                 <sheet>
                     <group>
-                        <field name="name" />
-                        <field name="item_value_id" />
+                        <field name="name" readonly="1"/>
+                        <field name="item_value_id" readonly="1"/>
                         <field name="item_id" invisible="1"/>
                     </group>
                 </sheet>
