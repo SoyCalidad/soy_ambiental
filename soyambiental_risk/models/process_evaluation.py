@@ -117,7 +117,7 @@ class MatrixProcess(models.Model):
     task_id = fields.Many2one('sga.matrix.stage.task', string='Tarea')
     job_ids = fields.Many2many('hr.job', string='Puestos de trabajo')
 
-    evaluation_ids = fields.One2many('sga.matrix.process.evaluation_control', 'evaluation_process_id', string='Evaluación')
+    evaluation_ids = fields.One2many('sga.matrix.process.evaluation_control', 'evaluation_process_id', string='Evaluación' , default=lambda self: self._get_default_evaluation_records())
     evaluation_p = fields.Integer(compute='_compute_risk_valuation', string='Nivel de probabilidad (P)')
     evaluation_c = fields.Integer(compute='_compute_risk_valuation', string='Nivel de consecuencia (C)')
     evaluation_pxc = fields.Integer(compute='_compute_risk_valuation', string='Valoración del riesgo (P x C)')
@@ -143,7 +143,7 @@ class MatrixProcess(models.Model):
     )
 
     action_ids = fields.Many2many('mgmtsystem.action', string='Acciones')
-    reevaluation_ids = fields.One2many('sga.matrix.process.evaluation_control', 'reevaluation_process_id', string='Reevaluación')
+    reevaluation_ids = fields.One2many('sga.matrix.process.evaluation_control', 'reevaluation_process_id', string='Reevaluación' , default=lambda self: self._get_default_reevaluation_records())
     control_p = fields.Integer(compute='_compute_control_pxc', string='Reevaluación de riesgos P')
     control_c = fields.Integer(compute='_compute_control_pxc', string='Reevaluación de riesgos C')
     control_pxc = fields.Integer(compute='_compute_control_pxc', string='Reevaluación de riesgos PxC')
@@ -207,3 +207,114 @@ class MatrixProcess(models.Model):
             each.control_pxc = r_value
             each.control_p = p_value
             each.control_c = c_value
+
+    ## default evaluations
+
+    def _get_default_evaluation_records(self):
+        """
+        Retorna los registros por defecto para evaluation_ids
+        """
+        default_evaluations = [
+            # Registro 1
+            {
+                'evaluation_item_id': 'soyambiental_risk.evaluation_item_1',
+                'evaluation_item_criterio_id': False,
+            },
+            # Registro 2
+            {
+                'evaluation_item_id': 'soyambiental_risk.evaluation_item_2',
+                'evaluation_item_criterio_id': 'soyambiental_risk.evaluation_item2_criterio1',
+            },
+            # Registro 3
+            {
+                'evaluation_item_id': 'soyambiental_risk.evaluation_item_2',
+                'evaluation_item_criterio_id': 'soyambiental_risk.evaluation_item2_criterio2',
+            },
+            # Registro 4
+            {
+                'evaluation_item_id': 'soyambiental_risk.evaluation_item_2',
+                'evaluation_item_criterio_id': 'soyambiental_risk.evaluation_item2_criterio3',
+            },
+            # Registro 5
+            {
+                'evaluation_item_id': 'soyambiental_risk.evaluation_item_2',
+                'evaluation_item_criterio_id': 'soyambiental_risk.evaluation_item2_criterio4',
+            },
+            # Registro 6
+            {
+                'evaluation_item_id': 'soyambiental_risk.evaluation_item_2',
+                'evaluation_item_criterio_id': 'soyambiental_risk.evaluation_item2_criterio5',
+            },
+        ]
+        
+        evaluation_vals = []
+        for eval_data in default_evaluations:
+            try:
+                # Resolver las referencias XML ID
+                item_id = self.env.ref(eval_data['evaluation_item_id']).id
+                criterio_id = False
+                if eval_data['evaluation_item_criterio_id']:
+                    criterio_id = self.env.ref(eval_data['evaluation_item_criterio_id']).id
+                
+                line = {
+                    'evaluation_item_id': item_id,
+                    'evaluation_item_criterio_id': criterio_id,
+                }
+                evaluation_vals.append((0, 0, line))
+            except ValueError:
+                # Si alguna referencia no existe, continuar sin agregar ese registro
+                continue
+        
+        return evaluation_vals
+    
+    def _get_default_reevaluation_records(self):
+        """
+        Retorna el registro por defecto para reevaluation_ids
+        """
+        try:
+            item_id = self.env.ref('soyambiental_risk.evaluation_item_1').id
+            line = {
+                'evaluation_item_id': item_id,
+                'evaluation_item_criterio_id': False,
+            }
+            return [(0, 0, line)]
+        except ValueError:
+            return []
+
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        """
+        Override del método create para añadir automáticamente
+        los registros por defecto en evaluation_ids
+        """
+        # Procesar cada registro a crear
+        for vals in vals_list:
+            # Solo añadir los registros por defecto si evaluation_ids no está ya definido
+            if 'evaluation_ids' not in vals or not vals['evaluation_ids']:
+                vals['evaluation_ids'] = self._get_default_evaluation_records()
+            if 'reevaluation_ids' not in vals or not vals['reevaluation_ids']:
+                vals['reevaluation_ids'] = self._get_default_reevaluation_records()
+
+
+        # Crear los registros
+        records = super(MatrixProcess, self).create(vals_list)
+        
+        return records
+    
+    @api.model
+    def default_get(self, fields_list):
+        """
+        Override del método default_get para asegurar que los valores por defecto
+        se establezcan correctamente cuando se crean registros desde One2many
+        """
+        defaults = super(MatrixProcess, self).default_get(fields_list)
+        
+        # Si evaluation_ids está en la lista de campos y no tiene valor por defecto
+        if 'evaluation_ids' in fields_list and 'evaluation_ids' not in defaults:
+            defaults['evaluation_ids'] = self._get_default_evaluation_records()
+
+        if 'reevaluation_ids' in fields_list and 'reevaluation_ids' not in defaults:
+            defaults['reevaluation_ids'] = self._get_default_reevaluation_records()
+
+        return defaults
