@@ -98,4 +98,4 @@ class IDEAAMatrix(models.Model):
                         'evaluation_id': each.evaluation_id.id,
                     }
                     vals.append((0, 0, line))
-                ev.control_item_ids = vals
+                #ev.control_item_ids = vals

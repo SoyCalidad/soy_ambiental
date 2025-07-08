@@ -277,7 +277,12 @@ class MatrixProcess(models.Model):
                 'evaluation_item_id': item_id,
                 'evaluation_item_criterio_id': False,
             }
-            return [(0, 0, line)]
+            item2_id = self.env.ref('soyambiental_risk.evaluation_item_2').id
+            line2 = {
+                'evaluation_item_id': item2_id,
+                'evaluation_item_criterio_id': False,
+            }
+            return [(0, 0, line), (0, 0, line2)]
         except ValueError:
             return []
 
