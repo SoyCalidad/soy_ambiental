@@ -14,13 +14,15 @@ class Principal(models.Model):
     def action_open_plan_ambiental(self, action_ref=None):
         if not action_ref:
             action_ref = 'plan_sanitation.action_principal_plan_ambiental'
-        return self.env.ref(action_ref).read()[0]
+        action = self.env.ref(action_ref, raise_if_not_found=False)
+        return action.read()[0] if action else {}
 
     @api.model
     def action_open_programa_ambiental(self, action_ref=None):
         if not action_ref:
             action_ref = 'plan_sanitation.action_principal_programa_ambiental'
-        return self.env.ref(action_ref).read()[0]
+        action = self.env.ref(action_ref, raise_if_not_found=False)
+        return action.read()[0] if action else {}
 
     @api.model
     def action_close_plan_sanidad(self):
@@ -47,7 +49,8 @@ class PlanP(models.Model):
     def action_open_plan_ambiental(self, action_ref=None):
         if not action_ref:
             action_ref = 'plan_sanitation.action_principal_plan_ambiental'
-        return self.env.ref(action_ref).read()[0]
+        action = self.env.ref(action_ref, raise_if_not_found=False)
+        return action.read()[0] if action else {}
 
     def action_save_plan_ambiental(self):
         """ Set the onboarding step as done """
@@ -66,7 +69,8 @@ class ProgramaP(models.Model):
     def action_open_programa_ambiental(self, action_ref=None):
         if not action_ref:
             action_ref = 'plan_sanitation.action_principal_plan_ambiental'
-        return self.env.ref(action_ref).read()[0]
+        action = self.env.ref(action_ref, raise_if_not_found=False)
+        return action.read()[0] if action else {}
 
     def action_save_programa_ambiental(self):
         """ Set the onboarding step as done """

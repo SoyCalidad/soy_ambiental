@@ -1,4 +1,10 @@
 from odoo import fields, models, api
+from odoo.exceptions import UserError
+
+import logging 
+
+
+_logger = logging.getLogger(__name__)
 
 
 class NewPlanA(models.Model):
@@ -18,7 +24,7 @@ class NewPlanA(models.Model):
     month = fields.Selection([
         ('E', 'Enero'),
         ('F', 'Febrero'),
-        ('M', 'Marzo'),
+        ('Mar', 'Marzo'),
         ('A', 'Abril'),
         ('M', 'Mayo'),
         ('J', 'Junio'),
@@ -76,14 +82,18 @@ class NewPlanA(models.Model):
     def send_email(self):
         self.ensure_one()
         template = self.env.ref(
-            'plan_sanitation.email_plan_ambiental')
+            'plan_sanitation.email_plan_ambiental', raise_if_not_found=False)
         # self.env['mail.template'].browse(
         #     template.id).send_mail(self.id, force_send=True, notif_layout="mail.mail_notification_light",)
+        if not template:
+            raise UserError("La plantilla de correo no fue encontrada")
+
+        lang = None
         if template.lang:
             lang = template._render_template(
-                template.lang, 'plan.ambiental', self.ids[0])
+                template.lang, self._name, self.ids[0])
         ctx = {
-            'default_model': 'plan.ambiental',
+            'default_model': self._name,
             'default_res_id': self.ids[0],
             'default_use_template': bool(template),
             'default_template_id': template.id,
@@ -110,26 +120,22 @@ class NewPlanA(models.Model):
             info = self.env.cr.dictfetchall()
             if info:
                 model_id = info[0]['id']
-            message = ""
-            for e in each.user_responsible:
-                try:
-                    if e.user_id:
-                        self.env['mail.activity'].create({
-                            'res_id': each.ids[0],
-                            'res_model_id': model_id,
-                            'res_model': each._name,
-                            'summary': 'Invitación a empleado',
-                            'note': 'El empleado '+e.user_responsible+' queda cordialmente invitado a visualizar el plan ambiental '+each.name+' el '+each.date.strftime('%d/%m/%Y'),
-                            'date_deadline': each.date_training,
-                            'user_id': e.parent_id.user_id.id,
-                        })
-                    else:
-                        message = message + '<li>'+e.name+'</li>'
-                except:
-                    pass
-            if message != "":
-                each.message_post(
-                    body='Empleados que no recibieron notificación:<br></br>'+message)
+            else:
+                raise UserError("No se encontro la información")
+            #message = ""
+            if each.user_responsible:
+                self.env['mail.activity'].create({
+                    'res_id': each.id,
+                    'res_model_id': model_id,
+                    'res_model': each._name,
+                    'summary': 'Invitación a empleado',
+                    'note': 'El empleado '+each.user_responsible.name+' queda cordialmente invitado a visualizar el plan ambiental '+each.name+' el '+each.date.strftime('%d/%m/%Y'),
+                    'date_deadline': each.date,
+                    'user_id': each.user_responsible.id,
+                })
+            # if message != "":
+            #     each.message_post(
+            #         body='Empleados que no recibieron notificación:<br></br>'+message)
 
     def send_process(self):
         self.write({'state': 'in_process'})
