@@ -39,6 +39,11 @@
                             type="object"
                             class="btn-primary"
                             invisible="state != 'review'"/>
+                    <button string="ReCalc Puestos"
+                            name="action_recal_hr_jobs"
+                            type="object"
+                            class="btn-primary"
+                            invisible="1"/>
                     <button string="Validar"
                             name="send_validate_ok"
                             type="object"

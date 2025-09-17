@@ -1,6 +1,9 @@
 from odoo import api, fields, models
 from odoo.exceptions import UserError
 
+import logging 
+
+_logger = logging.getLogger(__name__)
 
 class IDEAAMatrix(models.Model):
     _name = 'sga.ideaa_matrix'
@@ -88,7 +91,7 @@ class IDEAAMatrix(models.Model):
         """
         for each in self:
             each.matrix_state = 'control'
-            each.process_control_ids = [(6, 0, each.process_evaluation_ids.ids)]
+            #each.process_control_ids = [(6, 0, each.process_evaluation_ids.ids)]
             for ev in each.process_control_ids:
                 vals = []
                 for val in each.evaluation_id.item_ids:
@@ -99,3 +102,23 @@ class IDEAAMatrix(models.Model):
                     }
                     vals.append((0, 0, line))
                 #ev.control_item_ids = vals
+
+    def action_recal_hr_jobs(self):
+        self.ensure_one()
+        
+        for stage in self.stage_ids:
+            for activity in stage.activity_ids:
+                    for task in activity.task_ids:
+                        
+                        for stage_process in self.stage_process_ids:
+                            if stage_process.stage_id.id == stage.id and stage_process.activity_id.id == activity.id and task.id == stage_process.task_id.id:
+                                stage_process.job_ids = [(6, 0, task.job_ids.ids)]
+                                
+                                for process_aspect in self.process_aspect_impact_ids:
+                                    if process_aspect.stage_id.id == stage.id and process_aspect.activity_id.id == stage_process.activity_id.id and process_aspect.task_id.id == task.id:
+                                        process_aspect.job_ids = [(6,0, task.job_ids.ids)]
+                                        break
+                                break 
+                            
+
+                        
