@@ -478,6 +478,7 @@ class Diagnostic(models.Model):
                     if number == str(cont):
                         number = p_excel[1:]
                         print("number------>", number)
+                        letter = None
                         if diagnostic_line.qualification == 'na':
                             letter = 'G'
                         elif diagnostic_line.qualification == '0_porcent':
@@ -491,10 +492,11 @@ class Diagnostic(models.Model):
                         elif diagnostic_line.qualification == '100_porcent':
                             letter = 'F'
 
-                        cell = sheet[letter + number]
-                        print(cell)
-                        cell.value = 'X'
-                        cont = cont + 1
+                        if letter:
+                            cell = sheet[letter + number]
+                            print(cell)
+                            cell.value = 'X'
+                            cont = cont + 1
                     if diagnostic_line  .observation:
                         cell2 = sheet['H' + number]
                         cell2.value = diagnostic_line.observation

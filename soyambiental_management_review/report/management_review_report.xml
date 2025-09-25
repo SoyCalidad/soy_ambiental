@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_mgmtreview_document"
+        inherit_id="mgmtsystem_management_review.report_mgmtreview_document">
+        <xpath expr="//span[@class='subtitle_light c3']" position="after">
+            <span class="subtitle_light c4">C.4. Matriz De Control De Aspectos E Impactos Ambientales</span>
+            <span class="subtitle_light c5">C.5. Saneamiento Ambiental</span>
+            <span class="subtitle_light c6">C.6. Plan De Contingencia</span>
+        </xpath>
+
+        <xpath expr="//div[@id='detail_c3']" position="after">
+            <div class="pagebreak" id="detail_c4">
+                <span class="title">C.4. MATRIZ DE CONTROL DE ASPECTOS E IMPACTOS AMBIENTALES</span>
+                <p>
+                    <b>Matriz: </b>
+                    <span t-field="o.c4_matriz" />
+                </p>
+                <p>
+                    <b>Interpretación: </b>
+                    <span t-field="o.c4_interpretation" />
+                </p>
+            </div>
+            <div class="pagebreak" id="detail_c5">
+                <span class="title">C.5. SANEAMIENTO AMBIENTAL</span>
+
+                <p>
+                    <b>Plan: </b>
+                    <span t-field="o.c5_plan" />
+                </p>
+                <p>
+                    <b>Interpretación:</b>
+                    <span t-field="o.c5_interpretation" />
+                </p>
+            </div>
+            <div class="pagebreak" id="detail_c6">
+                <span class="title">C.6. PLAN DE CONTINGENCIA</span>
+                <p>
+                    <b>Plan: </b>
+                    <span t-field="o.c6_plan" />
+                </p>
+                <p>
+                    <b>Interpretación:</b>
+                    <span t-field="o.c6_interpretation" />
+                </p>
+            </div>
+
+        </xpath>
+
+    </template>
+
+
+</odoo>

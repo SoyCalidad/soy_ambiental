@@ -1,0 +1,40 @@
+<odoo>
+    <record id="management_review_form_view" model="ir.ui.view">
+        <field name="name">management.review.form.view.inherit</field>
+        <field name="model">management.review</field>
+        <field name="inherit_id" ref="mgmtsystem_management_review.management_review_form_view" />
+        <field name="arch" type="xml">
+            <group id="item_c" position="inside">
+                <div class="spacer"></div>
+                <p class="script" style="margin-left:5em">
+                    <h3>c.4. MATRIZ DE CONTROL DE ASPECTOS E IMPACTOS AMBIENTALES</h3>
+                </p>
+                <group colspan="2">
+                    <field name="c4_matriz" readonly="state in ['validate_ok', 'closed', 'cancel']" />
+                    <field name="c4_interpretation" readonly="state in ['validate_ok', 'closed', 'cancel']" />
+                </group>
+
+                <div class="spacer"></div>
+                <p class="script" style="margin-left:5em">
+                    <h3>c.5. SANEAMIENTO AMBIENTAL</h3>
+                </p>
+                <group colspan="2">
+                    <field name="c5_plan" readonly="state in ['validate_ok', 'closed', 'cancel']" />
+                    <field name="c5_interpretation" readonly="state in ['validate_ok', 'closed', 'cancel']" />
+                </group>
+
+                <div class="spacer"></div>
+                <p class="script" style="margin-left:5em">
+                    <h3>c.6. PLAN DE CONTINGENCIA</h3>
+                </p>
+                <group colspan="2">
+                    <field name="c6_plan" readonly="state in ['validate_ok', 'closed', 'cancel']" />
+                    <field name="c6_interpretation" readonly="state in ['validate_ok', 'closed', 'cancel']" />
+                </group>
+            </group>
+                                
+        </field>
+    </record>
+
+
+</odoo>
