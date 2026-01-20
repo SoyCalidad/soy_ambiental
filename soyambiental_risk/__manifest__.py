@@ -14,6 +14,7 @@
     ],
     'data': [
         'security/ir.model.access.csv',
+        'security/ir_rules_data.xml',
         'views/evaluation_views.xml',
         'views/process_evaluation_views.xml',
         'views/ideaa_matrix_views.xml',

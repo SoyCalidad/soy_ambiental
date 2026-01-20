@@ -106,7 +106,7 @@
                         </page>
                         <page name="process_evaluation" string="Evaluación de impactos">
                             <group>
-                                <field name="evaluation_id"/>
+                                <field name="evaluation_id" domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]"/>
                             </group>
                             <group>
                                 <field name="process_evaluation_ids"
@@ -138,7 +138,8 @@
                             </field>
                         </page>
                         <page name="survey_ids" string="Encuestas">
-                            <field name="survey_ids"/>
+                            <field name="survey_ids" 
+                            domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]" />
                         </page>
                         <page name="version_info" string="Validación y versión">
                             <group col="4">
@@ -167,6 +168,12 @@
                                 </group>
                             </group>
                         </page>
+                        <page name="multi_company" string="Multi compañia">
+                            <group>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </group>
+
+                        </page>
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">
@@ -188,6 +195,9 @@
                 <field name="date_elaborate"/>
                 <field name="elaboration_step" widget="many2many_tags"/>
                 <field name="version"/>
+                <field name="company_id"
+       groups="base.group_multi_company"/>
+
             </tree>
         </field>
     </record>

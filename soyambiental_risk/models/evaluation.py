@@ -38,3 +38,8 @@ class MatrixEvaluation(models.Model):
 
     name = fields.Char(string='Nombre')
     item_ids = fields.One2many('sga.matrix.evaluation.item', 'evaluation_id', string='Factores')
+    company_id = fields.Many2one(
+        'res.company', 
+        string='Compañia', 
+        default=lambda self: self.env.company
+    ) 

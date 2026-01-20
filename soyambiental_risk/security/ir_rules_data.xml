@@ -1,0 +1,13 @@
+<odoo>
+    <record id="sga_ideaa_matrix_multicompany_rule" model="ir.rule">
+        <field name="name">SGA ideaa matrix multicompany</field>
+        <field name="model_id" ref="model_sga_ideaa_matrix" />
+        <field name="global" eval="True" />
+        <field name="domain_force">
+            ['|',
+            ('company_id', '=', False),
+            ('company_id', 'in', company_ids)]
+        </field>
+    </record>
+
+</odoo>
