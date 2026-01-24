@@ -5,6 +5,14 @@
         <field name="model">project.project</field>
         <field name="inherit_id" ref="project.edit_project"/>
         <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="multicompany" string="Multi compañia" groups="base.group_multi_company" >
+                    <group>
+                        <field name="company_id" groups="base.group_multi_company"/>
+
+                    </group>
+                </page>
+            </xpath>
             <xpath expr="//div[hasclass('oe_title')]" position="after">
                 <group>
                     <group>
@@ -35,6 +43,12 @@
                     <field name="deadline_date"/>
                 </group>
             </xpath>
+            <xpath expr="//form" position="inside">
+                <group>
+                    <field name="company_id" groups="base.group_multi_company"/>
+
+                </group>
+            </xpath>
         </field>
     </record>
 
@@ -49,6 +63,11 @@
                     <field name="risk_ids"/>
                     <separator string="Oportunidades"/>
                     <field name="opp_ids"/>
+                </page>
+                <page name="multicompany" string="Multi compañia" groups="base.group_multi_company" >
+                    <group>
+                        <field name="company_id" groups="base.group_multi_company"/>
+                    </group>
                 </page>
             </xpath>
         </field>

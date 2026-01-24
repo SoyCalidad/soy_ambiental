@@ -71,6 +71,12 @@
                         <page string="Solicitudes de cambio">
                             <field name="change_requests" />
                         </page>
+                        <page name="multicompany" string="Multi compañia" groups="base.group_multi_company" >
+                            <group>
+                                <field name="company_id" groups="base.group_multi_company"/>
+
+                            </group>
+                        </page>
                     </notebook>
                 </sheet>
             </form>
@@ -86,6 +92,8 @@
                 <field name="plans" />
                 <field name="version" />
                 <field name="state" />
+                <field name="company_id" groups="base.group_multi_company"/>
+
             </tree>
         </field>
     </record>

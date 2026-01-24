@@ -202,6 +202,21 @@ class NewPlanA(models.Model):
 
         return action_rec if action_rec else False
 
+    @api.model
+    def action_open_plan_ambiental(self, action_ref=None):
+        if not action_ref:
+            action_ref = 'plan_sanitation.action_principal_plan_ambiental'
+        return self.env.ref(action_ref).read()[0]
+
+    def action_save_plan_ambiental(self):
+        """ Set the onboarding step as done """
+        pass
+
+    def send_validate_ok(self):
+        super().send_validate_ok()
+        self.env.company.sudo().set_onboarding_step_done(
+            'plan_ambiental_p')
+        
 
 class Ambient(models.Model):
     _name = 'am.ambient'

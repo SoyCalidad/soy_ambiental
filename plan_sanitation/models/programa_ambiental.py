@@ -3,28 +3,28 @@ from odoo import fields, models, api
 
 class NewPlanP(models.Model):
     _name = 'programa.ambiental'
-    _description = 'Programa ambiental'
+    _description = 'Programa de saneamiento ambiental'
     _inherit = ['mgmtsystem.validation.mail',
                 'model.origin.abstract', 'mgmtsystem.code']
 
     code = fields.Char('Código')
     name = fields.Char('Nombre')
-    plans = fields.Many2many('plan.ambiental', string='Planes')
-    actions = fields.Many2many('mgmtsystem.action', string='Acciones')
+    plans = fields.Many2many('plan.ambiental', string='Planes', check_company=True)
+    actions = fields.Many2many('mgmtsystem.action', string='Acciones', check_company=True)
     non_conformities = fields.Many2many(
-        'mgmtsystem.nonconformity', string='No conformidades')
-    target = fields.Many2many('mgmtsystem.target', string='Objetivos')
+        'mgmtsystem.nonconformity', string='No conformidades', check_company=True)
+    target = fields.Many2many('mgmtsystem.target', string='Objetivos', check_company=True)
     documents = fields.Many2many(
         'dms.file', relation='relation_documents', string='Documentos')
     change_requests = fields.Many2many(
-        'soycalidad.change_request', relation="relation_change_requests", string='Solicitudes de cambio')
+        'soycalidad.change_request', relation="relation_change_requests", string='Solicitudes de cambio', check_company=True)
     elaboration_step = fields.One2many(
         'mgmtsystem.validation.step', 'programa_ambiental_elaboration_id', string='Elaboración')
     review_step = fields.One2many(
         'mgmtsystem.validation.step', 'programa_ambiental_review_id', string='Revisión')
     validation_step = fields.One2many(
         'mgmtsystem.validation.step', 'programa_ambiental_validation_id', string='Validación')
-    responsible = fields.Many2many('res.users', string='Responsable')
+    responsible = fields.Many2many('res.users', string='Responsable', check_company=True)
     target_counts = fields.Char(
         compute='_compute_target_counts', string='Cantidad de objetivos')
     nonconformities_counts = fields.Char(
@@ -54,25 +54,21 @@ class NewPlanP(models.Model):
     def _compute_documents_counts(self):
         for each in self:
             each.documents_counts = len(each.documents)
-        pass
 
     @api.depends('non_conformities')
     def _compute_nonconformities_counts(self):
         for each in self:
             each.nonconformities_counts = len(each.non_conformities)
-        pass
 
     @api.depends('target')
     def _compute_target_counts(self):
         for each in self:
             each.target_counts = len(each.target)
-        pass
 
     @api.depends('actions')
     def _compute_actions_counts(self):
         for each in self:
             each.actions_counts = len(each.actions)
-        pass
 
     def openviews(self):
         type_action = self._context.get('type_action', '')
@@ -132,6 +128,21 @@ class NewPlanP(models.Model):
                 lines = getattr(self, field)
                 old_childs = self.clone_childs(lines)
                 old_edition.write({field: [(6, 0, old_childs)]})
+                
+    @api.model
+    def action_open_programa_ambiental(self, action_ref=None):
+        if not action_ref:
+            action_ref = 'plan_sanitation.action_principal_plan_ambiental'
+        return self.env.ref(action_ref).read()[0]
+
+    def action_save_programa_ambiental(self):
+        """ Set the onboarding step as done """
+        pass
+
+    def send_validate_ok(self):
+        super().send_validate_ok()
+        self.env.company.sudo().set_onboarding_step_done(
+            'programa_ambiental_p')
 
 
 class Step(models.Model):

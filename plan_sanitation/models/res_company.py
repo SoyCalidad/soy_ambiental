@@ -20,7 +20,10 @@ class Principal(models.Model):
     def action_open_programa_ambiental(self, action_ref=None):
         if not action_ref:
             action_ref = 'plan_sanitation.action_principal_programa_ambiental'
-        return self.env.ref(action_ref).read()[0]
+        ref_action = self.env.ref(action_ref)
+        if ref_action:
+            return ref_action.read()[0]
+        return False
 
     @api.model
     def action_close_plan_sanidad(self):
@@ -37,46 +40,4 @@ class Principal(models.Model):
         return self.get_and_update_onbarding_state('plan_sanidad_state', steps)
 
     
-
-class PlanP(models.Model):
-    _inherit= 'plan.ambiental'
-    _description = 'Vista de plan ambiental'
-
-    @api.model
-    def action_open_plan_ambiental(self, action_ref=None):
-        if not action_ref:
-            action_ref = 'plan_sanitation.action_principal_plan_ambiental'
-        return self.env.ref(action_ref).read()[0]
-
-    def action_save_plan_ambiental(self):
-        """ Set the onboarding step as done """
-        pass
-
-    def send_validate_ok(self):
-        super().send_validate_ok()
-        self.env.company.sudo().set_onboarding_step_done(
-            'plan_ambiental_p')
-
-class ProgramaP(models.Model):
-    _inherit= 'programa.ambiental'
-    _description = 'Vista de programa ambiental'
-
-    @api.model
-    def action_open_programa_ambiental(self, action_ref=None):
-        if not action_ref:
-            action_ref = 'plan_sanitation.action_principal_plan_ambiental'
-        return self.env.ref(action_ref).read()[0]
-
-    def action_save_programa_ambiental(self):
-        """ Set the onboarding step as done """
-        pass
-
-    def send_validate_ok(self):
-        super().send_validate_ok()
-        self.env.company.sudo().set_onboarding_step_done(
-            'programa_ambiental_p')
-
-
-
-
 
