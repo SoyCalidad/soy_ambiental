@@ -17,7 +17,7 @@
 
     <template id="report_template_plan_ambiental">
             <t t-call="web.html_container">
-                <t t-foreach="docs" t-as="doc">
+                <t t-foreach="docs.sudo()" t-as="doc">
                     <t t-if="doc and 'company_id' in doc">
                         <t t-set="company" t-value="doc.company_id" />
                     </t>

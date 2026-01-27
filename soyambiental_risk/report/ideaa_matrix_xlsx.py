@@ -107,7 +107,7 @@ class IDEAAMatrixXLSXReport(models.AbstractModel):
         sheet.set_row(2, 100)
 
         row = 3
-        for matrix in matrixes:
+        for matrix in matrixes.sudo():
             process_count = len(matrix.process_evaluation_ids)
             control_count = len(matrix.process_control_ids)
             max_records = max(process_count, control_count)
