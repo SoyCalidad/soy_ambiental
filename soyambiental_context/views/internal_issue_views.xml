@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="mgmtsystem_context.context_internal_issue_view_form"/>
         <field name="arch" type="xml">
             <field name="vision" position="after">
-                <field style="height:100px; !important" name="sga_scope" attrs="{'readonly': [('state','in',('validate_ok','cancel'))]}"/>
+                <field name="sga_scope" attrs="{'readonly': [('state','in',('validate_ok','cancel'))]}"/>
                 <field name="is_sga_context" invisible="1"/>
             </field>
             <field name="quality_policy" position="attributes">
