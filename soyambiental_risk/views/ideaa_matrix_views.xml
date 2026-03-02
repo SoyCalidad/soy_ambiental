@@ -73,6 +73,11 @@
                             <field name="survey_count" widget="statinfo" string="Encuestas"/>
                         </button>
                     </div>
+                    <label for="code" />
+                    <h3>
+                        <field name="code" />
+
+                    </h3>
                     <label for="name"/>
                     <h1>
                         <field name="name" required="1"/>
