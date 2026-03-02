@@ -4,6 +4,10 @@ import io
 from odoo import fields, models
 from PIL import Image
 from datetime import datetime
+import logging 
+
+
+_logger = logging.getLogger(__name__)
 
 
 class IDEAAMatrixXLSXReport(models.AbstractModel):
@@ -65,57 +69,94 @@ class IDEAAMatrixXLSXReport(models.AbstractModel):
             {'font_size': 10, 'bg_color': '#00B050', 'valign': 'vcenter', 'align': 'center', 'bold': False,
              'text_wrap': True, 'border': 1})
         format_header_group3_rotation.set_rotation(90)
-
-        sheet = workbook.add_worksheet('Matriz de identificación de aspectos ambientales')
-        sheet.merge_range(0, 0, 0, 6, 'Identificación de Aspectos, Impactos y Riesgos Ambientales', format_header_group1)
-        sheet.merge_range(0, 7, 0, 16, 'Evaluación de Significancia de Aspectos Ambientales', format_header_group2)
-        sheet.merge_range(0, 17, 0, 21, 'Evaluación del Riesgo Residual / Oportunidad Implementada', format_header_group3)
-
-        sheet.merge_range(1, 0, 2, 0, 'NOMBRE', format_header_group1)
-        sheet.merge_range(1, 1, 2, 1, 'ETAPA', format_header_group1)
-        sheet.merge_range(1, 2, 2, 2, 'ACTIVIDAD', format_header_group1)
-        sheet.merge_range(1, 3, 2, 3, 'TAREA', format_header_group1)
-        sheet.merge_range(1, 4, 2, 4, 'PUESTOS DE TRABAJO', format_header_group1)
-        sheet.merge_range(1, 5, 2, 5, 'ASPECTO', format_header_group1)
-        sheet.merge_range(1, 6, 2, 6, 'IMPACTO', format_header_group1)
-
-        sheet.merge_range(1, 7, 2, 7, 'PROBABILIDAD', format_header_group2)
-        sheet.merge_range(1, 8, 1, 12, 'Criterios para valorar las consecuencias', format_header2_group2)
-        sheet.write(2, 8, 'Legal/Cumplimiento', format_header_group2_rotation)
-        sheet.write(2, 9, 'Medio Ambiente', format_header_group2_rotation)
-        sheet.write(2, 10, 'Partes interesadas (Regional, Nacional, Internacional)', format_header_group2_rotation)
-        sheet.write(2, 11, 'Capacidad de Producción', format_header_group2_rotation)
-        sheet.write(2, 12, 'Financiera', format_header_group2_rotation)
-        sheet.merge_range(1, 13, 2, 13, 'CONSECUENCIA', format_header_group2)
-        sheet.merge_range(1, 14, 2, 14, 'CALIFICACICÓN', format_header_group2)
-        sheet.merge_range(1, 15, 2, 15, 'G=P*C', format_header_group2)
-        sheet.merge_range(1, 16, 2, 16, 'REQUISITOS LEGALES', format_header_group2)
-
-        sheet.merge_range(1, 17, 2, 17, 'CONTROL', format_header_group3)
-        sheet.merge_range(1, 18, 2, 18, 'Frecuencia / Probabilidad', format_header_group3_rotation)
-        sheet.merge_range(1, 19, 2, 19, 'Consecuencia ', format_header_group3_rotation)
-        sheet.merge_range(1, 20, 1, 21, 'Riesgo Residual / Oportunidad Implementada ', format_header2_group3)
-        sheet.write(2, 20, 'PxC', format_header_group3_rotation)
-        sheet.write(2, 21, 'Calificación', format_header2_group3)
-
-        sheet.set_column('A:G', 20)
-        sheet.set_column('E:E', 25)
-        sheet.set_column('H:P', 10)
-        sheet.set_column('Q:Q', 15)
-        sheet.set_column('R:V', 10)
-        sheet.set_row(1, 50)
-        sheet.set_row(2, 100)
-
-        row = 3
+        format26_c_bold = workbook.add_format(
+                {'font_size': 26,   'align': 'center', 'valign': 'vcenter', 'bold': True, 'text_wrap': True})
+        format21_c_bold = workbook.add_format(
+                {'font_size': 10,   'align': 'center', 'valign': 'vcenter', 'bold': True, 'text_wrap': True})
+        company = self.env.company
         for matrix in matrixes.sudo():
+            sheet = workbook.add_worksheet('Matriz de identificación de aspectos ambientales')
+            #header 
+            
+            current_row = 0
+            sheet.merge_range('A1:C3', '', )
+            if hasattr(matrix, 'company_id') and matrix.company_id:
+                company = matrix.company_id
+
+            buf_image = io.BytesIO(base64.b64decode(company.logo))
+            im = Image.open(buf_image)
+            width, height = im.size
+            image_width = width
+            image_height = height
+            cell_width = 48.0
+            cell_height = 48.0
+
+            x_scale = cell_width/image_width
+            y_scale = cell_height/image_height
+            sheet.insert_image('A1', "logo.png", {
+                'image_data': buf_image, 'x_scale': x_scale, 'y_scale': y_scale})
+            
+            sheet.merge_range(current_row, 3, current_row +2, 16, 'Matriz IDEAA', format26_c_bold)
+            sheet.merge_range(current_row, 17, current_row,21, 'Código: '+str(matrix.code or ''), format21_c_bold)
+            sheet.merge_range(current_row+1, 17, current_row+1,21,
+                                'Edición: '+str(matrix.version), format21_c_bold)
+            sheet.merge_range(current_row+2, 17, current_row+2,21, 'Fecha de aprobación: '+str(
+                matrix.date_validate or "Sin definir"), format21_c_bold)
+            
+            
+            current_row += 4
+            
+            sheet.merge_range(current_row, 0, current_row, 6, 'Identificación de Aspectos, Impactos y Riesgos Ambientales', format_header_group1)
+            sheet.merge_range(current_row, 7, current_row, 16, 'Evaluación de Significancia de Aspectos Ambientales', format_header_group2)
+            sheet.merge_range(current_row, 17, current_row, 21, 'Evaluación del Riesgo Residual / Oportunidad Implementada', format_header_group3)
+
+            current_row += 1
+            sheet.merge_range(current_row, 0, current_row +1, 0, 'NOMBRE', format_header_group1)
+            sheet.merge_range(current_row, 1, current_row+1, 1, 'ETAPA', format_header_group1)
+            sheet.merge_range(current_row, 2, current_row+1, 2, 'ACTIVIDAD', format_header_group1)
+            sheet.merge_range(current_row, 3, current_row+1, 3, 'TAREA', format_header_group1)
+            sheet.merge_range(current_row, 4, current_row+1, 4, 'PUESTOS DE TRABAJO', format_header_group1)
+            sheet.merge_range(current_row, 5, current_row+1, 5, 'ASPECTO', format_header_group1)
+            sheet.merge_range(current_row, 6, current_row+1, 6, 'IMPACTO', format_header_group1)
+
+            sheet.merge_range(current_row, 7, current_row+1, 7, 'PROBABILIDAD', format_header_group2)
+            sheet.merge_range(current_row, 8, current_row, 12, 'Criterios para valorar las consecuencias', format_header2_group2)
+            sheet.write(current_row+1, 8, 'Legal/Cumplimiento', format_header_group2_rotation)
+            sheet.write(current_row+1, 9, 'Medio Ambiente', format_header_group2_rotation)
+            sheet.write(current_row+1, 10, 'Partes interesadas (Regional, Nacional, Internacional)', format_header_group2_rotation)
+            sheet.write(current_row+1, 11, 'Capacidad de Producción', format_header_group2_rotation)
+            sheet.write(current_row+1, 12, 'Financiera', format_header_group2_rotation)
+            sheet.merge_range(current_row, 13, current_row+1, 13, 'CONSECUENCIA', format_header_group2)
+            sheet.merge_range(current_row, 14, current_row+1, 14, 'CALIFICACICÓN', format_header_group2)
+            sheet.merge_range(current_row, 15, current_row+1, 15, 'G=P*C', format_header_group2)
+            sheet.merge_range(current_row, 16, current_row+1, 16, 'REQUISITOS LEGALES', format_header_group2)
+
+            sheet.merge_range(current_row, 17, current_row+1, 17, 'CONTROL', format_header_group3)
+            sheet.merge_range(current_row, 18, current_row+1, 18, 'Frecuencia / Probabilidad', format_header_group3_rotation)
+            sheet.merge_range(current_row, 19, current_row+1, 19, 'Consecuencia ', format_header_group3_rotation)
+            sheet.merge_range(current_row, 20, current_row, 21, 'Riesgo Residual / Oportunidad Implementada ', format_header2_group3)
+            sheet.write(current_row+1, 20, 'PxC', format_header_group3_rotation)
+            sheet.write(current_row+1, 21, 'Calificación', format_header2_group3)
+
+            sheet.set_column('A:G', 20)
+            sheet.set_column('E:E', 25)
+            sheet.set_column('H:P', 10)
+            sheet.set_column('Q:Q', 15)
+            sheet.set_column('R:V', 10)
+            sheet.set_row(5, 50)
+            sheet.set_row(6, 100)
+
+            row = current_row +2
             process_count = len(matrix.process_evaluation_ids)
             control_count = len(matrix.process_control_ids)
             max_records = max(process_count, control_count)
             processes = matrix.process_evaluation_ids
             controls = matrix.process_control_ids
 
-            if max_records > 0:
+            if max_records > 1:
                 sheet.merge_range(row, 0, row + max_records - 1, 0, matrix.name or '', format_cell_left)
+            if max_records == 1:
+                sheet.write(row, 0, matrix.name or '', format_cell_left)
 
             for i in range(max_records):
                 if i < process_count:
@@ -192,3 +233,4 @@ class IDEAAMatrixXLSXReport(models.AbstractModel):
                     sheet.write(row, 21, control.control_level, format_cell_left)
 
                 row += 1
+                
