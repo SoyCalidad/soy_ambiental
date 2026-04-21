@@ -363,19 +363,19 @@ class Diagnostic(models.Model):
         string=u'Total Planificacion 0%', compute='_get_diagnostic')
 
     diagnostic4_ids_total = fields.Integer(
-        string=u'Total Punto 4', compute='_get_diagnostic', store=True)
+        string=u'Total Punto 4', compute='_get_diagnostic', )
     diagnostic5_ids_total = fields.Integer(
-        string=u'Total Punto 5', compute='_get_diagnostic', store=True)
+        string=u'Total Punto 5', compute='_get_diagnostic', )
     diagnostic6_ids_total = fields.Integer(
-        string=u'Total Punto 6', compute='_get_diagnostic', store=True)
+        string=u'Total Punto 6', compute='_get_diagnostic', )
     diagnostic7_ids_total = fields.Integer(
-        string=u'Total Punto 7', compute='_get_diagnostic', store=True)
+        string=u'Total Punto 7', compute='_get_diagnostic', )
     diagnostic8_ids_total = fields.Integer(
-        string=u'Total Punto 8', compute='_get_diagnostic', store=True)
+        string=u'Total Punto 8', compute='_get_diagnostic', )
     diagnostic9_ids_total = fields.Integer(
-        string=u'Total Punto 9', compute='_get_diagnostic', store=True)
+        string=u'Total Punto 9', compute='_get_diagnostic', )
     diagnostic10_ids_total = fields.Integer(
-        string=u'Total Punto 10', compute='_get_diagnostic', store=True)
+        string=u'Total Punto 10', compute='_get_diagnostic', )
 
     def _get_diagnostic(self):
         fields_ = dir(self)

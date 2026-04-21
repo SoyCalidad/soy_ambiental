@@ -12,6 +12,7 @@
         'soyseguridad_contigency_plan',
         'project',
         'plan_sanitation',
+        'soyambiental_base',
     ],
     'data': [
         'security/ir.model.access.csv',

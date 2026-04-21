@@ -3,7 +3,9 @@
     <menuitem id="sga_menu_root"
               name="Sistema SGA"
               web_icon="soyambiental_base,static/description/icon.png"
-              sequence="-100"/>
+              sequence="-100"
+              groups="soyambiental_base.group_sga_onlyread"
+              />
 
     <!-- Planificar -->
     <menuitem id="sga_plan_menu"
