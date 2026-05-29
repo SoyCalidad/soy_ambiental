@@ -86,32 +86,32 @@
                         <page name="stage" string="Etapas">
                             <field name="stage_ids"
                                    context="{'form_view_ref':'soyambiental_risk.sga_matrix_stage_view_form'}">
-                                <tree>
+                                <list>
                                     <field name="name"/>
                                     <field name="activity_ids" widget="many2many_tags"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page name="process" string="Proceso">
                             <field name="stage_process_ids"
                                    context="{'form_view_ref':'soyambiental_risk.sga_matrix_stage_process_view_form'}">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="stage_id"/>
                                     <field name="activity_id"/>
                                     <field name="task_id"/>
                                     <field name="job_ids" widget="many2many_tags"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page name="process_aspect_impact" string="Aspectos e impactos">
                             <field name="process_aspect_impact_ids">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="task_id"/>
                                     <field name="job_ids" widget="many2many_tags"/>
                                     <field name="aspect_ids" widget="many2many_tags"/>
                                     <field name="impact_ids" widget="many2many_tags"/>
                                     <field name="legal_ids" widget="many2many_tags"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page name="process_evaluation" string="Evaluación de impactos">
@@ -121,7 +121,7 @@
                             <group>
                                 <field readonly="not evaluation_id" name="process_evaluation_ids"
                                        context="{'form_view_ref':'soyambiental_risk.sga_matrix_process_3_view_form'}">
-                                    <tree string="Evaluación de impactos">
+                                    <list string="Evaluación de impactos">
                                         <field name="job_ids" widget="many2many_tags"/>
                                         <field name="aspect_ids" widget="many2many_tags"/>
                                         <field name="impact_ids" widget="many2many_tags"/>
@@ -129,14 +129,14 @@
                                         <field name="evaluation_c"/>
                                         <field name="evaluation_pxc"/>
                                         <field name="level"/>
-                                    </tree>
+                                    </list>
                                 </field>
                             </group>
                         </page>
                         <page name="process_control" string="Controles">
                             <field name="process_control_ids"
                                    context="{'form_view_ref': 'soyambiental_risk.sga_matrix_process_4_view_form'}">
-                                <tree>
+                                <list>
                                     <field name="job_ids" widget="many2many_tags"/>
                                     <field name="aspect_ids" widget="many2many_tags"/>
                                     <field name="impact_ids" widget="many2many_tags"/>
@@ -144,7 +144,7 @@
                                     <field name="control_c"/>
                                     <field name="control_pxc"/>
                                     <field name="control_level"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page name="survey_ids" string="Encuestas">
@@ -172,11 +172,7 @@
                         </page>
                     </notebook>
                 </sheet>
-                <div class="oe_chatter">
-                    <field name="message_follower_ids" widget="mail_followers"/>
-                    <field name="activity_ids" widget="mail_activity"/>
-                    <field name="message_ids" widget="mail_thread"/>
-                </div>
+                <chatter/>
             </form>
         </field>
     </record>
@@ -185,20 +181,20 @@
         <field name="name">sga.ideaa_matrix.view.tree</field>
         <field name="model">sga.ideaa_matrix</field>
         <field name="arch" type="xml">
-            <tree string="Matriz">
+            <list string="Matriz">
                 <field name="name"/>
                 <field name="state"/>
                 <field name="date_elaborate"/>
                 <field name="elaboration_step" widget="many2many_tags"/>
                 <field name="version"/>
-            </tree>
+            </list>
         </field>
     </record>
 
     <record id="sga_ideaa_matrix_action" model="ir.actions.act_window">
         <field name="name">Matriz IDEAA</field>
         <field name="res_model">sga.ideaa_matrix</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="domain">[]</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
@@ -210,7 +206,7 @@
     <record id="sga_matrix_aspect_action" model="ir.actions.act_window">
         <field name="name">Aspectos</field>
         <field name="res_model">sga.matrix.aspect</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 No se encontraron aspectos. ¡Creemos uno!"
@@ -221,7 +217,7 @@
     <record id="sga_matrix_impact_action" model="ir.actions.act_window">
         <field name="name">Impactos</field>
         <field name="res_model">sga.matrix.impact</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 No se encontraron impactos. ¡Creemos uno!"
@@ -232,7 +228,7 @@
     <record id="sga_matrix_stage_task_action" model="ir.actions.act_window">
         <field name="name">Tareas</field>
         <field name="res_model">sga.matrix.stage.task</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 No se encontraron tareas. ¡Creemos una!"

@@ -11,7 +11,7 @@
 
     'author': "Soy Calidad",
     'category': 'Uncategorized',
-    'version': '0.1',
+    'version': '18.0.0.1.0',
 
     'depends': ['base', 'mail', 'account', 'soycalidad_css', 'soyambiental_base'],
 

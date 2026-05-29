@@ -98,7 +98,7 @@
         <field name="name">plan.ambiental.view.tree</field>
         <field name="model">plan.ambiental</field>
         <field name="arch" type="xml">
-            <tree string="Plan ambiental" banner_route="/onboarding/plan_sanitation">
+            <list string="Plan ambiental" banner_route="/onboarding/plan_sanitation">
                 <field name="name" />
                 <field name="ambient" />
                 <field name="user_responsible" />
@@ -108,14 +108,14 @@
                 <field name="duration" />
                 <field name="frequency" />
                 <field name="state" />
-            </tree>
+            </list>
         </field>
     </record>
 
     <record id="plan_ambiental_action" model="ir.actions.act_window">
         <field name="name">Plan de saneamiento ambiental</field>
         <field name="res_model">plan.ambiental</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="domain">[]</field>
         <field name="context">{}</field>
         <field name="help" type="html">

@@ -1,6 +1,6 @@
 {
     'name': 'Creación del módulo de plan de saneamiento ambiental para Soy Ambiental',
-    'version': '1.0',
+    'version': '18.0.1.0.0',
     'description': 'Creación del módulo de plan de saneamiento ambiental para Soy Ambiental',
     'summary': 'Creación del módulo de plan de saneamiento ambiental Soy Ambiental',
     'author': 'Soy Calidad',

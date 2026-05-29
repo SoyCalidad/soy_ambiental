@@ -3,7 +3,7 @@
     'description': 'Ciclo de vida de Soy Ambiental',
     'author': 'Soy Calidad',
     'website': 'www.soycalidad.com',
-    'version': '1.0',
+    'version': '18.0.1.0.0',
     'license': 'Other proprietary',
     'category': 'soyambiental',
     'depends': [

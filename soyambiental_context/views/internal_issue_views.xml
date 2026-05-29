@@ -23,7 +23,7 @@
     <record id="context_internal_issue_action" model="ir.actions.act_window">
         <field name="name">Contexto Interno</field>
         <field name="res_model">mgmtsystem.context.internal_issue</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="context">{'default_is_sga_context': True}</field>
     </record>
 </odoo>

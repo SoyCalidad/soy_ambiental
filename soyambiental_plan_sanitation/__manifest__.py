@@ -1,6 +1,6 @@
 {
     'name': 'Saneamiento ambiental de Soy Ambiental',
-    'version': '1.0',
+    'version': '18.0.1.0.0',
     'description': 'Adecuación del módulo Saneamiento ambiental de Soy Seguridad',
     'summary': 'Adecuación del módulo Saneamiento ambiental de Soy Seguridad',
     'author': 'Soy Calidad',

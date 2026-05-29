@@ -1,6 +1,6 @@
 {
     'name': 'Plan de contingencia de Soy Ambiental',
-    'version': '1.0',
+    'version': '18.0.1.0.0',
     'description': 'Adecuación del módulo Plan de contingencia para Soy Ambiental',
     'summary': 'Adecuación del módulo Plan de contingencia para Soy Ambiental',
     'author': 'Soy Calidad',

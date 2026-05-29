@@ -9,7 +9,7 @@
     'website': "http://www.soycalidad.com",
 
     'category': 'Management System',
-    'version': '1.1',
+    'version': '18.0.1.1.0',
 
     'depends': [
         'base',
