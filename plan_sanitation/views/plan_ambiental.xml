@@ -98,7 +98,7 @@
         <field name="name">plan.ambiental.view.tree</field>
         <field name="model">plan.ambiental</field>
         <field name="arch" type="xml">
-            <list string="Plan ambiental" banner_route="/onboarding/plan_sanitation">
+            <list string="Plan ambiental">
                 <field name="name" />
                 <field name="ambient" />
                 <field name="user_responsible" />

@@ -4,7 +4,7 @@
         <field name="model">management.review</field>
         <field name="inherit_id" ref="mgmtsystem_management_review.management_review_form_view" />
         <field name="arch" type="xml">
-            <group id="item_c" position="inside">
+            <xpath expr="//group[@id='item_d']" position="before">
                 <div class="spacer"></div>
                 <p class="script" style="margin-left:5em">
                     <h3>c.4. MATRIZ DE CONTROL DE ASPECTOS E IMPACTOS AMBIENTALES</h3>
@@ -31,7 +31,7 @@
                     <field name="c6_plan" readonly="state in ['validate_ok', 'closed', 'cancel']" />
                     <field name="c6_interpretation" readonly="state in ['validate_ok', 'closed', 'cancel']" />
                 </group>
-            </group>
+            </xpath>
                                 
         </field>
     </record>

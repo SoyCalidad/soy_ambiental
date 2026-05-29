@@ -92,7 +92,7 @@
         <field name="name">programa.ambiental.view.tree</field>
         <field name="model">programa.ambiental</field>
         <field name="arch" type="xml">
-            <list string="Programa ambiental" banner_route="/onboarding/plan_sanitation">
+            <list string="Programa ambiental">
                 <field name="name"/>
                 <field name="plans"/>
                 <field name="version"/>
