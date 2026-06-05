@@ -13,6 +13,13 @@ class Policy(models.Model):
     sga_env_goals = fields.Text(string='Objetivos ambientales')
     sga_communication = fields.Text(string='Comunicación')
 
+    is_ambiental = fields.Boolean(compute="_compute_is_ambiental", store=True)
+
+    @api.depends('system_id')
+    def _compute_is_ambiental(self):
+        for rec in self:
+            rec.is_ambiental = rec.system_id.name == 'Soy Ambiental'
+
     @api.onchange('template_')
     def _onchange_template_(self):
         super()._onchange_template_()

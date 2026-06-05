@@ -2,7 +2,7 @@
 <odoo>
     <template id="politica_de_calidad" inherit_id="mgmtsystem_context.politica_de_calidad">
         <xpath expr="//div[@name='principal']" position="inside">
-            <t t-if="doc.system_id.name == 'Soy Ambiental'">
+            <t t-if="doc.is_ambiental">
                 <div style="right:20px; left:20px;font-size:18px;text-align: justify;text-justify: inter-word; padding-left: 2em; ">
                     <t t-if="doc.sga_organization_context">
                         <div>
@@ -113,7 +113,7 @@
 
     <template id="politica_de_calidad_simple" inherit_id="mgmtsystem_context.politica_de_calidad_simple">
         <xpath expr="//div[@name='principal']" position="inside">
-            <t t-if="doc.system_id.name == 'Soy Ambiental'">
+            <t t-if="doc.is_ambiental">
                 <div style="right:20px; left:20px;font-size:18px;text-align: justify;text-justify: inter-word; padding-left: 2em; ">
                     <t t-if="doc.sga_organization_context">
                         <div>
