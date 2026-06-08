@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="soyambiental_base.LoginPopup" t-inherit="menus_hola_calidad.LoginPopup" t-inherit-mode="extension" >
+        <button id="sc-button-iso-environmental" position="replace"
+            >
+            <t t-if="showEnvironment">
+                <button  class="btn btn-sm btn-warning text-white sc-fw-bold" type="button"
+                id="sc-button-iso-environmental"
+                t-on-click="() => this.openEnvironmental()">
+                    Ir al sistema
+                </button>
+            </t>
+            
+        </button>
+    </t>
+
+</templates>

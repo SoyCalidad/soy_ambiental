@@ -31,4 +31,9 @@
     ],
     'auto_install': False,
     'application': True,
+    'assets': {
+        'web.assets_backend': [
+            "soyambiental_base/static/src/**/*"
+        ]
+    },
 }

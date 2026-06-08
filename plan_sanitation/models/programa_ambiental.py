@@ -15,7 +15,11 @@ class NewPlanP(models.Model):
         'mgmtsystem.nonconformity', string='No conformidades')
     target = fields.Many2many('mgmtsystem.target', string='Objetivos')
     documents = fields.Many2many(
-        'dms.file', relation='relation_documents', string='Documentos')
+        comodel_name='documents.document', 
+        relation='relation_documents', 
+        string='Documentos',
+        domain=[('type', '=', 'binary')],
+    )
     change_requests = fields.Many2many(
         'soycalidad.change_request', relation="relation_change_requests", string='Solicitudes de cambio')
     elaboration_step = fields.One2many(
@@ -97,7 +101,7 @@ class NewPlanP(models.Model):
 
         elif type_action == 'documents':
             action_rec = self.env.ref(
-                'dms.action_dms_file').read()[0]
+                'documents.document_action').read()[0]
             domain = [('id', 'in', self.documents.ids)]
             action_rec['domain'] = domain
 

@@ -9,7 +9,7 @@
     'category': 'ambiental',
     'depends': [
         'mgmtsystem_process_integration',
-        'dms',
+        'documents',
         'soycalidad_improve',
         'account'
     ],

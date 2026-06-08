@@ -25,10 +25,10 @@
         <field name="target">new</field>
     </record>
 
-    <menuitem
+    <!-- <menuitem
         id="report_print_plan_ambiental"
         name="Reporte de plan ambiental"
         action="planr_ambiental_report_print"
         parent="plan_sanitation.reporte_menu"
-        sequence="2" />
+        sequence="2" /> -->
 </odoo>

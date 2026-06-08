@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <menuitem
+    <!-- <menuitem
         id="plan_sanidad_menu"
         name="Sanidad"
         sequence="-1"
@@ -32,7 +32,7 @@
         name="Programa de saneamiento ambiental"
         action="programa_ambiental_action"
         parent="saneamiento_menu"
-        sequence="1" />
+        sequence="1" /> -->
 
     
 

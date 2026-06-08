@@ -56,7 +56,11 @@ class NewPlanA(models.Model):
     target = fields.Many2many(
         'mgmtsystem.target', relation='relation_target', string='Objetivos')
     document = fields.Many2many(
-        'dms.file', relation='relation_document', string='Documentos')
+        comodel_name='documents.document',  
+        relation='relation_document', 
+        string='Documentos',
+        domain=[('type', '=', 'binary')],
+    )
     change_request = fields.Many2many(
         'soycalidad.change_request', relation="relation_change_request", string='Solicitudes de cambio')
     target_counts = fields.Char(
@@ -196,7 +200,7 @@ class NewPlanA(models.Model):
 
         elif type_action == 'document':
             action_rec = self.env.ref(
-                'dms.action_dms_file').read()[0]
+                'documents.document_action').read()[0]
             domain = [('id', 'in', self.document.ids)]
             action_rec['domain'] = domain
 
