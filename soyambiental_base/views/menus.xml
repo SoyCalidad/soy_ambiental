@@ -77,11 +77,11 @@
                       parent="sga_context_menu"
                       sequence="1"/>
 
-            <menuitem id="sga_mgmtsystem_context_quality_manual_menu_action"
+            <!-- <menuitem id="sga_mgmtsystem_context_quality_manual_menu_action"
                       name="Manual de calidad"
                       parent="sga_context_menu"
                       action="mgmtsystem_qualitymanual.action_mgmtsystem_qualitymanual"
-                      sequence="3"/>
+                      sequence="3"/> -->
 
             <menuitem id="sga_mgmtsystem_context_internal_factors_menu_action"
                       name="Factores internos"
@@ -106,13 +106,13 @@
             <menuitem id="sga_mgmtsystem_opp_risk_menu_action"
                       name="Matriz de Riesgos"
                       parent="sga_opp_menu"
-                      action="mgmtsystem_opportunity.matrix_block_line_risk_action"
+                      action="mgmtsystem_opportunity.matrix_matrix_risk_action"
                       sequence="1"/>
 
             <menuitem id="sga_mgmtsystem_opp_opp_menu_action"
                       name="Matriz de Oportunidades"
                       parent="sga_opp_menu"
-                      action="mgmtsystem_opportunity.matrix_block_line_opportunity_action"
+                      action="mgmtsystem_opportunity.matrix_matrix_opportunity_action"
                       sequence="2"/>
 
         <!-- Requisitos Legales -->
@@ -137,7 +137,7 @@
 
             <menuitem id="sga_mgmtsystem_policy_menu_action"
                       name="Política"
-                      action="mgmtsystem_context.context_policy_action_action"
+                      action="mgmtsystem_context.policies_action"
                       parent="sga_policy_menu"
                       sequence="1"/>
 
