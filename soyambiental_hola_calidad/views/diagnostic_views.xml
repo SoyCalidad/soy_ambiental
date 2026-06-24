@@ -97,7 +97,7 @@
                         </group>
                         <group>
                             <field name="date_diagnostic" readonly="1"/>
-                            <field name="date_validate" groups="base.group_no_one,base.user_admin" readonly="1"/>
+                            <field name="date_validate" groups="base.group_no_one,base.group_system" readonly="1"/>
                         </group>
                     </group>
                     <separator string="Análisis previo" invisible="state in ['evaluate', 'validate', 'evaluate']"/>

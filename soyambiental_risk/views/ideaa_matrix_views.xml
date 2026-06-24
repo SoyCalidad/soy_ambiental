@@ -166,7 +166,7 @@
                                 <group colspan="2">
                                     <field name="date_elaborate" required="state == 'elaborate'" readonly="1"/>
                                     <field name="date_review" required="state == 'review'" readonly="1" invisible="state == 'elaborate'"/>
-                                    <field name="date_validate" groups="base.group_no_one,base.user_admin" invisible="state in ('elaborate', 'review')"/>
+                                    <field name="date_validate" groups="base.group_no_one,base.group_system" invisible="state in ('elaborate', 'review')"/>
                                 </group>
                             </group>
                         </page>
