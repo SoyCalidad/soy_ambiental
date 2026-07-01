@@ -6,7 +6,12 @@ from tempfile import NamedTemporaryFile
 
 from odoo import api, fields, models
 from openpyxl import Workbook, load_workbook
+from openpyxl.cell.cell import MergedCell
 
+
+import logging 
+
+_logger = logging.getLogger(__name__)
 
 AVAILABLE_PRIORITIES = [
     ('na', 'N/A - No aplica'),
@@ -456,7 +461,10 @@ class Diagnostic(models.Model):
                                 if cont < 268 and i < 268:
                                     # comvertir a string
                                     cell1 = sheet['B' + str(i)]
-                                    cell1.value = 'X'
+                                    if not isinstance(cell1, MergedCell):
+                                        cell1.value = "X"
+                                    else:
+                                        _logger.info(f"{cell1.coordinate} pertenece a una celda combinada")
                                     tmp = 0
                                     i = i + 1
                                     tmp1 = 0
@@ -494,8 +502,11 @@ class Diagnostic(models.Model):
 
                         if letter:
                             cell = sheet[letter + number]
-                            print(cell)
-                            cell.value = 'X'
+                            _logger.info(f"cell : {cell}")
+                            if not isinstance(cell, MergedCell):
+                                cell.value = "X"
+                            else:
+                                _logger.info(f"{cell.coordinate} pertenece a una celda combinada")
                             cont = cont + 1
                     if diagnostic_line  .observation:
                         cell2 = sheet['H' + number]
