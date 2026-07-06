@@ -15,3 +15,7 @@ access_am_ambient_report,Impresión de reportes,model_am_ambient,plan_sanitation
 access_am_ambient_write,Documentos propios,model_am_ambient,plan_sanitation.group_sanitation_write_printreport,1,1,1,0
 access_am_ambient_all,Todos los permisos,model_am_ambient,plan_sanitation.group_sanitation_all,1,1,1,1
 
+
+access_programar_ambiental,Access programar.ambiental,model_programar_ambiental,plan_sanitation.group_sanitation_all,1,1,1,1
+access_planr_ambiental,Access planr.ambiental,model_planr_ambiental,plan_sanitation.group_sanitation_all,1,1,1,1
+

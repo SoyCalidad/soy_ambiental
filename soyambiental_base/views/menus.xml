@@ -88,12 +88,23 @@
                       parent="sga_context_menu"
                       action="mgmtsystem_context.context_internal_issue_action"
                       sequence="5"/>
-
-            <menuitem id="sga_mgmtsystem_context_external_factors_menu_action"
-                      name="Factores externos"
-                      parent="sga_context_menu"
-                      action="mgmtsystem_context.context_external_issue_action"
-                      sequence="6"/>
+            <menuitem id="external_factors_menu"
+                name="Factores externos"
+                parent="sga_context_menu"
+                sequence="6" >
+                  <menuitem id="external_factor_foda_menu"
+                        name="Foda"
+                        action="mgmtsystem_context.context_swot_action"
+                        sequence="10" />   
+                  <menuitem id="exter_factor_porter_menu"
+                        name="Porter"
+                        action="mgmtsystem_context.context_external_issue_action"
+                        sequence="20" />
+                  <menuitem id="exter_factor_amofhit_menu"
+                        name="Amofhit"
+                        action="mgmtsystem_context.pest_analysis_action"
+                        sequence="30" />  
+            </menuitem>
 
 
         <!-- Riesgos y Oportunidades -->
