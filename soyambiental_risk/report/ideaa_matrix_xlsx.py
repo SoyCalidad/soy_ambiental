@@ -25,6 +25,53 @@ class IDEAAMatrixXLSXReport(models.AbstractModel):
         format_cell_left = workbook.add_format(
             {'font_size': 11, 'font_name': 'Calibri', 'align': 'left', 'valign': 'vcenter',
              'bold': False, 'text_wrap': True, 'border': 1})
+        format_cell_left_green = workbook.add_format({
+            'font_size': 11,
+            'font_name': 'Calibri',
+            'align': 'left',
+            'valign': 'vcenter',
+            'bold': False,
+            'text_wrap': True,
+            'border': 1,
+            'bg_color': '#3CB44B',   # Verde
+            'pattern': 1,
+        })
+
+        format_cell_left_yellow = workbook.add_format({
+            'font_size': 11,
+            'font_name': 'Calibri',
+            'align': 'left',
+            'valign': 'vcenter',
+            'bold': False,
+            'text_wrap': True,
+            'border': 1,
+            'bg_color': '#FFF200',   # Amarillo
+            'pattern': 1,
+        })
+
+        format_cell_left_orange = workbook.add_format({
+            'font_size': 11,
+            'font_name': 'Calibri',
+            'align': 'left',
+            'valign': 'vcenter',
+            'bold': False,
+            'text_wrap': True,
+            'border': 1,
+            'bg_color': '#FFC000',   # Naranja
+            'pattern': 1,
+        })
+
+        format_cell_left_red = workbook.add_format({
+            'font_size': 11,
+            'font_name': 'Calibri',
+            'align': 'left',
+            'valign': 'vcenter',
+            'bold': False,
+            'text_wrap': True,
+            'border': 1,
+            'bg_color': '#FF0000',   # Rojo
+            'pattern': 1,
+        })
 
         format_cell_right = workbook.add_format(
             {'font_size': 11, 'font_name': 'Calibri', 'align': 'right', 'valign': 'vcenter',
@@ -73,6 +120,18 @@ class IDEAAMatrixXLSXReport(models.AbstractModel):
                 {'font_size': 26,   'align': 'center', 'valign': 'vcenter', 'bold': True, 'text_wrap': True})
         format21_c_bold = workbook.add_format(
                 {'font_size': 10,   'align': 'center', 'valign': 'vcenter', 'bold': True, 'text_wrap': True})
+
+        def _get_format_of_calification(control_level):
+            if control.control_level == 'Alto':
+                return format_cell_left_red
+            elif control.control_level == 'Medio':
+                return format_cell_left_yellow
+            elif control.control_level == 'Monitoreable':
+                return format_cell_left_orange 
+            elif control.control_level == 'Bajo':
+                return format_cell_left_green
+            else:
+                return False
         for matrix in matrixes:
             sheet = workbook.add_worksheet('Matriz de identificación de aspectos ambientales')
             #header 
@@ -266,6 +325,11 @@ class IDEAAMatrixXLSXReport(models.AbstractModel):
                     )
                     sheet.write(row, 19, consecuencia, format_cell_left)
                     sheet.write(row, 20, control.control_pxc, format_cell_left)
-                    sheet.write(row, 21, control.control_level, format_cell_left)
+
+                    format_calification = _get_format_of_calification(control.control_level) or format_cell_left
+
+    
+                    sheet.write(row, 21, control.control_level or '', format_calification)
 
                 row += 1
+

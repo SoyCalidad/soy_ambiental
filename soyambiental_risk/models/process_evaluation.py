@@ -251,16 +251,19 @@ class MatrixProcess(models.Model):
         for eval_data in default_evaluations:
             try:
                 # Resolver las referencias XML ID
-                item_id = self.env.ref(eval_data['evaluation_item_id']).id
-                criterio_id = False
-                if eval_data['evaluation_item_criterio_id']:
-                    criterio_id = self.env.ref(eval_data['evaluation_item_criterio_id']).id
                 
-                line = {
-                    'evaluation_item_id': item_id,
-                    'evaluation_item_criterio_id': criterio_id,
-                }
-                evaluation_vals.append((0, 0, line))
+                item_ref = self.env.ref(eval_data['evaluation_item_id'])
+                if item_ref:
+                    item_id = item_ref.id
+                    criterio_id = False
+                    if eval_data['evaluation_item_criterio_id']:
+                        criterio_id = self.env.ref(eval_data['evaluation_item_criterio_id']).id
+                    
+                    line = {
+                        'evaluation_item_id': item_id,
+                        'evaluation_item_criterio_id': criterio_id,
+                    }
+                    evaluation_vals.append((0, 0, line))
             except ValueError:
                 # Si alguna referencia no existe, continuar sin agregar ese registro
                 continue
