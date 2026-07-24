@@ -6,7 +6,7 @@
         <field name="arch" type="xml">
             <list>
                 <field name="name"/>
-                <field name="question" column_invisible="1"/>
+                <field name="question" />
             </list>
         </field>
     </record>
@@ -102,9 +102,9 @@
                     </group>
                     <separator string="Análisis previo" invisible="state in ['evaluate', 'validate', 'evaluate']"/>
                     <field name="all_clause" invisible="state in ['evaluate', 'validate', 'evaluate']">
-                        <list editable="bottom" delete="false">
+                        <list editable="bottom" delete="0">
                             <field name="name"/>
-                            <field name="question" readonly="1" column_invisible="1"/>
+                            <field name="question" />
                         </list>
                     </field>
                     <separator string="Evaluación" invisible="state in ['draft', 'validate']"/>
@@ -117,7 +117,7 @@
                                 <list editable="bottom" delete="false">
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
-                                    <field name="qualification" widget="priority" style="width:120px"/>
+                                    <field name="qualification" widget="priority" width="120px"/>
                                     <field name="is_page" column_invisible="1"/>
                                     <field name="observation"/>
                                 </list>

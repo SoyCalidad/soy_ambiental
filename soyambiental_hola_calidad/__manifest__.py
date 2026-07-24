@@ -7,6 +7,7 @@
     'description': """
         Es necesario instalar lib de python:
             - openpyxl
+        Agrega el diagnostico de la ISO 14001
     """,
 
     'author': "Soy Calidad",
