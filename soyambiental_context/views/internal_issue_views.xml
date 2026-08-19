@@ -5,8 +5,10 @@
         <field name="model">mgmtsystem.context.internal_issue</field>
         <field name="inherit_id" ref="mgmtsystem_context.context_internal_issue_view_form"/>
         <field name="arch" type="xml">
-            <field name="vision" position="after">
-                <field string="Alcance del Sistema Integrado de gestión" name="sga_scope" readonly="state in ('validate_ok', 'cancel')"/>
+            <field name="show_scope_integrated" position="after">
+                <field  
+                invisible="show_scope_integrated"
+                name="sga_scope" readonly="state in ('validate_ok', 'cancel')"/>
                 <field name="is_sga_context" invisible="1"/>
             </field>
             <field name="quality_policy" position="attributes">

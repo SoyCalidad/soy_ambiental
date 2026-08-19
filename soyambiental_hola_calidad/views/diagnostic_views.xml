@@ -185,7 +185,7 @@
                                 </list>
                             </field>
                             <h3>5.2 Política ambiental</h3>
-                            <h4>La alta dirección Debe:</h4>
+                            <h4>La alta dirección Debe:</h4>
                             <field name="diagnostic5_2_ids">
                                 <list editable="bottom" delete="false">
                                     <field name="requirement_id"/>
@@ -224,9 +224,9 @@
                         <page string="6. Planificación">
                             <h1>6. Planificación</h1>
                             <h2>6.1 Acciones para abordar riesgos y oportunidades</h2>
-                            <h3>6.1.1 Generalidades</h3>
+                            <!-- <h3>6.1.1 Generalidades</h3> -->
                             <h4>La organización debe:</h4>
-                            <field name="diagnostic6_1_1_ids">
+                            <field name="diagnostic6_1_ids">
                                 <list editable="bottom" delete="false">
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
@@ -235,55 +235,11 @@
                                     <field name="observation"/>
                                 </list>
                             </field>
-                            <h3>6.1.2 Aspectos ambientales</h3>
-                            <h4>La organización debe:</h4>
-                            <field name="diagnostic6_1_2_ids">
-                                <list editable="bottom" delete="false">
-                                    <field name="requirement_id"/>
-                                    <field name="name" style="max-width:400px;"/>
-                                    <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" column_invisible="1"/>
-                                    <field name="observation"/>
-                                </list>
-                            </field>
-                            <h3>6.1.3 Requisitos legales y otros requisitos</h3>
-                            <h4>La organización debe:</h4>
-                            <field name="diagnostic6_1_3_ids">
-                                <list editable="bottom" delete="false">
-                                    <field name="requirement_id"/>
-                                    <field name="name" style="max-width:400px;"/>
-                                    <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" column_invisible="1"/>
-                                    <field name="observation"/>
-                                </list>
-                            </field>
-                            <h3>6.1.4 Planificación de acciones</h3>
-                            <h4>La organización debe planificar:</h4>
-                            <field name="diagnostic6_1_4_ids">
-                                <list editable="bottom" delete="false">
-                                    <field name="requirement_id"/>
-                                    <field name="name" style="max-width:400px;"/>
-                                    <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" column_invisible="1"/>
-                                    <field name="observation"/>
-                                </list>
-                            </field>
+
                             <h2>6.2 Objetivos de la calidad y planificación para lograrlos</h2>
-                            <h3>6.2.1 Objetivos ambientales</h3>
+                            <!-- <h3>6.2.1 Objetivos ambientales</h3> -->
                             <h4>La organización debe:</h4>
-                            <field name="diagnostic6_2_1_ids">
-                                <list editable="bottom" delete="false">
-                                    <field name="requirement_id"/>
-                                    <field name="name" style="max-width:400px;"/>
-                                    <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" column_invisible="1"/>
-                                    <field name="observation"/>
-                                </list>
-                            </field>
-                            <h3>6.2.2 Planificación de acciones para lograr los objetivos ambientales</h3>
-                            <h4>Al planificar cómo lograr los objetivos ambientales, la organización debe determinar:
-                            </h4>
-                            <field name="diagnostic6_2_2_ids">
+                            <field name="diagnostic6_2_ids">
                                 <list editable="bottom" delete="false">
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
@@ -342,32 +298,11 @@
                                 </list>
                             </field>
                             <h2>7.4 Comunicación</h2>
-                            <h3>7.4.1 Generalidades</h3>
+                            <!-- <h3>7.4.1 Generalidades</h3> -->
                             <h4>La organización debe establecer. Implementar y mantener los procesos necesarios para las
                                 comunicaciones internas y externas pertinentes al SGA, que incluyan:
                             </h4>
-                            <field name="diagnostic7_4_1_ids">
-                                <list editable="bottom" delete="false">
-                                    <field name="requirement_id"/>
-                                    <field name="name" style="max-width:400px;"/>
-                                    <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" column_invisible="1"/>
-                                    <field name="observation"/>
-                                </list>
-                            </field>
-                            <h3>7.4.2 Comunicación interna</h3>
-                            <h4>La organización debe:</h4>
-                            <field name="diagnostic7_4_2_ids">
-                                <list editable="bottom" delete="false">
-                                    <field name="requirement_id"/>
-                                    <field name="name" style="max-width:400px;"/>
-                                    <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" column_invisible="1"/>
-                                    <field name="observation"/>
-                                </list>
-                            </field>
-                            <h3>7.4.3 Comunicación externa</h3>
-                            <field name="diagnostic7_4_3_ids">
+                            <field name="diagnostic7_4_ids">
                                 <list editable="bottom" delete="false">
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
@@ -377,35 +312,9 @@
                                 </list>
                             </field>
                             <h2>7.5 Información documentada</h2>
-                            <h3>7.5.1 Generalidades</h3>
+                            <!-- <h3>7.5.1 Generalidades</h3> -->
                             <h4>El SGA de la organización deben incluir:</h4>
-                            <field name="diagnostic7_5_1_ids">
-                                <list editable="bottom" delete="false">
-                                    <field name="requirement_id"/>
-                                    <field name="name" style="max-width:400px;"/>
-                                    <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" column_invisible="1"/>
-                                    <field name="observation"/>
-                                </list>
-                            </field>
-                            <h3>7.5.2 Creación y actualización</h3>
-                            <h4>Al crear y actualizar la información documentada, la organización debe asegurarse de que
-                                lo siguiente sea apropiado:
-                            </h4>
-                            <field name="diagnostic7_5_2_ids">
-                                <list editable="bottom" delete="false">
-                                    <field name="requirement_id"/>
-                                    <field name="name" style="max-width:400px;"/>
-                                    <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" column_invisible="1"/>
-                                    <field name="observation"/>
-                                </list>
-                            </field>
-                            <h3>7.5.3 Control de la información documentada</h3>
-                            <h4>La información documentada requerida por el SGA y por esta norma internacional debe
-                                controlar para asegurarse de que:
-                            </h4>
-                            <field name="diagnostic7_5_3_ids">
+                            <field name="diagnostic7_5_ids">
                                 <list editable="bottom" delete="false">
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
@@ -518,8 +427,31 @@
                                 </list>
                             </field>
                             <h2>9.3 Revisión por la dirección</h2>
+                            <h3>9.3.1 Generalidades</h3>
                             <h4>La alta dirección debe:</h4>
-                            <field name="diagnostic9_3_ids">
+                            <field name="diagnostic9_3_1_ids">
+                                <list editable="bottom" delete="false">
+                                    <field name="requirement_id"/>
+                                    <field name="name" style="max-width:400px;"/>
+                                    <field name="qualification" widget="priority" style="width:120px"/>
+                                    <field name="is_page" column_invisible="1"/>
+                                    <field name="observation"/>
+                                </list>
+                            </field>
+                            <h3>9.3.2 Entradas de la revisión por la dirección</h3>
+                            <h4>La alta dirección debe:</h4>
+                            <field name="diagnostic9_3_2_ids">
+                                <list editable="bottom" delete="false">
+                                    <field name="requirement_id"/>
+                                    <field name="name" style="max-width:400px;"/>
+                                    <field name="qualification" widget="priority" style="width:120px"/>
+                                    <field name="is_page" column_invisible="1"/>
+                                    <field name="observation"/>
+                                </list>
+                            </field>
+                            <h3>9.3.3 Resultados de la revisión por la dirección</h3>
+                            <h4>La alta dirección debe:</h4>
+                            <field name="diagnostic9_3_3_ids">
                                 <list editable="bottom" delete="false">
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
@@ -544,7 +476,7 @@
                         <page string="10. Mejora">
                             <h1>10. Mejora</h1>
                             <h2>10.1 Generalidades</h2>
-                            <field name="diagnostic10_1_ids">
+                            <field name="diagnostic10_1_ids" options="{'no_create': True}">
                                 <list editable="bottom" delete="false">
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
@@ -555,7 +487,7 @@
                             </field>
                             <h2>10.2 No conformidad y acción correctiva</h2>
                             <h4>Cuando ocurra una no conformidad, la organización debe:</h4>
-                            <field name="diagnostic10_2_ids">
+                            <field name="diagnostic10_2_ids" options="{'no_create': True}">
                                 <list editable="bottom" delete="false">
                                     <field name="requirement_id"/>
                                     <field name="name" style="max-width:400px;"/>
@@ -564,16 +496,7 @@
                                     <field name="observation"/>
                                 </list>
                             </field>
-                            <h2>10.3 Mejora continua</h2>
-                            <field name="diagnostic10_3_ids">
-                                <list editable="bottom" delete="false">
-                                    <field name="requirement_id"/>
-                                    <field name="name" style="max-width:400px;"/>
-                                    <field name="qualification" widget="priority" style="width:120px"/>
-                                    <field name="is_page" column_invisible="1"/>
-                                    <field name="observation"/>
-                                </list>
-                            </field>
+                            
                             <group>
                                 <field name="diagnostic10_ids_100" widget="progressbar"
                                        options="{'current_value': 'diagnostic10_ids_100', 'max_value': 'diagnostic10_ids_total', 'editable': false}"/>

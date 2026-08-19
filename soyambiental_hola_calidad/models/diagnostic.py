@@ -21,13 +21,14 @@ AVAILABLE_PRIORITIES = [
     ('75_porcent', '75% - Aplicado y documentado'),
     ('100_porcent', '100% - Aplicado, documentado y controlado')]
 
-FIELDS = ('diagnostic4_1_ids', 'diagnostic4_2_ids', 'diagnostic4_3_ids', 'diagnostic4_4_ids',
-          'diagnostic5_1_ids', 'diagnostic5_2_ids', 'diagnostic5_3_ids',
-          'diagnostic6_1_1_ids', 'diagnostic6_1_2_ids', 'diagnostic6_1_3_ids', 'diagnostic6_1_4_ids', 'diagnostic6_2_1_ids', 'diagnostic6_2_2_ids',
-          'diagnostic7_1_ids', 'diagnostic7_2_ids', 'diagnostic7_3_ids', 'diagnostic7_4_1_ids', 'diagnostic7_4_2_ids', 'diagnostic7_4_3_ids', 'diagnostic7_5_1_ids', 'diagnostic7_5_2_ids', 'diagnostic7_5_3_ids',
-          'diagnostic8_1_ids', 'diagnostic8_2_ids',
-          'diagnostic9_1_1_ids', 'diagnostic9_1_2_ids', 'diagnostic9_2_1_ids', 'diagnostic9_2_2_ids', 'diagnostic9_3_ids',
-          'diagnostic10_1_ids', 'diagnostic10_2_ids', 'diagnostic10_3_ids')
+FIELDS = (
+    'diagnostic4_1_ids', 'diagnostic4_2_ids', 'diagnostic4_3_ids', 'diagnostic4_4_ids',
+    'diagnostic5_1_ids', 'diagnostic5_2_ids', 'diagnostic5_3_ids',
+    'diagnostic6_1_ids', 'diagnostic6_2_ids', 'diagnostic6_3_ids',
+    'diagnostic7_1_ids', 'diagnostic7_2_ids', 'diagnostic7_3_ids', 'diagnostic7_4_ids',  'diagnostic7_5_ids', 
+    'diagnostic8_1_ids', 'diagnostic8_2_ids',
+    'diagnostic9_1_1_ids', 'diagnostic9_1_2_ids', 'diagnostic9_2_1_ids', 'diagnostic9_2_2_ids', 'diagnostic9_3_1_ids', 'diagnostic9_3_2_ids', 'diagnostic9_3_3_ids',
+    'diagnostic10_1_ids', 'diagnostic10_2_ids',)
 
 
 class XLSHelper(models.Model):
@@ -46,6 +47,7 @@ class XLSHelper(models.Model):
 class Clause(models.Model):
     _name = 'sga.hola_calidad.clause'
     _description = "Claúsulas"
+    _order = 'sequence,id'
 
     question = fields.Text(string=u'Pregunta ref.', required=True)
     name = fields.Char(string=u'Nombre', required=True)
@@ -62,6 +64,13 @@ class Clause(models.Model):
             ('10_improvement', 'Mejora')],
         required=True,
     )
+
+    sequence = fields.Integer(
+        string="Secuencia",
+        default=10
+    )
+
+
 
 
 class Requirement(models.Model):
@@ -123,18 +132,22 @@ class DiagnosticLine(models.Model):
     diagnostic5_3_id = fields.Many2one(string=u'Diagnostico', comodel_name='sga.hola_calidad.diagnostic',
                                        ondelete='cascade')
 
-    diagnostic6_1_1_id = fields.Many2one(string=u'Diagnostico', comodel_name='sga.hola_calidad.diagnostic',
-                                         ondelete='cascade')
-    diagnostic6_1_2_id = fields.Many2one(string=u'Diagnostico', comodel_name='sga.hola_calidad.diagnostic',
-                                         ondelete='cascade')
-    diagnostic6_1_3_id = fields.Many2one(string=u'Diagnostico', comodel_name='sga.hola_calidad.diagnostic',
-                                         ondelete='cascade')
-    diagnostic6_1_4_id = fields.Many2one(string=u'Diagnostico', comodel_name='sga.hola_calidad.diagnostic',
-                                         ondelete='cascade')
-    diagnostic6_2_1_id = fields.Many2one(string=u'Diagnostico', comodel_name='sga.hola_calidad.diagnostic',
-                                         ondelete='cascade')
-    diagnostic6_2_2_id = fields.Many2one(string=u'Diagnostico', comodel_name='sga.hola_calidad.diagnostic',
-                                         ondelete='cascade')
+    diagnostic6_1_id = fields.Many2one(
+        string=u'Diagnostico 6.1', 
+        comodel_name='sga.hola_calidad.diagnostic',
+        ondelete='cascade',
+    )
+    diagnostic6_2_id = fields.Many2one(
+        string=u'Diagnostico 6.2', 
+        comodel_name='sga.hola_calidad.diagnostic',
+        ondelete='cascade',
+
+    )
+    diagnostic6_3_id = fields.Many2one(
+        string=u'Diagnostico 6.3', 
+        comodel_name='sga.hola_calidad.diagnostic',
+        ondelete='cascade'
+    )
 
     diagnostic7_1_id = fields.Many2one(string=u'Diagnostico', comodel_name='sga.hola_calidad.diagnostic',
                                        ondelete='cascade')
@@ -142,14 +155,20 @@ class DiagnosticLine(models.Model):
                                        ondelete='cascade')
     diagnostic7_3_id = fields.Many2one(string=u'Diagnostico', comodel_name='sga.hola_calidad.diagnostic',
                                        ondelete='cascade')
-    diagnostic7_4_1_id = fields.Many2one(string=u'Diagnostico', comodel_name='sga.hola_calidad.diagnostic',
-                                         ondelete='cascade')
+    diagnostic7_4_id = fields.Many2one(
+        string=u'Diagnostico', 
+        comodel_name='sga.hola_calidad.diagnostic',
+        ondelete='cascade',
+    )
     diagnostic7_4_2_id = fields.Many2one(string=u'Diagnostico', comodel_name='sga.hola_calidad.diagnostic',
                                          ondelete='cascade')
     diagnostic7_4_3_id = fields.Many2one(string=u'Diagnostico', comodel_name='sga.hola_calidad.diagnostic',
                                          ondelete='cascade')
-    diagnostic7_5_1_id = fields.Many2one(string=u'Diagnostico', comodel_name='sga.hola_calidad.diagnostic',
-                                         ondelete='cascade')
+    diagnostic7_5_id = fields.Many2one(
+        string=u'Diagnostico 7.5', 
+        comodel_name='sga.hola_calidad.diagnostic',
+        ondelete='cascade',
+    )
     diagnostic7_5_2_id = fields.Many2one(string=u'Diagnostico', comodel_name='sga.hola_calidad.diagnostic',
                                          ondelete='cascade')
     diagnostic7_5_3_id = fields.Many2one(string=u'Diagnostico', comodel_name='sga.hola_calidad.diagnostic',
@@ -168,8 +187,21 @@ class DiagnosticLine(models.Model):
                                          ondelete='cascade')
     diagnostic9_2_2_id = fields.Many2one(string=u'Diagnostico', comodel_name='sga.hola_calidad.diagnostic',
                                          ondelete='cascade')
-    diagnostic9_3_id = fields.Many2one(string=u'Diagnostico', comodel_name='sga.hola_calidad.diagnostic',
-                                       ondelete='cascade')
+    diagnostic9_3_1_id = fields.Many2one(
+        string=u'Diagnostico 9.3.1', 
+        comodel_name='sga.hola_calidad.diagnostic',
+        ondelete='cascade',
+    )
+    diagnostic9_3_2_id = fields.Many2one(
+        string=u'Diagnostico 9.3.2', 
+        comodel_name='sga.hola_calidad.diagnostic',
+        ondelete='cascade',
+    )
+    diagnostic9_3_3_id = fields.Many2one(
+        string=u'Diagnostico 9.3.3', 
+        comodel_name='sga.hola_calidad.diagnostic',
+        ondelete='cascade',
+    )
 
     diagnostic10_1_id = fields.Many2one(string=u'Diagnostico', comodel_name='sga.hola_calidad.diagnostic',
                                         ondelete='cascade')
@@ -226,18 +258,22 @@ class Diagnostic(models.Model):
     diagnostic5_3_ids = fields.One2many(string=u'Lineas', comodel_name='sga.hola_calidad.diagnostic.line',
                                         inverse_name='diagnostic5_3_id')
 
-    diagnostic6_1_1_ids = fields.One2many(string=u'Lineas', comodel_name='sga.hola_calidad.diagnostic.line',
-                                          inverse_name='diagnostic6_1_1_id')
-    diagnostic6_1_2_ids = fields.One2many(string=u'Lineas', comodel_name='sga.hola_calidad.diagnostic.line',
-                                          inverse_name='diagnostic6_1_2_id')
-    diagnostic6_1_3_ids = fields.One2many(string=u'Lineas', comodel_name='sga.hola_calidad.diagnostic.line',
-                                          inverse_name='diagnostic6_1_3_id')
-    diagnostic6_1_4_ids = fields.One2many(string=u'Lineas', comodel_name='sga.hola_calidad.diagnostic.line',
-                                          inverse_name='diagnostic6_1_4_id')
-    diagnostic6_2_1_ids = fields.One2many(string=u'Lineas', comodel_name='sga.hola_calidad.diagnostic.line',
-                                          inverse_name='diagnostic6_2_1_id')
-    diagnostic6_2_2_ids = fields.One2many(string=u'Lineas', comodel_name='sga.hola_calidad.diagnostic.line',
-                                          inverse_name='diagnostic6_2_2_id')
+    diagnostic6_1_ids = fields.One2many(
+        string=u'Lineas', 
+        comodel_name='sga.hola_calidad.diagnostic.line',
+        inverse_name='diagnostic6_1_id'
+    )
+
+    diagnostic6_2_ids = fields.One2many(
+        string=u'Lineas 6.2', 
+        comodel_name='sga.hola_calidad.diagnostic.line',
+        inverse_name='diagnostic6_2_id'
+    )
+    diagnostic6_3_ids = fields.One2many(
+        string=u'Lineas 6.3', 
+        comodel_name='sga.hola_calidad.diagnostic.line',
+        inverse_name='diagnostic6_3_id'
+    )
 
     diagnostic7_1_ids = fields.One2many(string=u'Lineas', comodel_name='sga.hola_calidad.diagnostic.line',
                                           inverse_name='diagnostic7_1_id')
@@ -245,14 +281,16 @@ class Diagnostic(models.Model):
                                           inverse_name='diagnostic7_2_id')
     diagnostic7_3_ids = fields.One2many(string=u'Lineas', comodel_name='sga.hola_calidad.diagnostic.line',
                                           inverse_name='diagnostic7_3_id')
-    diagnostic7_4_1_ids = fields.One2many(string=u'Lineas', comodel_name='sga.hola_calidad.diagnostic.line',
-                                        inverse_name='diagnostic7_4_1_id')
-    diagnostic7_4_2_ids = fields.One2many(string=u'Lineas', comodel_name='sga.hola_calidad.diagnostic.line',
-                                          inverse_name='diagnostic7_4_2_id')
-    diagnostic7_4_3_ids = fields.One2many(string=u'Lineas', comodel_name='sga.hola_calidad.diagnostic.line',
-                                          inverse_name='diagnostic7_4_3_id')
-    diagnostic7_5_1_ids = fields.One2many(string=u'Lineas', comodel_name='sga.hola_calidad.diagnostic.line',
-                                          inverse_name='diagnostic7_5_1_id')
+    diagnostic7_4_ids = fields.One2many(
+        string=u'Lineas 7.4', 
+        comodel_name='sga.hola_calidad.diagnostic.line',
+        inverse_name='diagnostic7_4_id',
+    )
+    diagnostic7_5_ids = fields.One2many(
+        string=u'Lineas 7.5', 
+        comodel_name='sga.hola_calidad.diagnostic.line',
+        inverse_name='diagnostic7_5_id'
+    )
     diagnostic7_5_2_ids = fields.One2many(string=u'Lineas', comodel_name='sga.hola_calidad.diagnostic.line',
                                           inverse_name='diagnostic7_5_2_id')
     diagnostic7_5_3_ids = fields.One2many(string=u'Lineas', comodel_name='sga.hola_calidad.diagnostic.line',
@@ -271,8 +309,21 @@ class Diagnostic(models.Model):
                                           inverse_name='diagnostic9_2_1_id')
     diagnostic9_2_2_ids = fields.One2many(string=u'Lineas', comodel_name='sga.hola_calidad.diagnostic.line',
                                           inverse_name='diagnostic9_2_2_id')
-    diagnostic9_3_ids = fields.One2many(string=u'Lineas', comodel_name='sga.hola_calidad.diagnostic.line',
-                                        inverse_name='diagnostic9_3_id')
+    diagnostic9_3_1_ids = fields.One2many(
+        string=u'Lineas 9.3.1', 
+        comodel_name='sga.hola_calidad.diagnostic.line',
+        inverse_name='diagnostic9_3_1_id'
+    )
+    diagnostic9_3_2_ids = fields.One2many(
+        string=u'Lineas 9.3.2', 
+        comodel_name='sga.hola_calidad.diagnostic.line',
+        inverse_name='diagnostic9_3_3_id'
+    )
+    diagnostic9_3_3_ids = fields.One2many(
+        string=u'Lineas 9.3.3', 
+        comodel_name='sga.hola_calidad.diagnostic.line',
+        inverse_name='diagnostic9_3_3_id'
+    )
 
     diagnostic10_1_ids = fields.One2many(string=u'Lineas', comodel_name='sga.hola_calidad.diagnostic.line',
                                          inverse_name='diagnostic10_1_id')
@@ -453,12 +504,12 @@ class Diagnostic(models.Model):
                         tmpfinal = True
                         tmp1 = 1
                         while tmpfinal == True and cont < 268 and i < 268:
-                            if i not in [17, 18, 22, 23, 31, 33, 34, 35, 45, 46, 52, 56, 57, 61, 62, 63, 64, 75, 76, 75, 85, 86,
-                                         91, 92, 99, 100, 101, 109, 110, 117, 118, 120, 121, 127, 128, 133, 134, 135,
-                                         144, 145, 148, 151, 152, 153, 156, 157, 161, 162, 170, 171, 172, 177, 183,
-                                         184, 192, 193, 194, 195, 205, 206, 211, 212, 213, 217, 218, 225, 226, 241, 249, 250, 252, 253, 266
+                            if i not in [19, 20, 26,27, 33, 34, 38, 39, 40, 45, 46, 53, 54, 57, 58, 59,  76, 83, 84, 88, 89,90,
+                                          92, 93, 98, 99, 103, 104, 112, 113,  121, 122 ,123, 131, 132, 138 ,139, 140, 141,
+                                          148, 149,  153, 154, 155, 158, 159, 165, 166, 167, 169, 170, 175, 176, 
+                                181, 182, 183, 186, 187, #chapter 10
                                          ] and i != int(number):
-                                if cont < 268 and i < 268:
+                                if cont < 268 and i < 193:
                                     # comvertir a string
                                     cell1 = sheet['B' + str(i)]
                                     if not isinstance(cell1, MergedCell):
@@ -508,7 +559,7 @@ class Diagnostic(models.Model):
                             else:
                                 _logger.info(f"{cell.coordinate} pertenece a una celda combinada")
                             cont = cont + 1
-                    if diagnostic_line  .observation:
+                    if diagnostic_line.observation:
                         cell2 = sheet['H' + number]
                         cell2.value = diagnostic_line.observation
 
@@ -577,18 +628,12 @@ class Diagnostic(models.Model):
             self.diagnostic5_3_ids = self._default_diagnostic_line_ids_v2(
                 '5.3', ids_clause_list)
 
-            self.diagnostic6_1_1_ids = self._default_diagnostic_line_ids_v2(
-                '6.1.1', ids_clause_list)
-            self.diagnostic6_1_2_ids = self._default_diagnostic_line_ids_v2(
-                '6.1.2', ids_clause_list)
-            self.diagnostic6_1_3_ids = self._default_diagnostic_line_ids_v2(
-                '6.1.3', ids_clause_list)
-            self.diagnostic6_1_4_ids = self._default_diagnostic_line_ids_v2(
-                '6.1.4', ids_clause_list)
-            self.diagnostic6_2_1_ids = self._default_diagnostic_line_ids_v2(
-                '6.2.1', ids_clause_list)
-            self.diagnostic6_2_2_ids = self._default_diagnostic_line_ids_v2(
-                '6.2.2', ids_clause_list)
+            self.diagnostic6_1_ids = self._default_diagnostic_line_ids_v2(
+                '6.1', ids_clause_list)
+            self.diagnostic6_2_ids = self._default_diagnostic_line_ids_v2(
+                '6.2', ids_clause_list)
+            self.diagnostic6_3_ids = self._default_diagnostic_line_ids_v2(
+                '6.3', ids_clause_list)
 
             self.diagnostic7_1_ids = self._default_diagnostic_line_ids_v2(
                 '7.1', ids_clause_list)
@@ -596,18 +641,10 @@ class Diagnostic(models.Model):
                 '7.2', ids_clause_list)
             self.diagnostic7_3_ids = self._default_diagnostic_line_ids_v2(
                 '7.3', ids_clause_list)
-            self.diagnostic7_4_1_ids = self._default_diagnostic_line_ids_v2(
-                '7.4.1', ids_clause_list)
-            self.diagnostic7_4_2_ids = self._default_diagnostic_line_ids_v2(
-                '7.4.2', ids_clause_list)
-            self.diagnostic7_4_3_ids = self._default_diagnostic_line_ids_v2(
-                '7.4.3', ids_clause_list)
-            self.diagnostic7_5_1_ids = self._default_diagnostic_line_ids_v2(
+            self.diagnostic7_4_ids = self._default_diagnostic_line_ids_v2(
+                '7.4', ids_clause_list)
+            self.diagnostic7_5_ids = self._default_diagnostic_line_ids_v2(
                 '7.5.1', ids_clause_list)
-            self.diagnostic7_5_2_ids = self._default_diagnostic_line_ids_v2(
-                '7.5.2', ids_clause_list)
-            self.diagnostic7_5_3_ids = self._default_diagnostic_line_ids_v2(
-                '7.5.3', ids_clause_list)
 
             self.diagnostic8_1_ids = self._default_diagnostic_line_ids_v2(
                 '8.1', ids_clause_list)
@@ -622,8 +659,10 @@ class Diagnostic(models.Model):
                 '9.2.1', ids_clause_list)
             self.diagnostic9_2_2_ids = self._default_diagnostic_line_ids_v2(
                 '9.2.2', ids_clause_list)
-            self.diagnostic9_3_ids = self._default_diagnostic_line_ids_v2(
-                '9.3', ids_clause_list)
+            self.diagnostic9_3_1_ids = self._default_diagnostic_line_ids_v2(
+                '9.3.1', ids_clause_list)
+            self.diagnostic9_3_2_ids = self._default_diagnostic_line_ids_v2('9.3.2', ids_clause_list)
+            self.diagnostic9_3_3_ids = self._default_diagnostic_line_ids_v2('9.3.3', ids_clause_list)
 
             self.diagnostic10_1_ids = self._default_diagnostic_line_ids_v2(
                 '10.1', ids_clause_list)
@@ -642,22 +681,15 @@ class Diagnostic(models.Model):
             self.diagnostic5_2_ids = False
             self.diagnostic5_3_ids = False
 
-            self.diagnostic6_1_1_ids = False
-            self.diagnostic6_1_2_ids = False
-            self.diagnostic6_1_3_ids = False
-            self.diagnostic6_1_4_ids = False
-            self.diagnostic6_2_1_ids = False
-            self.diagnostic6_2_2_ids = False
+            self.diagnostic6_1_ids = False
+            self.diagnostic6_2_ids = False
+            self.diagnostic6_3_ids = False
 
             self.diagnostic7_1_ids = False
             self.diagnostic7_2_ids = False
             self.diagnostic7_3_ids = False
-            self.diagnostic7_4_1_ids = False
-            self.diagnostic7_4_2_ids = False
-            self.diagnostic7_4_3_ids = False
-            self.diagnostic7_5_1_ids = False
-            self.diagnostic7_5_2_ids = False
-            self.diagnostic7_5_3_ids = False
+            self.diagnostic7_4_ids = False
+            self.diagnostic7_5_ids = False
 
             self.diagnostic8_1_ids = False
             self.diagnostic8_2_ids = False
@@ -666,7 +698,9 @@ class Diagnostic(models.Model):
             self.diagnostic9_1_2_ids = False
             self.diagnostic9_2_1_ids = False
             self.diagnostic9_2_2_ids = False
-            self.diagnostic9_3_ids = False
+            self.diagnostic9_3_1_ids = False
+            self.diagnostic9_3_2_ids = False
+            self.diagnostic9_3_3_ids = False
 
             self.diagnostic10_1_ids = False
             self.diagnostic10_2_ids = False
