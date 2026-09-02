@@ -14,10 +14,12 @@
     'depends': [
         'base',
         'mgmtsystem_management_review',    
+        'soyambiental_base',
     ],
 
     'data': [
         'views/management_review_views.xml',
+        'views/menus.xml',
         
         'report/management_review_report.xml',
     ],

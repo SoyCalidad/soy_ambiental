@@ -1,0 +1,7 @@
+<odoo>
+
+    <record id="soyambiental_base.sga_mgmtsystem_review_review_menu_action" model="ir.ui.menu">
+        <field name="action" ref="action_management_review_14001"></field>
+    </record>
+
+</odoo>

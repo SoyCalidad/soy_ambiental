@@ -2,49 +2,268 @@
 <odoo>
     <template id="report_mgmtreview_document"
         inherit_id="mgmtsystem_management_review.report_mgmtreview_document">
-        <xpath expr="//span[@class='title_light d']" position="before">
-            <span class="subtitle_light c4">C.4. Matriz De Control De Aspectos E Impactos Ambientales</span>
-            <span class="subtitle_light c5">C.5. Saneamiento Ambiental</span>
-            <span class="subtitle_light c6">C.6. Plan De Contingencia</span>
-        </xpath>
 
-        <xpath expr="//div[contains(@class,'d_title')]" position="before">
-            <div class="pagebreak" id="detail_c4">
-                <span class="title">C.4. MATRIZ DE CONTROL DE ASPECTOS E IMPACTOS AMBIENTALES</span>
-                <p>
-                    <b>Matriz: </b>
-                    <span t-field="o.c4_matriz" />
-                </p>
-                <p>
-                    <b>Interpretación: </b>
-                    <span t-field="o.c4_interpretation" />
-                </p>
-            </div>
-            <div class="pagebreak" id="detail_c5">
-                <span class="title">C.5. SANEAMIENTO AMBIENTAL</span>
+         
+        <t t-if="o.type_review=='iso9001'" position="after">
+            <t t-if="o.type_review=='iso14001'">
+                <div class="report-page">
 
-                <p>
-                    <b>Plan: </b>
-                    <span t-field="o.c5_plan" />
-                </p>
-                <p>
-                    <b>Interpretación:</b>
-                    <span t-field="o.c5_interpretation" />
-                </p>
-            </div>
-            <div class="pagebreak" id="detail_c6">
-                <span class="title">C.6. PLAN DE CONTINGENCIA</span>
-                <p>
-                    <b>Plan: </b>
-                    <span t-field="o.c6_plan" />
-                </p>
-                <p>
-                    <b>Interpretación:</b>
-                    <span t-field="o.c6_interpretation" />
-                </p>
-            </div>
+                    <span class="report-section-title">
+                        1. INTRODUCCIÓN
+                    </span>
 
-        </xpath>
+                    <span t-field="o.introduction" />
+                    <br />
+                    <span class="report-section-title">
+                        RESPONSABLES DE REVISIÓN POR LA DIRECCIÓN
+                    </span>
+                    <t t-if="o.team_id">
+                        <t t-foreach="o.team_id.member_ids" t-as="e">
+                            <div class="reviewer-card d-inline-block align-top">
+                                <span class="reviewer-name"
+                                    t-field="e.employee_id.name" />
+                                <br />
+                                <t t-if="e.job_id">
+                                    <span t-field="e.job_id" />
+                                </t>
+                            </div>
+                        </t>
+                    </t>
+                </div>
+                <!-- =====================================================
+                     2. INFORMACIÓN DE ENTRADA
+                     ===================================================== -->
+                <div class="report-page report-page-break contents">
+                    <span class="report-section-title">
+                        2. INFORMACIÓN DE ENTRADA PARA LA REVISIÓN
+                    </span>
+                    <span class="report-section-title-light">
+                        A. ESTADO DE LAS ACCIONES DE REVISIONES POR LA DIRECCIÓN PREVIAS
+                    </span>
+                    <span class="report-section-title-light">
+                        B. CAMBIOS EN LAS CUESTIONES EXTERNAS E INTERNAS Y ELEMENTOS DEL CONTEXTO AMBIENTAL
+                    </span>
+                    <span class="report-section-title-light">
+                        C. GRADO DE LOGRO DE LOS OBJETIVOS AMBIENTALES
+                    </span>
+                    <span class="report-section-title-light">
+                        D. INFORMACIÓN SOBRE EL DESEMPEÑO AMBIENTAL
+                    </span>
+
+                    <span class="report-section-title-light">
+                        E. ADECUACIÓN DE LOS RECURSOS
+                    </span>
+                    <span class="report-section-title-light">
+                        F. COMUNICACIONES PERTINENTES DE LAS PARTES INTERESADAS										
+                    </span>
+                    <span class="report-section-title-light">
+                        CONCLUSIONES DE LA ALTA DIRECCIÓN
+                    </span>
+
+                </div>
+
+
+                <!-- =====================================================
+                     A. ACCIONES DE REVISIONES PREVIAS
+                     ===================================================== -->
+
+                <div class="report-page">
+                    <span class="report-section-title">
+                        A. El estado de las acciones de las revisiones por la dirección previas
+                    </span>
+
+                    <t t-raw="o.record_meeting_actions" />
+
+                </div>
+
+
+                <!-- =====================================================
+                     B. CAMBIOS EN CUESTIONES EXTERNAS E INTERNAS
+                     ===================================================== -->
+                <div class="report-page">
+
+                    <span class="report-section-title">
+                        B. Cambios en las cuestiones externas e internas y elementos del contexto ambiental										
+                    </span>
+
+                    <t t-out="o.foda_id.display_name or ''" />
+
+                    <br />
+
+                    <span t-field="o.foda_description" />
+
+                    <br />
+
+                    <h4>Resumen de las partes interesadas</h4>
+
+                    <h5>Interesados internos</h5>
+
+                    <table t-if="o.stakeholders_id"
+                        class="table table-bordered">
+
+                        <thead>
+                            <tr>
+                                <th>Parte interesada</th>
+                                <th>Interesado</th>
+                                <th>Calificación</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <t t-foreach="o.stakeholders_id.stakeholder_in_ids"
+                                t-as="record">
+
+                                <tr>
+                                    <td>
+                                        <span t-field="record.name" />
+                                    </td>
+
+                                    <td>
+                                        <span t-field="record.partner_id" />
+                                    </td>
+
+                                    <td>
+                                        <span t-field="record.calification" />
+                                    </td>
+                                </tr>
+
+                            </t>
+                        </tbody>
+
+                    </table>
+
+                    <h5>Interesados externos</h5>
+                    <table t-if="o.stakeholders_id"
+                        class="table table-bordered">
+
+                        <thead>
+                            <tr>
+                                <th>Parte interesada</th>
+                                <th>Interesado</th>
+                                <th>Calificación</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="o.stakeholders_id.stakeholder_out_ids"
+                                t-as="record">
+                                <tr>
+                                    <td>
+                                        <span t-field="record.name" />
+                                    </td>
+
+                                    <td>
+                                        <span t-field="record.partner_id" />
+                                    </td>
+
+                                    <td>
+                                        <span t-field="record.calification" />
+                                    </td>
+                                </tr>
+
+                            </t>
+                        </tbody>
+
+                    </table>
+                    <br />
+                    <span t-field="o.stakeholders_description" />
+                    <br />
+                    <span t-raw="o.sa_significant_aspects" />
+                    <br />
+                    <span t-raw="o.sa_significant_aspects_interpretation" />
+                    <br />
+                    <span t-raw="o.sa_risk_opp" />
+                    <br />
+                    <span t-raw="o.sa_risk_opp_interpretation" />
+                </div>
+
+                <div id="section_c" class="report-page">
+                    <span class="report-section-title">
+                        C. Grado de logro de los objetivos ambientales										
+
+                    </span>
+                    
+
+                    <table class="table table-bordered" t-if="o.target_ids">
+                        <thead>
+                            <tr>
+                                <th>Objetivo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="o.target_ids"
+                                t-as="record">
+                                <tr>
+                                    <td>
+                                        <span t-field="record.display_name" />
+                                    </td> 
+                                </tr>
+
+                            </t>
+                        </tbody>
+                    </table>
+                    <span t-field="o.target_description" />
+
+
+                </div>
+
+
+                <div id="section_d" class="report-page">
+                    <span class="report-section-title">
+                        D. Información sobre el desempeño ambiental
+                    </span>
+
+                    <div>
+
+                        <t t-raw="o.nonconformity_action" />
+
+                        <span t-field="o.nonconformity_action_description" />
+                        <t t-raw="o.indicator" />
+
+                        <span t-field="o.indicator_description" />
+
+                        <t t-raw="o.sa_assessment_compliance_obligations" />
+                        <br />
+                        <t t-raw="o.sa_aco_interpretation" />
+                        <br />
+                        <t t-raw="o.audit" />
+
+                        <span t-field="o.audit_description" />
+                    </div>
+
+                </div>
+                <t t-raw="o.conclusion_d_section" />
+                
+                <div class="report-page" id="item_e">
+                    <span class="report-section-title">
+                        E. Adecuación de los recursos
+                    </span>
+                    
+                    <t t-raw="o.resource" />
+
+
+                </div>
+                <div class="report-page" id="item_f">
+                    <span class="report-section-title">
+                        F. Comunicaciones pertinentes de las partes interesadas
+                    </span>
+                    
+                    <t t-raw="o.sa_communication" />
+                    <t t-raw="o.sa_communication_interpretation" />
+
+
+                </div>
+                <div class="report-page" id="conclusion_sga">
+                    <span class="report-section-title">
+                        CONCLUSIONES DE LA ALTA DIRECCIÓN
+                    </span>
+                    
+                    <t t-raw="o.conclusion_review" />
+
+
+                </div>
+
+            </t>
+        </t>
 
     </template>
 

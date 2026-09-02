@@ -3,7 +3,7 @@
     <menuitem id="sga_lifecycle_menu"
               name="Ciclo de vida"
               parent="soyambiental_base.sga_do_menu"
-              sequence="45" />
+              sequence="70" />
 
     <menuitem id="sga_lifecycle_menu_action"
               name="Ciclo de vida"

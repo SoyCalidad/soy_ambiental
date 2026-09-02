@@ -1,4 +1,253 @@
 <odoo>
+    <record id="management_review_14001_form_view" model="ir.ui.view">
+        <field name="name">management.review.form.view</field>
+        <field name="model">management.review</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="elaborate,review,validate,validate_ok,tracked,closed" />
+                    <button string="Enviar a Elaborar" name="send_elaborate" type="object" class="btn-primary" invisible="state in ['elaborate', 'cancel', 'validate_ok', 'tracked', 'closed']" />
+                    <button string="Enviar a Revisar" name="send_review" type="object" class="btn-primary" invisible="state != 'elaborate'" />
+                    <button string="Enviar a Validar" name="send_validate" type="object" class="btn-primary" invisible="state in ['elaborate', 'validate', 'cancel', 'validate_ok', 'tracked', 'closed']" />
+                    <button string="Validar" name="send_validate_ok" type="object" class="btn-primary" invisible="state not in ('validate')" />
+                    <button string="Iniciar" name="send_tracked" type="object" class="btn-primary" invisible="state not in ('validate_ok')"  />
+                    <button string="Terminar" name="send_closed" type="object" class="btn-primary" invisible="state not in ['tracked']" />
+                    <button string="Volver Obsoleto" confirm="Esto volverá obsoleto el presente registro. ¿Está seguro(a)?" name="send_cancel" type="object" class="btn-second" invisible="state in ('cancel')" />
+                    <button name="button_new_version" type="object" string="Nueva versión" invisible="state not in ['validate_ok', 'closed']" class="oe_highlight" />
+                </header>
+                <sheet>
+                    <field name="can_edit_form" />
+                    <div class="oe_button_box" name="button_box">
+                        <button type="object" name="action_show_meetings" class="oe_stat_button" icon="fa-bars">
+                            <field name="meetings_count" widget="statinfo" string="Actas de reunión" />
+                        </button>
+                    </div>
+
+                    <div class="oe_title">
+                        <label for="code" />
+                        <h2>
+                            <field name="code" readonly="1" />
+
+                        </h2>
+                        <label for="name" />
+                        <h2>
+                            <field name="name" readonly="not can_edit_form and state in ['validate_ok', 'closed', 'cancel']" />
+                        </h2>
+                    </div>
+                    <group>
+                        <field name="type_review" readonly="1" />
+                    </group>
+                    <group>
+                        <group>
+                            <field name="plan_id" string='Programa de revisiones' invisible="not plan_id" />
+                            <field name="managementreview_id" readonly="not can_edit_form and state in ['validate_ok', 'closed', 'cancel']" />
+                            <field name="date_management_review" readonly="not can_edit_form and state in ['validate_ok', 'closed', 'cancel']" />
+                            <br />
+                        </group>
+                        <group string="Filtros de datos">
+                            <field name="date_ini" readonly="not can_edit_form and state in ['cancel']" />
+                            <field name="date_fin" readonly="not can_edit_form and state in ['cancel']" />
+                            <field name="is_last" readonly="not can_edit_form and (state in ['cancel'] or date_ini != False or date_fin != False)" />
+                            <button type="object" name="update_data" string="Actualizar datos" help="Presione para actualizar toda la información según las fechas declaradas arriba" class="btn btn-primary" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Introducción">
+                            <group>
+                                <field name="team_id" readonly="not can_edit_form and state in ['validate_ok', 'closed', 'cancel']" />
+                                <field name="introduction" readonly="not can_edit_form and state in ['validate_ok', 'closed', 'cancel']" />
+                            </group>
+                        </page>
+                        <page name="detail" string="Detalles" col="4">
+                            <div class="main_s">
+                                 
+                                <group colspan="2" name="detail_a">
+                                    <div class="w-100">
+                                        <div class="mt-0 mb-auto ">
+                                            <h3>
+                                                A. ESTADO DE LAS ACCIONES DE REVISIONES POR LA DIRECCIÓN PREVIAS
+                                            </h3>
+                                        </div>
+                                        <p>
+                                            Se revisa el estado de las acciones derivadas de revisiones previas del SGA.									
+                                        </p>
+                                    </div>
+                                    <group colspan="2">
+                                        <field name="record_meeting_ids" widget="many2many_tags" readonly="not can_edit_form and state in ['validate_ok', 'closed', 'cancel']"/>
+                                        <field name="record_meeting_actions"/> 
+                                    </group>
+                                </group>
+                                <div class="mt-3"></div>
+                                <group colspan="2" name="detail_b">
+                                    <div class="w-100">
+                                        <div class="mt-0 mb-auto">
+                                            <h3>B. CAMBIOS EN LAS CUESTIONES EXTERNAS E INTERNAS Y ELEMENTOS DEL CONTEXTO AMBIENTAL</h3>
+                                        </div>
+                                        <p>
+                                            Se revisan cambios del contexto, partes interesadas, obligaciones de cumplimiento, aspectos ambientales significativos y riesgos y oportunidades que puedan afectar al SGA.
+                                        </p>
+                                    </div>
+                                    <group col="2" colspan="2">
+					                    <field name="foda_id"
+                                        string="FODA / análisis de contexto"
+                                        readonly="not can_edit_form and state in ['validate_ok', 'closed', 'cancel']" />
+                                        <field name="foda_description"
+                                        string="Interpretación de cambios internos, externos y condiciones ambientales pertinentes"
+                                        readonly="not can_edit_form and state in ['validate_ok', 'closed', 'cancel']" />
+                                    </group>
+                                    <group colspan="2" col="2" >
+                                        <field name="stakeholders_id"
+                                        string="Partes interesadas y obligaciones de cumplimiento"
+                                        readonly="not can_edit_form and state in ['validate_ok', 'closed', 'cancel']" />
+                                        <field name="stakeholders_description" 
+                                        string="Interpretación"
+                                        readonly="not can_edit_form and state in ['validate_ok', 'closed', 'cancel']" />
+                                    </group>
+                                    <group colspan="2" col="2" >
+                                        <field name="sa_significant_aspects"
+                                         
+                                        readonly="not can_edit_form and state in ['validate_ok', 'closed', 'cancel']" />
+                                        <field name="sa_significant_aspects_interpretation" 
+                                        string="Interpretación"
+                                        readonly="not can_edit_form and state in ['validate_ok', 'closed', 'cancel']" />
+                                    </group>
+                                    <group colspan="2" col="2" >
+                                        <field name="sa_risk_opp"
+                                         
+                                        readonly="not can_edit_form and state in ['validate_ok', 'closed', 'cancel']" />
+                                        <field name="sa_risk_opp_interpretation" 
+                                        string="Interpretación"
+                                        readonly="not can_edit_form and state in ['validate_ok', 'closed', 'cancel']" />
+                                    </group>
+                                </group>
+                                <group id="item_c">
+                                    <div class="w-100">
+                                        <div class="mb-auto">
+                                            <h3>C. GRADO DE LOGRO DE LOS OBJETIVOS AMBIENTALES</h3>
+                                        </div>
+                                        <p class="" >
+                                            Se revisa el avance y cumplimiento de los objetivos ambientales definidos para el periodo.
+                                        </p>
+                                    </div> 
+                                    
+                                    <group colspan="2">
+                                        <field name="target_ids" widget="many2many_tags" string="Objetivos ambientales" /> 
+                                        <field name="target_description" string="Interpretación de resultados" />
+
+                                    </group>
+                                    
+                                </group>
+                                <div class="spacer"></div>
+                                <group id="item_d">
+                                    <div class="w-100">
+                                        <div class="">
+                                            <h3>D. INFORMACIÓN SOBRE EL DESEMPEÑO AMBIENTAL</h3>
+                                        </div>
+                                        <div class="" >
+                                            <h3>Se revisan las tendencias de no conformidades, seguimiento y medición, cumplimiento y auditorías para evaluar el desempeño ambiental.</h3>
+                                        </div>
+                                    </div>
+                                    <group colspan="2">
+                                        <field name="nonconformity_action"  readonly="not can_edit_form and state in ['validate_ok', 'closed', 'cancel']" string="No conformidades y acciones correctivas" />
+                                        <field name="nonconformity_action_description"  readonly="not can_edit_form and state in ['validate_ok', 'closed', 'cancel']" string="Resultado / interpretación" />
+                                    </group>
+                                    <group colspan="2">
+                                        <field name="indicator"  readonly="not can_edit_form and state in ['validate_ok', 'closed', 'cancel']" string="Resultados de seguimiento y medición" />
+                                        <field name="indicator_description"  readonly="not can_edit_form and state in ['validate_ok', 'closed', 'cancel']" string="Resultado / interpretación" />
+                                    </group>
+                                    <group colspan="2">
+                                        <field name="sa_assessment_compliance_obligations"  readonly="not can_edit_form and state in ['validate_ok', 'closed', 'cancel']" string="Resultados de seguimiento y medición" />
+                                        <field name="sa_aco_interpretation"  readonly="not can_edit_form and state in ['validate_ok', 'closed', 'cancel']" string="Resultado / interpretación" />
+                                    </group>
+                                    <group colspan="2">
+                                        <field name="audit" readonly="not can_edit_form and state in ['validate_ok', 'closed', 'cancel']" string="Resultados de auditorías" />
+                                        <field name="audit_description" readonly="not can_edit_form and state in ['validate_ok', 'closed', 'cancel']"
+                                        string="Resultado / interpretación"
+                                        />
+                                    </group>
+                                                                   
+                                </group>
+                                <group id="item_e">
+                                    <div class="w-100">
+                                        <div class="">
+                                            <h3>E. ADECUACIÓN DE LOS RECURSOS							</h3>
+                                        </div>
+                                        <div >
+                                            <p>
+                                                Se evalúa la suficiencia de recursos para mantener el SGA y mejorar el desempeño ambiental.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <group colspan="2">
+                                        <field name="resource" 
+                                        string="Evaluación de recursos"
+                                        readonly="not can_edit_form and state in ['validate_ok', 'closed', 'cancel']" />
+                                    </group>  
+                                </group>
+                                <group id="item_e">
+                                    <div class="w-100">
+                                        <div class="">
+                                            <h3>F. COMUNICACIONES PERTINENTES DE LAS PARTES INTERESADAS</h3>
+                                        </div>
+                                        <div >
+                                            <p>
+                                                Se revisan comunicaciones internas y externas relevantes, incluidas quejas ambientales cuando existan.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <group colspan="2">
+                                        <field name="sa_communication" 
+                                        readonly="not can_edit_form and state in ['validate_ok', 'closed', 'cancel']" />
+                                        <field name="sa_communication_interpretation" 
+                                        string="Interpretación"
+                                        readonly="not can_edit_form and state in ['validate_ok', 'closed', 'cancel']" />
+                                    </group>  
+                                </group>
+                                <div class="my-2"></div>
+                                <group id="item_conclusion">
+                                    <div class="w-100">
+                                        <div class="">
+                                            <h3>CONCLUSIONES DE LA ALTA DIRECCIÓN										
+							</h3>
+                                        </div>
+                                    </div>
+                                    <group colspan="2">
+                                        <field name="conclusion_review" readonly="not can_edit_form and state in ['validate_ok', 'closed', 'cancel']" />
+                                    </group> 
+                                </group>
+                                
+                            </div>
+                        </page>
+                        <page name="record_meeting_ids" string="Actas de reunión">
+                            <field name="record_meeting_ids" />
+                        </page>
+                        <page name="validation" string="Validación">
+                            <group col="4">
+                                <group colspan="4">
+                                    <field name="version" readonly="not can_edit_form" />
+                                </group>
+                                <group colspan="4">
+                                    <separator string="Elaboración" />
+                                    <field name="elaboration_step" colspan="2" nolabel="1" readonly="not can_edit_form and state not in ['elaborate']" />
+                                    <separator string="Revisión" />
+                                    <field name="review_step" colspan="2" nolabel="1" readonly="not can_edit_form and state not in ['elaborate', 'review']" />
+                                    <separator string="Validación" />
+                                    <field name="validation_step" colspan="2" nolabel="1" readonly="not can_edit_form and state not in ['elaborate', 'review', 'validate']" />
+                                </group>
+                                <group colspan="2">
+                                    <field name="date_elaborate" required="state in ('elaborate')" readonly="1" />
+                                    <field name="date_review" required="state in ('review')" readonly="1" invisible="state in ('elaborate')" />
+                                    <field name="date_validate" groups="base.group_no_one,base.group_system" invisible="state in ('elaborate','review')" />
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+    
     <record id="management_review_form_view" model="ir.ui.view">
         <field name="name">management.review.form.view.inherit</field>
         <field name="model">management.review</field>
@@ -10,8 +259,8 @@
                     <h3>c.4. MATRIZ DE CONTROL DE ASPECTOS E IMPACTOS AMBIENTALES</h3>
                 </p>
                 <group colspan="2">
-                    <field name="c4_matriz" readonly="state in ['validate_ok', 'closed', 'cancel']" />
-                    <field name="c4_interpretation" readonly="state in ['validate_ok', 'closed', 'cancel']" />
+                    <field name="sa_c4_matriz" readonly="state in ['validate_ok', 'closed', 'cancel']" />
+                    <field name="sa_c4_interpretation" readonly="state in ['validate_ok', 'closed', 'cancel']" />
                 </group>
 
                 <div class="spacer"></div>
@@ -19,8 +268,8 @@
                     <h3>c.5. SANEAMIENTO AMBIENTAL</h3>
                 </p>
                 <group colspan="2">
-                    <field name="c5_plan" readonly="state in ['validate_ok', 'closed', 'cancel']" />
-                    <field name="c5_interpretation" readonly="state in ['validate_ok', 'closed', 'cancel']" />
+                    <field name="sa_c5_plan" readonly="state in ['validate_ok', 'closed', 'cancel']" />
+                    <field name="sa_c5_interpretation" readonly="state in ['validate_ok', 'closed', 'cancel']" />
                 </group>
 
                 <div class="spacer"></div>
@@ -28,12 +277,20 @@
                     <h3>c.6. PLAN DE CONTINGENCIA</h3>
                 </p>
                 <group colspan="2">
-                    <field name="c6_plan" readonly="state in ['validate_ok', 'closed', 'cancel']" />
-                    <field name="c6_interpretation" readonly="state in ['validate_ok', 'closed', 'cancel']" />
+                    <field name="sa_c6_plan" readonly="state in ['validate_ok', 'closed', 'cancel']" />
+                    <field name="sa_c6_interpretation" readonly="state in ['validate_ok', 'closed', 'cancel']" />
                 </group>
             </xpath>
                                 
         </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_management_review_14001">
+        <field name="name">Revisión por la dirección ISO 14001</field>
+        <field name="res_model">management.review</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('state', '!=', 'cancel'), ('type_review', '=', 'iso14001')]</field>
+        <field name="context">{'form_view_ref':'soyambiental_management_review.management_review_14001_form_view', 'default_type_review': 'iso14001'}</field>
     </record>
 
 

@@ -1,0 +1,91 @@
+<odoo>
+    <record id="context_swot_view_form" model="ir.ui.view">
+        <field name="name">mgmtsystem.context.swot.view.form</field>
+        <field name="model">mgmtsystem.context.swot</field>
+        <field name="inherit_id" ref="mgmtsystem_context.context_swot_view_form" />
+        <field name="arch" type="xml">
+            <field name="process_id" position="after">
+                <field name="identifier" placeholder="Seleccione identificador" colspan="2"
+                    readonly="state not in ['elaborate']" />
+            </field>
+            <xpath expr="//field[@name='fortalezas']/list/field[@name='name']" position="after">
+                <field name="environmental_condition" />
+            </xpath>
+            <!-- <xpath expr="//field[@name='fortalezas']/list" position="replace">
+                <list style="white-space: pre-wrap;">
+                    <field name="name"   />
+                    <field name="environmental_condition" />
+                    <field name="impact"   />
+                    <field name="priority"  />
+                    <field name="level_attention" 
+                    widget="badge"
+                    decoration-success="level_attention==2 or level_attention==3"
+                    decoration-warning="level_attention==4 or level_attention==5"
+                    decoration-danger="level_attention==6"
+                    />
+                    <field name="has_climate_change_req" />
+                    <field name="swot_id" column_invisible="1" />
+                </list>
+            </xpath> -->
+            <xpath expr="//field[@name='debilidades']/list/field[@name='name']" position="after">
+                <field name="environmental_condition" />
+            </xpath>
+            <xpath expr="//field[@name='oportunidades']/list/field[@name='name']" position="after">
+                <field name="environmental_condition" />
+            </xpath>
+            <xpath expr="//field[@name='amenazas']/list/field[@name='name']" position="after">
+                <field name="environmental_condition" />
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="swot_fortaleza_view_form" model="ir.ui.view">
+        <field name="name">mgmtsystem.context.swot.fortaleza.view.form</field>
+        <field name="model">mgmtsystem.context.swot.fortaleza</field>
+        <field name="inherit_id" ref="mgmtsystem_context.swot_fortaleza_view_form" />
+        <field name="arch" type="xml">
+            <field name="impact" position="before">
+                <field name="environmental_condition" />
+            </field>
+           
+        </field>
+    </record>
+
+
+    <record id="swot_oportunidad_view_form" model="ir.ui.view">
+        <field name="name">mgmtsystem.context.swot.oportunidad.view.form</field>
+        <field name="model">mgmtsystem.context.swot.oportunidad</field>
+        <field name="inherit_id" ref="mgmtsystem_context.swot_oportunidad_view_form" />
+        <field name="arch" type="xml">
+            <field name="impact" position="before">
+                <field name="environmental_condition" />
+            </field>
+        </field>
+    </record>
+
+
+    <record id="swot_amenaza_view_form" model="ir.ui.view">
+        <field name="name">mgmtsystem.context.swot.amenaza.view.form</field>
+        <field name="model">mgmtsystem.context.swot.amenaza</field>
+        <field name="inherit_id" ref="mgmtsystem_context.swot_amenaza_view_form" />
+        <field name="arch" type="xml">
+            <field name="impact" position="before">
+                <field name="environmental_condition" />
+            </field>
+        </field>
+    </record>
+
+    <record id="swot_debilidad_view_form" model="ir.ui.view">
+        <field name="name">mgmtsystem.context.swot.debilidad.view.form</field>
+        <field name="model">mgmtsystem.context.swot.debilidad</field>
+        <field name="inherit_id" ref="mgmtsystem_context.swot_debilidad_view_form" />
+        <field name="arch" type="xml">
+            <field name="impact" position="before">
+                <field name="environmental_condition" />
+            </field>
+        </field>
+    </record>
+
+
+</odoo>

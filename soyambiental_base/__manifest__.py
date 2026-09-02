@@ -24,6 +24,7 @@
         'mgmtsystem_nonconformity',
         'mgmtsystem_action',
         'soyseguridad_contigency_plan',
+        'soycalidad_improve',
     ],
     'data': [
         'security/security.xml',

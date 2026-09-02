@@ -9,12 +9,16 @@
     'category': 'soyambiental',
     'depends': [
         'soyambiental_base',
+        'mgmtsystem_context',
     ],
     'data': [
         'data/data.xml',
+        
         'views/policy_views.xml',
         'views/internal_issue_views.xml',
+        'views/swot_views.xml',
         'views/menus.xml',
+        
         'report/policy.xml',
         'report/internal_issue.xml',
     ],

@@ -4,5 +4,5 @@
               name="Contexto interno"
               action="context_internal_issue_action"
               parent="soyambiental_base.sga_context_menu"
-              sequence="0"/>
+              sequence="10"/>
 </odoo>
