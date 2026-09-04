@@ -9,32 +9,17 @@
                     readonly="state not in ['elaborate']" />
             </field>
             <xpath expr="//field[@name='fortalezas']/list/field[@name='name']" position="after">
-                <field name="environmental_condition" />
+                <field name="environmental_condition" column_invisible="parent.identifier!='enviromental'" />
             </xpath>
-            <!-- <xpath expr="//field[@name='fortalezas']/list" position="replace">
-                <list style="white-space: pre-wrap;">
-                    <field name="name"   />
-                    <field name="environmental_condition" />
-                    <field name="impact"   />
-                    <field name="priority"  />
-                    <field name="level_attention" 
-                    widget="badge"
-                    decoration-success="level_attention==2 or level_attention==3"
-                    decoration-warning="level_attention==4 or level_attention==5"
-                    decoration-danger="level_attention==6"
-                    />
-                    <field name="has_climate_change_req" />
-                    <field name="swot_id" column_invisible="1" />
-                </list>
-            </xpath> -->
+            
             <xpath expr="//field[@name='debilidades']/list/field[@name='name']" position="after">
-                <field name="environmental_condition" />
+                <field name="environmental_condition" column_invisible="parent.identifier!='enviromental'" />
             </xpath>
             <xpath expr="//field[@name='oportunidades']/list/field[@name='name']" position="after">
-                <field name="environmental_condition" />
+                <field name="environmental_condition" column_invisible="parent.identifier!='enviromental'" />
             </xpath>
             <xpath expr="//field[@name='amenazas']/list/field[@name='name']" position="after">
-                <field name="environmental_condition" />
+                <field name="environmental_condition" column_invisible="parent.identifier!='enviromental'" />
             </xpath>
 
         </field>
