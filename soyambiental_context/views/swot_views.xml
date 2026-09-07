@@ -8,6 +8,9 @@
                 <field name="identifier" placeholder="Seleccione identificador" colspan="2"
                     readonly="state not in ['elaborate']" />
             </field>
+            <field name="fortalezas" position="attributes">
+                <attribute name="context">{'default_swot_id': id, 'parent_state': state, 'can_edit_form': can_edit_form, 'swot_identifier': identifier}</attribute>
+            </field>
             <xpath expr="//field[@name='fortalezas']/list/field[@name='name']" position="after">
                 <field name="environmental_condition" column_invisible="parent.identifier!='enviromental'" />
             </xpath>
@@ -15,12 +18,21 @@
             <xpath expr="//field[@name='debilidades']/list/field[@name='name']" position="after">
                 <field name="environmental_condition" column_invisible="parent.identifier!='enviromental'" />
             </xpath>
+            <field name="debilidades" position="attributes">
+                <attribute name="context">{'default_swot_id': id, 'parent_state': state, 'can_edit_form': can_edit_form, 'swot_identifier': identifier}</attribute>
+            </field>
             <xpath expr="//field[@name='oportunidades']/list/field[@name='name']" position="after">
                 <field name="environmental_condition" column_invisible="parent.identifier!='enviromental'" />
             </xpath>
+            <field name="oportunidades" position="attributes">
+                <attribute name="context">{'default_swot_id': id, 'parent_state': state, 'can_edit_form': can_edit_form, 'swot_identifier': identifier}</attribute>
+            </field>
             <xpath expr="//field[@name='amenazas']/list/field[@name='name']" position="after">
                 <field name="environmental_condition" column_invisible="parent.identifier!='enviromental'" />
             </xpath>
+            <field name="amenazas" position="attributes">
+                <attribute name="context">{'default_swot_id': id, 'parent_state': state, 'can_edit_form': can_edit_form, 'swot_identifier': identifier}</attribute>
+            </field>
 
         </field>
     </record>
@@ -31,7 +43,7 @@
         <field name="inherit_id" ref="mgmtsystem_context.swot_fortaleza_view_form" />
         <field name="arch" type="xml">
             <field name="impact" position="before">
-                <field name="environmental_condition" />
+                <field name="environmental_condition" invisible="not context.get('swot_identifier')=='enviromental'"  />
             </field>
            
         </field>
@@ -44,7 +56,7 @@
         <field name="inherit_id" ref="mgmtsystem_context.swot_oportunidad_view_form" />
         <field name="arch" type="xml">
             <field name="impact" position="before">
-                <field name="environmental_condition" />
+                <field name="environmental_condition" invisible="not context.get('swot_identifier')=='enviromental'"  />
             </field>
         </field>
     </record>
@@ -56,7 +68,7 @@
         <field name="inherit_id" ref="mgmtsystem_context.swot_amenaza_view_form" />
         <field name="arch" type="xml">
             <field name="impact" position="before">
-                <field name="environmental_condition" />
+                <field name="environmental_condition" invisible="not context.get('swot_identifier')=='enviromental'" />
             </field>
         </field>
     </record>
@@ -67,7 +79,7 @@
         <field name="inherit_id" ref="mgmtsystem_context.swot_debilidad_view_form" />
         <field name="arch" type="xml">
             <field name="impact" position="before">
-                <field name="environmental_condition" />
+                <field name="environmental_condition" invisible="not context.get('swot_identifier')=='enviromental'"  />
             </field>
         </field>
     </record>
