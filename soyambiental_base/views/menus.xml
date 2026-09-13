@@ -135,6 +135,8 @@
             parent="sga_opp_menu"
             action="mgmtsystem_opportunity.matrix_matrix_opportunity_action"
             sequence="40" />
+      <menuitem name="Indicadores de riesgo" 
+        id="indicador_risk_menu" parent="sga_opp_menu" action="mgmtsystem_opportunity.evaluation_evaluation_action" groups="mgmtsystem_opportunity.group_opportunity_onlyread" sequence="50" />
 
       <!-- Requisitos Legales -->
       <menuitem id="sga_legal_menu"
@@ -238,7 +240,7 @@
                 <menuitem
                  id="res_partner_menu"
                   name="Proveedores"
-                  action="mgmtsystem_partner_qualification.initial_evaluation_action"
+                  action="contacts.action_contacts"
                   sequence="10" />
                 <menuitem
                  id="partner_initial_evaluation_menu"
@@ -368,7 +370,7 @@
                   parent="sga_check_menu"
                   sequence="50" >
             <menuitem id="improve_menu"
-            name="Cambios" 
+            name="Planificación de cambios" 
             action="soycalidad_improve.soycalidad_change_request_action" 
             sequence="10" />
       <menuitem id="matrix_improve_menu"

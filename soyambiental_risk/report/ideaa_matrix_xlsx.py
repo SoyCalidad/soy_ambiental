@@ -268,7 +268,10 @@ class IDEAAMatrixXLSXReport(models.AbstractModel):
                         else:
                             value = ''
                         
-                        sheet.write(row, col_index, value, format_cell_left)
+                        if value == 'Significativo (3)':
+                            sheet.write(row, col_index, value, format_cell_left_red)
+                        else:
+                            sheet.write(row, col_index, value, format_cell_left)
                         
 
                     # consecuencia = next(
@@ -294,7 +297,10 @@ class IDEAAMatrixXLSXReport(models.AbstractModel):
                     else:
                         consecuencia = ''
 
-                    sheet.write(row, 13, consecuencia, format_cell_left)
+                    if consecuencia=='Significativo (3)':
+                        sheet.write(row, 13, consecuencia, format_cell_left_red)
+                    else:
+                        sheet.write(row, 13, consecuencia, format_cell_left)
 
 
                     sheet.write(row, 14, process.level, format_cell_left)

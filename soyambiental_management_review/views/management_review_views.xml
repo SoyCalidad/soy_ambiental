@@ -88,7 +88,7 @@
                                         </p>
                                     </div>
                                     <group col="2" colspan="2">
-					                    <field name="foda_id"
+					                    <field name="foda_ids"
                                         string="FODA / análisis de contexto"
                                         readonly="not can_edit_form and state in ['validate_ok', 'closed', 'cancel']" />
                                         <field name="foda_description"

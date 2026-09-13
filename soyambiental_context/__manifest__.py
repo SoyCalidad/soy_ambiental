@@ -21,6 +21,7 @@
         
         'report/policy.xml',
         'report/internal_issue.xml',
+        'report/swot_reports.xml',
     ],
     'auto_install': False,
     'application': False,

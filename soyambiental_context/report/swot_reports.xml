@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Estructura basica de reportes-->
+<odoo>
+    <data>
+
+        <template id="report_swot_template" inherit_id="mgmtsystem_context.report_swot_template">
+            <table id="tb_swot_internal" position="replace">
+                <table id="tb_swot_internal" class="tg" border="1" width="90%">
+
+                    <tr style="font-weight:bold;background-color:#EEE;">
+                        <th class="tg-wa1i" colspan="2" width="50%">
+                            <b>Factores Internos</b>
+                        </th>
+                        <th class="tg-9cqb" width="15%">
+                            <b>CONDICIÓN AMBIENTAL RELACIONADA</b>
+                        </th>
+                        <th class="tg-9cqb" width="12%">
+                            <b>IMPACTO</b>
+                        </th>
+                        <th class="tg-9cqb" width="10%">
+                            <b>PRIORIDAD</b>
+                        </th>
+                        <th class="tg-9cqb" width="13%">
+                            <b> NIVEL DE <br /> ATENCIÓN </b>
+                        </th>
+                    </tr>
+                    <tr style="background-color:#fff;">
+                        <td class="tg-wa1i" colspan="2">
+                            <b>Fortalezas</b>
+                        </td>
+                        <td class="tg-wa1i" colspan="4" />
+                    </tr>
+                    <t t-foreach="o.fortalezas" t-as="f">
+                        <tr>
+                            <td class="tg-0lax" width="50%" colspan="2">
+                                <span t-field="f.name" />
+                            </td>
+                            <td class="tg-0lax" width="15%">
+                                <span t-field="f.environmental_condition" />
+                            </td>
+                            <td class="tg-0lax" width="12%">
+                                <span t-field="f.impact" />
+                            </td>
+                            <td class="tg-0lax" width="10%">
+                                <span t-field="f.priority" />
+                            </td>
+                            <td class="tg-0lax" width="13%">
+                                <span t-field="f.level_attention" />
+                            </td>
+                        </tr>
+                    </t>
+                    <tr bgcolor="#EEEEEE" style="background-color:#fff;">
+                        <td class="tg-wa1i" colspan="2">
+                            <b>Debilidades</b>
+                        </td>
+                        <td class="tg-wa1i" colspan="4" />
+                    </tr>
+                    <t t-foreach="o.debilidades" t-as="f">
+                        <tr>
+                            <td class="tg-0lax" colspan="2">
+                                <span t-field="f.name" />
+                            </td>
+                            <td class="tg-0lax" >
+                                <span t-field="f.environmental_condition" />
+                            </td>
+                            <td class="tg-0lax">
+                                <span t-field="f.impact" />
+                            </td>
+                            <td class="tg-0lax">
+                                <span t-field="f.priority" />
+                            </td>
+                            <td class="tg-0lax">
+                                <span t-field="f.level_attention" />
+                            </td>
+                        </tr>
+                    </t> 
+                </table>
+
+            </table>
+            <table id="tb_swot_external" position="replace">
+                <table id="tb_swot_external" class="tg" border="1" width="90%"
+                    style="page-break-inside: avoid;">
+
+                    <tr style="font-weight:bold;background-color:#EEE;">
+                        <th class="tg-wa1i" colspan="2" width="50%">
+                            <b>Factores externos</b>
+                        </th>
+                        <th class="tg-9cqb" width="15%">
+                            <b>CONDICIÓN AMBIENTAL RELACIONADA</b>
+                        </th>
+                        <th class="tg-9cqb" width="12%">
+                            <b>IMPACTO</b>
+                        </th>
+                        <th class="tg-9cqb" width="10%">
+                            <b>PRIORIDAD</b>
+                        </th>
+                        <th class="tg-9cqb" width="13%">
+                            <b> NIVEL DE <br /> ATENCIÓN </b>
+                        </th>
+                    </tr>
+                    <tr bgcolor="#fff">
+                        <td class="tg-wa1i" colspan="2">
+                            <b>Oportunidades</b>
+                        </td>
+                        <td class="tg-wa1i" colspan="4" />
+                    </tr>
+                    <t t-foreach="o.oportunidades" t-as="f">
+                        <tr>
+                            <td class="tg-0lax" colspan="2">
+                                <span t-field="f.name" />
+                            </td>
+                            <td class="tg-0lax"  >
+                                <span t-field="f.environmental_condition" />
+                            </td>
+                            <td class="tg-0lax">
+                                <span t-field="f.impact" />
+                            </td>
+                            <td class="tg-0lax">
+                                <span t-field="f.priority" />
+                            </td>
+                            <td class="tg-0lax">
+                                <span t-field="f.level_attention" />
+                            </td>
+                        </tr>
+                    </t>
+                    <tr bgcolor="#EEEEEE" style="background-color:#fff;">
+                        <td class="tg-wa1i" colspan="2">
+                            <b>Amenazas</b>
+                        </td>
+                        <td class="tg-wa1i" colspan="4" />
+                    </tr>
+                    <t t-foreach="o.amenazas" t-as="f">
+                        <tr>
+                            <td class="tg-0lax" colspan="2">
+                                <span t-field="f.name" />
+                            </td>
+                            <td class="tg-0lax" width="15%">
+                                <span t-field="f.environmental_condition" />
+                            </td>
+                            <td class="tg-0lax">
+                                <span t-field="f.impact" />
+                            </td>
+                            <td class="tg-0lax">
+                                <span t-field="f.priority" />
+                            </td>
+                            <td class="tg-0lax">
+                                <span t-field="f.level_attention" />
+                            </td>
+                        </tr>
+                    </t>
+                </table>
+            </table>
+        </template>
+
+
+        <record id="mgmtsystem_context.report_swot" model="ir.actions.report">
+            <field name="paperformat_id" ref="hola_calidad.landscape" />
+        </record>
+
+    </data>
+</odoo>
