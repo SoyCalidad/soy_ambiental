@@ -122,13 +122,13 @@ class IDEAAMatrixXLSXReport(models.AbstractModel):
                 {'font_size': 10,   'align': 'center', 'valign': 'vcenter', 'bold': True, 'text_wrap': True})
 
         def _get_format_of_calification(control_level):
-            if control.control_level == 'Alto':
+            if control_level == 'Alto':
                 return format_cell_left_red
-            elif control.control_level == 'Medio':
+            elif control_level == 'Medio':
                 return format_cell_left_yellow
-            elif control.control_level == 'Monitoreable':
+            elif control_level == 'Monitoreable':
                 return format_cell_left_orange 
-            elif control.control_level == 'Bajo':
+            elif control_level == 'Bajo':
                 return format_cell_left_green
             else:
                 return False
@@ -200,7 +200,8 @@ class IDEAAMatrixXLSXReport(models.AbstractModel):
             sheet.set_column('E:E', 25)
             sheet.set_column('H:P', 10)
             sheet.set_column('Q:Q', 15)
-            sheet.set_column('R:V', 10)
+            sheet.set_column('R:U', 12)
+            sheet.set_column('V:V', 15)
             sheet.set_row(5, 50)
             sheet.set_row(6, 100)
 
