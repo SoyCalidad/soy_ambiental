@@ -18,7 +18,7 @@
 
 "sga_hola_calidad_requirement_919_52b3ae1a","4_context","sga_hola_calidad_clause_126_08af1a91","Establecer, implementar, mantener y mejorar continuamente un sistema de gestión ambiental que incluya los procesos necesarios y sus interacciones.","",4.4.1,A35
 "sga_hola_calidad_requirement_4_4_2","4_context","sga_hola_calidad_clause_126_08af1a91","Asegurar que el sistema de gestión ambiental permita lograr los resultados previstos, incluida la mejora del desempeño ambiental.","",4.4.2,A36
-"sga_hola_calidad_requirement_4_4_3","4_context","sga_hola_calidad_clause_126_08af1a91","Considerar el conocimiento obtenido sobre el contexto y las partes interesadas al establecer y mantener el sistema de gestión ambiental.","",4.4.3,A32
+"sga_hola_calidad_requirement_4_4_3","4_context","sga_hola_calidad_clause_126_08af1a91","Considerar el conocimiento obtenido sobre el contexto y las partes interesadas al establecer y mantener el sistema de gestión ambiental.","",4.4.3,A37
 
 "sga_hola_calidad_requirement_929_3435ac12","5_leadership","sga_hola_calidad_clause_127_ec3d1e8d","Asumir la rendición de cuentas por la eficacia del sistema de gestión ambiental y asegurar que logre sus resultados previstos.","","5.1.1","A41"
 "sga_hola_calidad_requirement_930_529c1970","5_leadership","sga_hola_calidad_clause_127_ec3d1e8d","Asegurar que la política, los objetivos y los requisitos del sistema de gestión ambiental se integren con la dirección estratégica, el contexto y los procesos de negocio.","","5.1.2","A42"
@@ -151,9 +151,9 @@
 "sga_hola_calidad_requirement_1092_94027fdb","10_improvement","sga_hola_calidad_clause_142_af1f3836","Mejorar continuamente la conveniencia, adecuación y eficacia del sistema de gestión ambiental para mejorar el desempeño ambiental.","","10.1.1","A184"
 "sga_hola_calidad_requirement_1092_94027fdb","10_improvement","sga_hola_calidad_clause_142_af1f3836","Determinar oportunidades de mejora e implementar las acciones necesarias para lograr los resultados previstos del sistema de gestión ambiental.","","10.1.2","A185"
 
-"sga_hola_calidad_requirement_1093_9ff54ac9","10_improvement","sga_hola_calidad_clause_143_87db943c","Reaccionar ante la no conformidad, controlarla y corregirla, cuando sea aplicable.","","10.2.1","A254"
-"sga_hola_calidad_requirement_1094_8337197c","10_improvement","sga_hola_calidad_clause_143_87db943c","Abordar sus consecuencias, incluida la mitigación de impactos ambientales adversos cuando corresponda.","","10.2.2","A255"
-"sga_hola_calidad_requirement_1095_60cfc897","10_improvement","sga_hola_calidad_clause_143_87db943c","Determinar y eliminar las causas de la no conformidad para evitar que vuelva a ocurrir o que ocurra en otra parte.","","10.2.3","A256"
+"sga_hola_calidad_requirement_1093_9ff54ac9","10_improvement","sga_hola_calidad_clause_143_87db943c","Reaccionar ante la no conformidad, controlarla y corregirla, cuando sea aplicable.","","10.2.1","A188"
+"sga_hola_calidad_requirement_1094_8337197c","10_improvement","sga_hola_calidad_clause_143_87db943c","Abordar sus consecuencias, incluida la mitigación de impactos ambientales adversos cuando corresponda.","","10.2.2","A189"
+"sga_hola_calidad_requirement_1095_60cfc897","10_improvement","sga_hola_calidad_clause_143_87db943c","Determinar y eliminar las causas de la no conformidad para evitar que vuelva a ocurrir o que ocurra en otra parte.","","10.2.3","A190"
 "sga_hola_calidad_requirement_1096_4a5eb7c9","10_improvement","sga_hola_calidad_clause_143_87db943c","Implementar las acciones necesarias, revisar su eficacia y realizar cambios al sistema de gestión ambiental cuando sea necesario.Mediante la revisión de la no conformidad","","10.2.4","A191"
 "sga_hola_calidad_requirement_1097_55845440","10_improvement","sga_hola_calidad_clause_143_87db943c","Asegurar que las acciones correctivas sean proporcionales a la significancia de los efectos de la no conformidad, incluidos los impactos ambientales.","","10.2.5","A192"
 "sga_hola_calidad_requirement_1098_aa864b60","10_improvement","sga_hola_calidad_clause_143_87db943c","Mantener disponible información documentada sobre la no conformidad, las acciones tomadas y los resultados de las acciones correctivas.","","10.2.6","A193"

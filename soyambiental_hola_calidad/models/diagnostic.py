@@ -480,18 +480,16 @@ class Diagnostic(models.Model):
         newdir = os.path.join(dirname, 'data')
         workbook = load_workbook(newdir + '/data.xlsx')
 
-        time = datetime.now()
-        self.xls_helper.write({'date_validate': datetime.now()})
-        if time:
-            filename = self.name + ' ' + \
-                       str(time.strftime("%Y-%m-%d %H:%M %p"))
+        today = datetime.now()
+        self.xls_helper.write({'date_validate': today})
+        if today:
+            filename = self.name + ' ' + str(today.strftime("%Y-%m-%d %H:%M %p"))
         else:
             filename = self.name
 
         sheets = workbook.sheetnames
         sheet = workbook[sheets[1]]
         cont = 15
-        cont_relle = 0
         
         #complete names 
         cell = sheet['A3']
@@ -501,50 +499,15 @@ class Diagnostic(models.Model):
         cell = sheet['A7']
         cell.value = f"RESPONSABLE: {self.user_id.display_name or ''} "
 
+        MAX_EXCEL_ROW = 194
         for diagnostics in [getattr(self, x) for x in FIELDS]:
             for diagnostic_line in diagnostics:
                 p_excel = diagnostic_line.requirement_id.position_excel
-                if p_excel and cont < 200:
-                    number = p_excel[1:]
-                    if number != str(cont):
-                        i = cont
-                        tmp = 1
-                        tmpfinal = True
-                        tmp1 = 1
-                        while tmpfinal == True and cont < 268 and i < 268:
-                            if i not in [19, 20, 26,27, 33, 34, 38, 39, 40, 45, 46, 53, 54, 57, 58, 59,  76, 83, 84, 88, 89,90,
-                                          92, 93, 98, 99, 103, 104, 112, 113,  121, 122 ,123, 131, 132, 138 ,139, 140, 141,
-                                          148, 149,  153, 154, 155, 158, 159, 165, 166, 167, 169, 170, 175, 176, 
-                                181, 182, 183, 186, 187, #chapter 10
-                                         ] and i != int(number):
-                                if cont < 268 and i < 193:
-                                    # comvertir a string
-                                    cell1 = sheet['B' + str(i)]
-                                    if not isinstance(cell1, MergedCell):
-                                        cell1.value = "X"
-                                    else:
-                                        _logger.info(f"{cell1.coordinate} pertenece a una celda combinada")
-                                    tmp = 0
-                                    i = i + 1
-                                    tmp1 = 0
-                            else:
-                                if tmp == 0:
-                                    print("vista tmp y i------>", i)
-                                    tmpfinal = False
-                                    i = int(number)
-                                    break
-
-                            if number == str(i):  # 31
-                                tmpfinal = False
-                                i = int(number)
-                                break
-                            else:
-                                if tmp1 != 0:
-                                    i = i + 1
-                        cont = i
-                    if number == str(cont):
-                        number = p_excel[1:]
-                        print("number------>", number)
+                
+                number = p_excel[1:]
+                if p_excel :
+                    if number and int(number) < MAX_EXCEL_ROW:
+                        _logger.info(f"number------>{number}")
                         letter = None
                         if diagnostic_line.qualification == 'na':
                             letter = 'G'
@@ -566,10 +529,13 @@ class Diagnostic(models.Model):
                                 cell.value = "X"
                             else:
                                 _logger.info(f"{cell.coordinate} pertenece a una celda combinada")
-                            cont = cont + 1
+                        cont = cont + 1
+                                        
+
                     if diagnostic_line.observation:
                         cell2 = sheet['H' + number]
                         cell2.value = diagnostic_line.observation
+
 
         workbook.close()
 
@@ -602,8 +568,8 @@ class Diagnostic(models.Model):
         if (len(ids_clause_list_all)):
             ids_clause_list = []
 
-            print("LISTA DE Existentes ", clausulas_analis_prev)
-            print("LISTA DE ALL PREVIO ", clausulas_analis_prev)
+            _logger.info(f"LISTA DE Existentes clausulas_analis_prev")
+            _logger.info(f"LISTA DE ALL PREVIO {clausulas_analis_prev}")
 
             # TODO: CUANDO SE ELIMINA AUN NO FUNCIONA; FALTA QUE SEPA CUAND
             # SE ESTA ELIMINANDO el registro
@@ -627,7 +593,6 @@ class Diagnostic(models.Model):
                 '4.3', ids_clause_list)
             self.diagnostic4_4_ids = self._default_diagnostic_line_ids_v2(
                 '4.4', ids_clause_list)
-            # print("2 ---->",self.diagnostic4_ids.ids)
 
             self.diagnostic5_1_ids = self._default_diagnostic_line_ids_v2(
                 '5.1', ids_clause_list)
@@ -738,7 +703,7 @@ class Diagnostic(models.Model):
             [('name', '=like', vchapter + '%')])
 
         lines = [(5, 0, 0)]
-        print([x.name for x in requirements])
+        _logger.info(f"{[x.name for x in requirements]}")
         for req in requirements:
             if (req.clause_id.id in ids_clause):
                 data = {
