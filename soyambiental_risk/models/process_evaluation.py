@@ -173,7 +173,7 @@ class MatrixProcess(models.Model):
                 else:
                     each.level = 'Bajo'
             else:
-                each.level = ''
+                each.level = False
             each.evaluation_p = p_value
             each.evaluation_c = c_value
             each.evaluation_pxc = r_value

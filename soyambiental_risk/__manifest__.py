@@ -1,6 +1,9 @@
 {
     'name': 'Riesgos de Soy Ambiental',
-    'description': 'Riesgos de Soy Ambiental',
+    'description': '''Riesgos de Soy Ambiental
+    Agrega:
+    - Matriz IDEAA
+    ''',
     'author': 'Soy Calidad',
     'website': 'www.soycalidad.com',
     'version': '18.0.1.0.0',

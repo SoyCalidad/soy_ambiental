@@ -43,21 +43,26 @@
                     <span class="report-section-title-light">
                         B. CAMBIOS EN LAS CUESTIONES EXTERNAS E INTERNAS Y ELEMENTOS DEL CONTEXTO AMBIENTAL
                     </span>
+                    <span class="report-subsection-title">B.1 FODA / análisis de contexto</span>
+                    <span class="report-subsection-title">B.2 Partes interesadas y obligaciones de cumplimiento</span>
+                    <span class="report-subsection-title">B.3 Aspectos ambientales significativos</span>
+                    <span class="report-subsection-title">B.4 Riesgos y oportunidades ambientales</span>
                     <span class="report-section-title-light">
                         C. GRADO DE LOGRO DE LOS OBJETIVOS AMBIENTALES
                     </span>
                     <span class="report-section-title-light">
                         D. INFORMACIÓN SOBRE EL DESEMPEÑO AMBIENTAL
                     </span>
+                    <span class="report-subsection-title">D.1 No conformidades y acciones correctivas</span>
+                    <span class="report-subsection-title">D.2 Resultados de seguimiento y medición</span>
+                    <span class="report-subsection-title">D.3 Evaluación del cumplimiento de obligaciones</span>
+                    <span class="report-subsection-title">D.4 Resultados de auditorías</span>
 
                     <span class="report-section-title-light">
                         E. ADECUACIÓN DE LOS RECURSOS
                     </span>
                     <span class="report-section-title-light">
                         F. COMUNICACIONES PERTINENTES DE LAS PARTES INTERESADAS										
-                    </span>
-                    <span class="report-section-title-light">
-                        CONCLUSIONES DE LA ALTA DIRECCIÓN
                     </span>
 
                 </div>
@@ -85,16 +90,18 @@
                     <span class="report-section-title">
                         B. Cambios en las cuestiones externas e internas y elementos del contexto ambiental										
                     </span>
-
-                    <t t-out="o.foda_id.display_name or ''" />
-
-                    <br />
+                    <span class="report-section-title">
+                        B.1 FODA / análisis de contexto
+                    </span>
+                    <t t-raw="o.foda" />
 
                     <span t-field="o.foda_description" />
 
                     <br />
 
-                    <h4>Resumen de las partes interesadas</h4>
+                    <span class="report-section-title">
+                        B.2 Partes interesadas y obligaciones de cumplimiento
+                    </span>
 
                     <h5>Interesados internos</h5>
 
@@ -167,13 +174,18 @@
                     <br />
                     <span t-field="o.stakeholders_description" />
                     <br />
+
+                    <span class="report-section-title">
+                        B.3 Aspectos ambientales significativos
+                    </span>
                     <span t-raw="o.sa_significant_aspects" />
-                    <br />
                     <span t-raw="o.sa_significant_aspects_interpretation" />
                     <br />
-                    <span t-raw="o.sa_risk_opp" />
-                    <br />
-                    <span t-raw="o.sa_risk_opp_interpretation" />
+                    <span class="report-section-title">
+                        B.4 Riesgos y oportunidades ambientales
+                    </span>
+                    <span t-raw="o.risk" />
+                    <span t-raw="o.risk_description" />
                 </div>
 
                 <div id="section_c" class="report-page">
@@ -181,26 +193,7 @@
                         C. Grado de logro de los objetivos ambientales										
 
                     </span>
-                    
-
-                    <table class="table table-bordered" t-if="o.target_ids">
-                        <thead>
-                            <tr>
-                                <th>Objetivo</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <t t-foreach="o.target_ids"
-                                t-as="record">
-                                <tr>
-                                    <td>
-                                        <span t-field="record.display_name" />
-                                    </td> 
-                                </tr>
-
-                            </t>
-                        </tbody>
-                    </table>
+                    <t t-raw="o.target" />
                     <span t-field="o.target_description" />
 
 
@@ -213,31 +206,41 @@
                     </span>
 
                     <div>
+                        <span class="report-section-title">
+                            D.1 No conformidades y acciones correctivas
+                        </span>
 
                         <t t-raw="o.nonconformity_action" />
-
                         <span t-field="o.nonconformity_action_description" />
-                        <t t-raw="o.indicator" />
 
-                        <span t-field="o.indicator_description" />
 
-                        <t t-raw="o.sa_assessment_compliance_obligations" />
+                        <span class="report-section-title">
+                            D.2 Resultados de seguimiento y medición
+                        </span>
+
+                        <t t-raw="o.measurement_html" />
+                        <span t-field="o.measurement_description" />
+
+                        <span class="report-section-title">
+                            D.3 Evaluación del cumplimiento de obligaciones
+
+                        </span>
+                        <t t-raw="o.legal_requirements" />
+                        <t t-raw="o.legal_requirements_interpretation" />
                         <br />
-                        <t t-raw="o.sa_aco_interpretation" />
-                        <br />
+                        <span class="report-section-title">
+                            D.4 Resultados de auditorías
+                        </span>
                         <t t-raw="o.audit" />
-
                         <span t-field="o.audit_description" />
                     </div>
 
                 </div>
-                <t t-raw="o.conclusion_d_section" />
                 
                 <div class="report-page" id="item_e">
                     <span class="report-section-title">
                         E. Adecuación de los recursos
                     </span>
-                    
                     <t t-raw="o.resource" />
 
 
@@ -252,15 +255,7 @@
 
 
                 </div>
-                <div class="report-page" id="conclusion_sga">
-                    <span class="report-section-title">
-                        CONCLUSIONES DE LA ALTA DIRECCIÓN
-                    </span>
-                    
-                    <t t-raw="o.conclusion_review" />
 
-
-                </div>
 
             </t>
         </t>

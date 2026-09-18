@@ -61,7 +61,7 @@
         <field name="arch" type="xml">
             <form string="Diagnostico">
                 <header>
-                    <button name="evaluate_diagnostic"
+                    <button name="generate_report_xlsx"
                             invisible="state == 'draft'"
                             string="Generar Reporte"
                             type="object"

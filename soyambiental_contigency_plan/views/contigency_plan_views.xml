@@ -5,12 +5,11 @@
         <field name="model">sst.contigency_plan</field>
         <field name="inherit_id" ref="soyseguridad_contigency_plan.sst_contigency_plan_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='responsible_id']" position="after">
+            <sheet position="inside">
                 <field name="is_sga_context" invisible="1"/>
-            </xpath>
-            <xpath expr="//field[@name='inspection_ids']" position="attributes">
-                <attribute name="invisible">stage in ('ide','ana') and is_sga_context</attribute>
-            </xpath>
+
+            </sheet>
+            
         </field>
     </record>
 

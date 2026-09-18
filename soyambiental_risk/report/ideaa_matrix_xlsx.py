@@ -268,10 +268,8 @@ class IDEAAMatrixXLSXReport(models.AbstractModel):
                         else:
                             value = ''
                         
-                        if value == 'Significativo (3)':
-                            sheet.write(row, col_index, value, format_cell_left_red)
-                        else:
-                            sheet.write(row, col_index, value, format_cell_left)
+                       
+                        sheet.write(row, col_index, value, format_cell_left)
                         
 
                     # consecuencia = next(
@@ -297,13 +295,10 @@ class IDEAAMatrixXLSXReport(models.AbstractModel):
                     else:
                         consecuencia = ''
 
-                    if consecuencia=='Significativo (3)':
-                        sheet.write(row, 13, consecuencia, format_cell_left_red)
-                    else:
-                        sheet.write(row, 13, consecuencia, format_cell_left)
+                    sheet.write(row, 13, consecuencia, format_cell_left)
 
-
-                    sheet.write(row, 14, process.level, format_cell_left)
+                    format_level = _get_format_of_calification(process.level) or format_cell_left
+                    sheet.write(row, 14, process.level, format_level)
                     sheet.write(row, 15, process.evaluation_pxc, format_cell_left)
                     sheet.write(row, 16, '\n'.join(['- ' + x.name for x in process.legal_ids]), format_cell_left)
 

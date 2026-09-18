@@ -474,7 +474,7 @@ class Diagnostic(models.Model):
         sum_total = sum(total_in_partials)
         return [total_na, total_100, total_75, total_50, total_25, total_0, sum_total]
 
-    def evaluate_diagnostic(self):
+    def generate_report_xlsx(self):
         paths = os.path.realpath(__file__)
         dirname = os.path.dirname(os.path.dirname(paths))
         newdir = os.path.join(dirname, 'data')
@@ -492,11 +492,19 @@ class Diagnostic(models.Model):
         sheet = workbook[sheets[1]]
         cont = 15
         cont_relle = 0
+        
+        #complete names 
+        cell = sheet['A3']
+        cell.value = f"Empresa: {self.env.company.display_name or ''}"
+        cell = sheet['A5']
+        cell.value = f"FECHA APLICACIÓN: {self.date_validate or ''} "
+        cell = sheet['A7']
+        cell.value = f"RESPONSABLE: {self.user_id.display_name or ''} "
 
         for diagnostics in [getattr(self, x) for x in FIELDS]:
             for diagnostic_line in diagnostics:
                 p_excel = diagnostic_line.requirement_id.position_excel
-                if p_excel and cont < 416:
+                if p_excel and cont < 200:
                     number = p_excel[1:]
                     if number != str(cont):
                         i = cont

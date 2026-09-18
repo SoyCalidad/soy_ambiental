@@ -15,6 +15,7 @@
         'base',
         'mgmtsystem_management_review',    
         'soyambiental_base',
+        'soyambiental_risk',
     ],
 
     'data': [

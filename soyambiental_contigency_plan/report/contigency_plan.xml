@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="report_sst_contigency_plan" inherit_id="soyseguridad_contigency_plan.report_sst_contigency_plan">
+    <!-- TODO: MAKE THIS REPORT-->
+    <!-- <template id="report_sst_contigency_plan" inherit_id="soyseguridad_contigency_plan.report_contigency_plan">
         <xpath expr="//div[hasclass('index')]//p" position="replace">
             <p t-if="doc.is_sga_context" style="font-size:16px;color:black;">
                 1. Objetivo
@@ -74,5 +75,5 @@
                 d. Programa de capacitaciones
             </div>
         </xpath>
-    </template>
+    </template> -->
 </odoo>
