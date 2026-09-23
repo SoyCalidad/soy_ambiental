@@ -17,6 +17,6 @@
         <field name="name">Plan de contingencia</field>
         <field name="res_model">sst.contigency_plan</field>
         <field name="view_mode">list,form</field>
-        <field name="context">{'default_is_sga_context': True}</field>
+        <field name="context">{'default_is_sga_context': True, 'create': False}</field>
     </record>
 </odoo>
