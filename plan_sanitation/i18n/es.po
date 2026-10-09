@@ -1,0 +1,433 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* plan_sanitation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-05 00:00+0000\n"
+"PO-Revision-Date: 2026-10-05 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__activity_calendar_event_id
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr "Siguiente evento en el calendario de actividades."
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__activity_date_deadline
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Siguiente plazo de actividad"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__activity_exception_decoration
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Decoración de Actividad de Excepción"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__activity_exception_icon
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__activity_exception_icon
+msgid "Icon"
+msgstr "Icono"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__activity_ids
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__activity_ids
+msgid "Activities"
+msgstr "Actividades"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__activity_state
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__activity_state
+msgid "Activity State"
+msgstr "Estado de actividad"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__activity_summary
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__activity_summary
+msgid "Next Activity Summary"
+msgstr "Resumen de la siguiente actividad"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__activity_type_icon
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Actividad de Tipo de Iconos"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__activity_type_id
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__activity_type_id
+msgid "Next Activity Type"
+msgstr "Siguiente tipo de actividad"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__activity_user_id
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__activity_user_id
+msgid "Responsible User"
+msgstr "Usuario responsable"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__can_edit_form
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__can_edit_form
+msgid "Can Edit Form"
+msgstr "Puede editar el formulario"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__create_date
+#: model:ir.model.fields,field_description:plan_sanitation.field_am_ambient__create_date
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__create_date
+#: model:ir.model.fields,field_description:plan_sanitation.field_planr_ambiental__create_date
+#: model:ir.model.fields,field_description:plan_sanitation.field_programar_ambiental__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__create_uid
+#: model:ir.model.fields,field_description:plan_sanitation.field_am_ambient__create_uid
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__create_uid
+#: model:ir.model.fields,field_description:plan_sanitation.field_planr_ambiental__create_uid
+#: model:ir.model.fields,field_description:plan_sanitation.field_programar_ambiental__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__date_elaborate
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__date_elaborate
+msgid "Preparation date"
+msgstr "Fecha de elaboración"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__date_review
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__date_review
+msgid "Review date"
+msgstr "Fecha de revisión"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__deactivate_date
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__deactivate_date
+msgid "Expiration date"
+msgstr "Fecha de expiración"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__display_name
+#: model:ir.model.fields,field_description:plan_sanitation.field_am_ambient__display_name
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__display_name
+#: model:ir.model.fields,field_description:plan_sanitation.field_planr_ambiental__display_name
+#: model:ir.model.fields,field_description:plan_sanitation.field_programar_ambiental__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__elaboration_users_check
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__elaboration_users_check
+msgid "Preparation approved"
+msgstr "Aprobada elaboración"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__has_message
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__has_message
+msgid "Has Message"
+msgstr "Tiene mensaje"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__last_validate_date
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__last_validate_date
+msgid "Last validation date"
+msgstr "Última fecha de validación"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__message_attachment_count
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__message_attachment_count
+msgid "Attachment Count"
+msgstr "Total de adjuntos"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__message_follower_ids
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__message_has_error
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de Envío de Mensaje"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__message_has_error_counter
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__message_has_error_counter
+msgid "Number of errors"
+msgstr "Numero de errores"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__message_has_sms_error
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de envío del SMS"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__message_ids
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__message_is_follower
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__message_is_follower
+msgid "Is Follower"
+msgstr "Es seguidor"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__message_needaction
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__message_needaction
+msgid "Action Needed"
+msgstr "Acción necesaria"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__message_needaction_counter
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de acciones"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__message_partner_ids
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Socios)"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__my_activity_date_deadline
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Mi plazo de actividades"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__old_code
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__old_code
+msgid "Old code"
+msgstr "Código antiguo"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__old_versions
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__old_versions
+msgid "Old versions"
+msgstr "Versiones antiguas"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__parent_edition
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__parent_edition
+msgid "Parent"
+msgstr "Padre"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__rating_ids
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__rating_ids
+msgid "Ratings"
+msgstr "Calificaciones"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__review_users_check
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__review_users_check
+msgid "Review approved"
+msgstr "Aprobada revisión"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__state
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__state
+msgid "Status"
+msgstr "Estado"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__unrevisioned_name
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__unrevisioned_name
+msgid "Edition name"
+msgstr "Nombre de la edición"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__validation_users_check
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__validation_users_check
+msgid "Validation approved"
+msgstr "Aprobada validación"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__website_message_ids
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes de la página web"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__write_date
+#: model:ir.model.fields,field_description:plan_sanitation.field_am_ambient__write_date
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__write_date
+#: model:ir.model.fields,field_description:plan_sanitation.field_planr_ambiental__write_date
+#: model:ir.model.fields,field_description:plan_sanitation.field_programar_ambiental__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_plan_ambiental__write_uid
+#: model:ir.model.fields,field_description:plan_sanitation.field_am_ambient__write_uid
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__write_uid
+#: model:ir.model.fields,field_description:plan_sanitation.field_planr_ambiental__write_uid
+#: model:ir.model.fields,field_description:plan_sanitation.field_programar_ambiental__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__change_request_ids
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__change_requests_count
+msgid "Change requests"
+msgstr "Solicitudes de cambio"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__date_validate
+msgid "Validation date"
+msgstr "Fecha de validación"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__model_id
+msgid "Model"
+msgstr "Modelo"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_programa_ambiental__version
+msgid "Version number"
+msgstr "Número de versión"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,field_description:plan_sanitation.field_res_company__plan_sanidad_state
+msgid "State of the context onboarding panel"
+msgstr "Estado del panel de incorporación del contexto"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,help:plan_sanitation.field_plan_ambiental__activity_exception_decoration
+#: model:ir.model.fields,help:plan_sanitation.field_programa_ambiental__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Tipo de actividad de excepción registrada."
+
+#. module: plan_sanitation
+#: model:ir.model.fields,help:plan_sanitation.field_plan_ambiental__activity_exception_icon
+#: model:ir.model.fields,help:plan_sanitation.field_programa_ambiental__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icono para indicar una actividad de excepción."
+
+#. module: plan_sanitation
+#: model:ir.model.fields,help:plan_sanitation.field_plan_ambiental__activity_state
+#: model:ir.model.fields,help:plan_sanitation.field_programa_ambiental__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Estado basado en actividades\n"
+"Vencida: la fecha tope ya ha pasado\n"
+"Hoy: La fecha tope es hoy\n"
+"Planificada: futuras actividades."
+
+#. module: plan_sanitation
+#: model:ir.model.fields,help:plan_sanitation.field_plan_ambiental__activity_type_icon
+#: model:ir.model.fields,help:plan_sanitation.field_programa_ambiental__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Icono de Font Awesome ej. fa-tasks"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,help:plan_sanitation.field_plan_ambiental__message_has_error
+#: model:ir.model.fields,help:plan_sanitation.field_plan_ambiental__message_has_sms_error
+#: model:ir.model.fields,help:plan_sanitation.field_programa_ambiental__message_has_error
+#: model:ir.model.fields,help:plan_sanitation.field_programa_ambiental__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
+
+#. module: plan_sanitation
+#: model:ir.model.fields,help:plan_sanitation.field_plan_ambiental__message_has_error_counter
+#: model:ir.model.fields,help:plan_sanitation.field_programa_ambiental__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de envío"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,help:plan_sanitation.field_plan_ambiental__message_needaction
+#: model:ir.model.fields,help:plan_sanitation.field_programa_ambiental__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcado hay nuevos mensajes que requieren su atención."
+
+#. module: plan_sanitation
+#: model:ir.model.fields,help:plan_sanitation.field_plan_ambiental__message_needaction_counter
+#: model:ir.model.fields,help:plan_sanitation.field_programa_ambiental__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Número de mensajes que requieren una acción"
+
+#. module: plan_sanitation
+#: model:ir.model.fields,help:plan_sanitation.field_plan_ambiental__website_message_ids
+#: model:ir.model.fields,help:plan_sanitation.field_programa_ambiental__website_message_ids
+msgid "Website communication history"
+msgstr "historial de la comunicación en la web"
+
+#. module: plan_sanitation
+#: model:ir.model.fields.selection,name:mail.selection__plan_ambiental__activity_exception_decoration__warning
+#: model:ir.model.fields.selection,name:mail.selection__programa_ambiental__activity_exception_decoration__warning
+msgid "Alert"
+msgstr "Alerta"
+
+#. module: plan_sanitation
+#: model:ir.model.fields.selection,name:mail.selection__plan_ambiental__activity_state__overdue
+#: model:ir.model.fields.selection,name:mail.selection__programa_ambiental__activity_state__overdue
+msgid "Overdue"
+msgstr "De retraso"
+
+#. module: plan_sanitation
+#: model:ir.model.fields.selection,name:mail.selection__plan_ambiental__activity_state__planned
+#: model:ir.model.fields.selection,name:mail.selection__programa_ambiental__activity_state__planned
+msgid "Planned"
+msgstr "Planificada"
+
+#. module: plan_sanitation
+#: model:ir.model.fields.selection,name:mail.selection__plan_ambiental__activity_state__today
+#: model:ir.model.fields.selection,name:mail.selection__programa_ambiental__activity_state__today
+msgid "Today"
+msgstr "Hoy"
+
+#. module: plan_sanitation
+#: model:ir.model.fields.selection,name:mgmtsystem_validation.selection__plan_ambiental__state__cancel
+#: model:ir.model.fields.selection,name:mgmtsystem_validation.selection__programa_ambiental__state__cancel
+msgid "Obsolete"
+msgstr "Obsoleto"
+
+#. module: plan_sanitation
+#: model:ir.model.fields.selection,name:mgmtsystem_validation.selection__plan_ambiental__state__elaborate
+#: model:ir.model.fields.selection,name:mgmtsystem_validation.selection__programa_ambiental__state__elaborate
+msgid "In preparation"
+msgstr "En elaboración"
+
+#. module: plan_sanitation
+#: model:ir.model.fields.selection,name:mgmtsystem_validation.selection__plan_ambiental__state__review
+#: model:ir.model.fields.selection,name:mgmtsystem_validation.selection__programa_ambiental__state__review
+msgid "In review"
+msgstr "En revisión"
+
+#. module: plan_sanitation
+#: model:ir.model.fields.selection,name:mgmtsystem_validation.selection__plan_ambiental__state__validate
+#: model:ir.model.fields.selection,name:mgmtsystem_validation.selection__programa_ambiental__state__validate
+msgid "In validation"
+msgstr "En validación"
+
+#. module: plan_sanitation
+#: model:ir.model.fields.selection,name:mgmtsystem_validation.selection__plan_ambiental__state__validate_ok
+#: model:ir.model.fields.selection,name:mgmtsystem_validation.selection__programa_ambiental__state__validate_ok
+msgid "Validated"
+msgstr "Validado"

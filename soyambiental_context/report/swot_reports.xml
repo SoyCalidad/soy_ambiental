@@ -11,7 +11,7 @@
                         <th class="tg-wa1i" colspan="2" width="50%">
                             <b>Factores Internos</b>
                         </th>
-                        <th class="tg-9cqb" width="15%">
+                        <th class="tg-9cqb" width="15%" t-if="o.identifier == 'enviromental'">
                             <b>CONDICIÓN AMBIENTAL RELACIONADA</b>
                         </th>
                         <th class="tg-9cqb" width="12%">
@@ -28,14 +28,14 @@
                         <td class="tg-wa1i" colspan="2">
                             <b>Fortalezas</b>
                         </td>
-                        <td class="tg-wa1i" colspan="4" />
+                        <td class="tg-wa1i" t-att-colspan="4 if o.identifier == 'enviromental' else 3" />
                     </tr>
                     <t t-foreach="o.fortalezas" t-as="f">
                         <tr>
                             <td class="tg-0lax" width="50%" colspan="2">
                                 <span t-field="f.name" />
                             </td>
-                            <td class="tg-0lax" width="15%">
+                            <td class="tg-0lax" width="15%" t-if="o.identifier == 'enviromental'">
                                 <span t-field="f.environmental_condition" />
                             </td>
                             <td class="tg-0lax" width="12%">
@@ -53,14 +53,14 @@
                         <td class="tg-wa1i" colspan="2">
                             <b>Debilidades</b>
                         </td>
-                        <td class="tg-wa1i" colspan="4" />
+                        <td class="tg-wa1i" t-att-colspan="4 if o.identifier == 'enviromental' else 3" />
                     </tr>
                     <t t-foreach="o.debilidades" t-as="f">
                         <tr>
                             <td class="tg-0lax" colspan="2">
                                 <span t-field="f.name" />
                             </td>
-                            <td class="tg-0lax" >
+                            <td class="tg-0lax" t-if="o.identifier == 'enviromental'" >
                                 <span t-field="f.environmental_condition" />
                             </td>
                             <td class="tg-0lax">
@@ -85,7 +85,7 @@
                         <th class="tg-wa1i" colspan="2" width="50%">
                             <b>Factores externos</b>
                         </th>
-                        <th class="tg-9cqb" width="15%">
+                        <th class="tg-9cqb" width="15%" t-if="o.identifier == 'enviromental'">
                             <b>CONDICIÓN AMBIENTAL RELACIONADA</b>
                         </th>
                         <th class="tg-9cqb" width="12%">
@@ -102,14 +102,14 @@
                         <td class="tg-wa1i" colspan="2">
                             <b>Oportunidades</b>
                         </td>
-                        <td class="tg-wa1i" colspan="4" />
+                        <td class="tg-wa1i" t-att-colspan="4 if o.identifier == 'enviromental' else 3" />
                     </tr>
                     <t t-foreach="o.oportunidades" t-as="f">
                         <tr>
                             <td class="tg-0lax" colspan="2">
                                 <span t-field="f.name" />
                             </td>
-                            <td class="tg-0lax"  >
+                            <td class="tg-0lax" t-if="o.identifier == 'enviromental'"  >
                                 <span t-field="f.environmental_condition" />
                             </td>
                             <td class="tg-0lax">
@@ -127,14 +127,14 @@
                         <td class="tg-wa1i" colspan="2">
                             <b>Amenazas</b>
                         </td>
-                        <td class="tg-wa1i" colspan="4" />
+                        <td class="tg-wa1i" t-att-colspan="4 if o.identifier == 'enviromental' else 3" />
                     </tr>
                     <t t-foreach="o.amenazas" t-as="f">
                         <tr>
                             <td class="tg-0lax" colspan="2">
                                 <span t-field="f.name" />
                             </td>
-                            <td class="tg-0lax" width="15%">
+                            <td class="tg-0lax" width="15%" t-if="o.identifier == 'enviromental'">
                                 <span t-field="f.environmental_condition" />
                             </td>
                             <td class="tg-0lax">

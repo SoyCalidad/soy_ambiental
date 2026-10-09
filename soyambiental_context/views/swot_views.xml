@@ -6,6 +6,7 @@
         <field name="arch" type="xml">
             <field name="process_id" position="after">
                 <field name="identifier" placeholder="Seleccione identificador" colspan="2"
+                invisible="not context.get('show_identifier')"
                     readonly="state not in ['elaborate']" />
             </field>
             <field name="fortalezas" position="attributes">
@@ -83,6 +84,20 @@
             </field>
         </field>
     </record>
+
+    <record id="context_swot_action" model="ir.actions.act_window">
+            <field name="name">Análisis FODA</field>
+            <field name="res_model">mgmtsystem.context.swot</field>
+
+            <field name="view_mode">list,form</field>
+            <field name="domain">[('state', '!=', 'cancel')]</field>
+            <field name="context">{'default_identifier': 'enviromental', 'show_identifier': True}</field>
+            <field name="help" type="html">
+                <p>
+                    Cree su propio análisis FODA
+                </p>
+            </field>
+        </record>
 
 
 </odoo>

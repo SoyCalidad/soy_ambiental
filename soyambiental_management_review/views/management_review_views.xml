@@ -382,7 +382,7 @@
                                 readonly="not can_edit_form and state in ['validate_ok', 'closed', 'cancel']" />
                         </group>
                     </group>
-                    <group id="item_c">
+                    <group colspan="2" id="item_c">
                         <div class="w-100">
                             <div class="mb-auto">
                                 <h3>C. GRADO DE LOGRO DE LOS OBJETIVOS AMBIENTALES</h3>
@@ -466,7 +466,7 @@
                                 readonly="not can_edit_form and state in ['validate_ok', 'closed', 'cancel']" />
                         </group>
                     </group>
-                    <group id="item_e">
+                    <group id="item_f">
                         <div class="w-100">
                             <div class="">
                                 <h3>F. COMUNICACIONES PERTINENTES DE LAS PARTES INTERESADAS</h3>

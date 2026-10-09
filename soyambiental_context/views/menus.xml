@@ -5,4 +5,10 @@
               action="context_internal_issue_action"
               parent="soyambiental_base.sga_context_menu"
               sequence="10"/>
+
+
+
+    <record id="soyambiental_base.external_factor_foda_menu" model="ir.ui.menu">
+        <field name="action" ref="context_swot_action" />
+    </record>
 </odoo>

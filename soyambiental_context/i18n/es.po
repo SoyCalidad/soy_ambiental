@@ -1,0 +1,62 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* soyambiental_context
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-05 00:00+0000\n"
+"PO-Revision-Date: 2026-10-05 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: soyambiental_context
+#: model:ir.model.fields,field_description:soyambiental_context.field_mgmtsystem_context_internal_issue__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: soyambiental_context
+#: model:ir.model.fields,field_description:soyambiental_context.field_mgmtsystem_context_internal_issue__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: soyambiental_context
+#: model:ir.model.fields,field_description:soyambiental_context.field_mgmtsystem_context_internal_issue__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: soyambiental_context
+#: model:ir.model.fields,field_description:soyambiental_context.field_mgmtsystem_context_internal_issue__is_sga_context
+msgid "SGA Context"
+msgstr "Contexto del SGA"
+
+#. module: soyambiental_context
+#: model:ir.model.fields,field_description:soyambiental_context.field_mgmtsystem_context_internal_issue__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: soyambiental_context
+#: model:ir.model.fields,field_description:soyambiental_context.field_mgmtsystem_context_internal_issue__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: soyambiental_context
+#: model:ir.model.fields,field_description:soyambiental_context.field_mgmtsystem_context_policy__is_sga_policy_system
+#: model:ir.model.fields,field_description:soyambiental_context.field_mgmtsystem_context_policy_template__is_sga_policy_system
+msgid "Is Sga Policy System"
+msgstr "Es sistema de política del SGA"
+
+#. module: soyambiental_context
+#: model:ir.model.fields.selection,name:soyambiental_context.selection__mgmtsystem_context_swot_item__related_legislation__iso14001
+#: model:ir.model.fields.selection,name:soyambiental_context.selection__mgmtsystem_context_swot_fortaleza__related_legislation__iso14001
+#: model:ir.model.fields.selection,name:soyambiental_context.selection__mgmtsystem_context_swot_debilidad__related_legislation__iso14001
+#: model:ir.model.fields.selection,name:soyambiental_context.selection__mgmtsystem_context_swot_oportunidad__related_legislation__iso14001
+#: model:ir.model.fields.selection,name:soyambiental_context.selection__mgmtsystem_context_swot_amenaza__related_legislation__iso14001
+msgid "Environmental ISO 14001"
+msgstr "Ambiental ISO 14001"
