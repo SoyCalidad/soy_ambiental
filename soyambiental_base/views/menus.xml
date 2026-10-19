@@ -29,7 +29,7 @@
       <menuitem id="sga_mgmtsystem_employee_job_menu_action"
             name="Puestos"
             parent="sga_employees_menu"
-            action="hr.action_hr_job"
+            action="hr_job_functions.action_hr_job"
             sequence="20" />
       <menuitem id="hr_org_chart_menu"
             name="Organigrama"
@@ -40,7 +40,7 @@
       <menuitem id="sga_mgmtsystem_employee_department_menu_action"
             name="Departamentos"
             parent="sga_employees_menu"
-            action="hr.hr_department_tree_action"
+            action="hr.hr_department_kanban_action"
             sequence="40" />
 
       <!-- Procesos -->
@@ -48,7 +48,7 @@
             name="Procesos"
             parent="sga_plan_menu"
             groups="mgmtsystem_process.group_process_all,mgmtsystem_process.group_process_readonly,mgmtsystem_process.group_process_readonly_printreport,mgmtsystem_process.group_process_owner"
-            sequence="30" />
+            sequence="20" />
 
       <menuitem id="sga_mgmtsystem_process_categ_menu_action"
             name="Mapa de procesos"
@@ -66,7 +66,7 @@
             name="Lista Maestra"
             parent="sga_process_menu"
             action="mgmtsystem_process.documentary_control_action"
-            sequence="3"
+            sequence="4"
             groups="base.group_no_one,mgmtsystem_process.group_process_readonly,mgmtsystem_process.group_process_readonly_printreport,mgmtsystem_process.group_process_owner,mgmtsystem_process.group_process_all" />
 
       <!-- Contexto Organizacional -->
@@ -76,35 +76,36 @@
             groups="mgmtsystem_context.group_context_onlyread,mgmtsystem_context.group_context_onlyread_printreport,mgmtsystem_context.group_context_write_printreport,mgmtsystem_context.group_context_all"
             sequence="30" />
 
-      <!-- <menuitem id="sga_mgmtsystem_context_internal_factors_menu_action"
-            name="Contexto internos"
+      <menuitem id="sga_mgmtsystem_context_internal_factors_menu_action"
+            name="Contexto interno"
             parent="sga_context_menu"
             action="mgmtsystem_context.context_internal_issue_action"
-            sequence="10" /> -->
+            sequence="0" />
 
       <menuitem id="external_factor_foda_menu"
             name="Foda"
             parent="sga_context_menu"
             action="mgmtsystem_context.context_swot_action"
-            sequence="20" />
+            sequence="10" />
 
       <menuitem id="sga_mgmtsystem_policy_menu_action"
             name="Política"
             action="mgmtsystem_context.policies_action"
             parent="sga_context_menu"
-            sequence="30" />
+            groups="mgmtsystem_context.group_context_onlyread"
+            sequence="20" />
 
       <menuitem id="sga_mgmtsystem_context_stakeholder_menu_action"
             name="Partes interesadas"
             action="mgmtsystem_context.stakeholder_action"
             parent="sga_context_menu"
-            sequence="40" />
+            sequence="30" />
 
       <menuitem id="mgmtsystem_context_stakeholder_matrix_menu"
             name="Matriz de Partes interesadas"
             action="mgmtsystem_context.stakeholders_action"
             parent="sga_context_menu"
-            sequence="50" />
+            sequence="40" />
 
 
       <!-- Riesgos y Oportunidades -->
@@ -230,8 +231,70 @@
             groups="base.group_no_one,mgmtsystem_infrastructure.group_infrastructure_onlyread,mgmtsystem_infrastructure.group_infrastructure_onlyread_printreport,mgmtsystem_infrastructure.group_infrastructure_write_printreport,mgmtsystem_infrastructure.group_infrastructure_all"
             action="mgmtsystem_infrastructure.mgmtsystem_maintenance_plan_action"
             sequence="30" />
+      <menuitem id="menu_m_request_form"
+            name="Solicitudes de mantenimiento"
+            parent="sga_maintenance_menu"
+            action="maintenance.hr_equipment_request_action"
+            groups="maintenance.group_equipment_manager,base.group_user"
+            sequence="40" />
+      <menuitem id="sga_mgmtsystem_calibration_plan_menu_action"
+            name="Plan de calibración"
+            parent="sga_maintenance_menu"
+            action="mgmtsystem_infrastructure.mgmtsystem_calibration_action"
+            sequence="50" />
+      <menuitem id="sga_mgmtsystem_calibration_program_menu_action"
+            name="Programa de calibración"
+            parent="sga_maintenance_menu"
+            groups="base.group_no_one,mgmtsystem_infrastructure.group_infrastructure_onlyread,mgmtsystem_infrastructure.group_infrastructure_onlyread_printreport,mgmtsystem_infrastructure.group_infrastructure_write_printreport,mgmtsystem_infrastructure.group_infrastructure_all"
+            action="mgmtsystem_infrastructure.mgmtsystem_calibration_plan_action"
+            sequence="60" />
+      <menuitem id="sga_mgmtsystem_calibration_request_menu_action"
+            name="Solicitudes de calibración"
+            parent="sga_maintenance_menu"
+            action="mgmtsystem_infrastructure.hr_calibration_request_action"
+            sequence="70" />
 
-      <menuitem 
+      <menuitem id="maintenance_configuration_menu"
+            name="Configuración"
+            parent="sga_maintenance_menu"
+            groups="maintenance.group_equipment_manager"
+            sequence="80" />
+      <menuitem id="maintenance_configuration_settings_menu"
+            name="Ajustes"
+            parent="maintenance_configuration_menu"
+            action="maintenance.action_maintenance_configuration"
+            groups="base.group_system"
+            sequence="0" />
+      <menuitem id="maintenance_configuration_teams_menu"
+            name="Equipos de mantenimiento"
+            parent="maintenance_configuration_menu"
+            action="maintenance.maintenance_team_action_settings"
+            groups="maintenance.group_equipment_manager"
+            sequence="1" />
+      <menuitem id="maintenance_configuration_category_menu"
+            name="Categorías de equipos"
+            parent="maintenance_configuration_menu"
+            action="maintenance.hr_equipment_category_action"
+            sequence="2" />
+      <menuitem id="maintenance_configuration_stage_menu"
+            name="Etapas de mantenimiento"
+            parent="maintenance_configuration_menu"
+            action="maintenance.hr_equipment_stage_action"
+            groups="base.group_no_one"
+            sequence="3" />
+      <menuitem id="maintenance_configuration_kind_menu"
+            name="Tipos de mantenimiento"
+            parent="maintenance_configuration_menu"
+            action="maintenance_plan.maintenance_kind_action"
+            sequence="4" />
+      <menuitem id="maintenance_configuration_activity_type_menu"
+            name="Tipos de actividad"
+            parent="maintenance_configuration_menu"
+            action="maintenance.mail_activity_type_action_config_maintenance"
+            groups="base.group_no_one"
+            sequence="20" />
+
+      <menuitem
             id="partner_menu"
             name="Contacto"
             sequence="50"
@@ -247,10 +310,34 @@
                   name="Evaluación inicial"
                   action="mgmtsystem_partner_qualification.initial_evaluation_action"
                   sequence="20" />
+                <menuitem id="partner_initial_evaluation_list_menu"
+                  name="Listado de evaluaciones iniciales"
+                  action="mgmtsystem_partner_qualification.partner_initial_evaluation_action"
+                  sequence="25" />
                 <menuitem id="partner_followup_evaluation_menu"
                   name="Reevaluación"
                   action="mgmtsystem_partner_qualification.action_res_partner_evaluation"
                   sequence="30" />
+                <menuitem id="partner_followup_evaluation_list_menu"
+                  name="Listado de evaluaciones de seguimiento"
+                  action="mgmtsystem_partner_qualification.action_res_partner_evaluation_history"
+                  sequence="35" />
+                <menuitem id="partner_reports_menu"
+                  name="Reportes"
+                  sequence="100">
+                    <menuitem id="partner_suppliers_list_report_menu"
+                      name="Listado de proveedores"
+                      action="mgmtsystem_process_integration.action_report_supplier"
+                      sequence="10" />
+                    <menuitem id="partner_customers_list_report_menu"
+                      name="Listado de clientes"
+                      action="mgmtsystem_process_integration.action_report_customer"
+                      sequence="20" />
+                    <menuitem id="partner_evaluation_report_menu"
+                      name="Reporte de evaluación"
+                      action="mgmtsystem_partner_qualification.qualification_wizard_action"
+                      sequence="30" />
+                </menuitem>
       </menuitem>
 
       <menuitem id="sga_contigency_plan_menu"
@@ -307,6 +394,16 @@
             parent="sga_target_menu"
             sequence="20" />
 
+      <menuitem id="target_configuration_menu"
+            name="Configuración"
+            parent="sga_target_menu"
+            sequence="100" />
+      <menuitem id="target_configuration_frequency_menu"
+            name="Periodo de tiempo"
+            parent="target_configuration_menu"
+            action="mgmtsystem_target.measurement_frequency_action"
+            sequence="10" />
+
 
       <menuitem id="sga_audit_menu"
             name="Auditorías"
@@ -338,7 +435,7 @@
             sequence="30" />
 
       <menuitem id="sga_mgmtsystem_review_review_menu_action"
-            name="Revisión por la dirección"
+            name="Informe de revisión por la dirección"
             action="mgmtsystem_management_review.action_management_review"
             parent="sga_review_menu"
             sequence="10" />

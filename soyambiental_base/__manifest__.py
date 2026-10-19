@@ -11,6 +11,7 @@
         'hola_calidad',
         'mgmtsystem_process',
         'mgmtsystem_employees',
+        'hr_job_functions',
         'mgmtsystem_context',
         'mgmtsystem_qualitymanual',
         'mgmtsystem_opportunity',

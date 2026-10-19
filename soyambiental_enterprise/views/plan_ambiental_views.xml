@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="plan_ambiental_view_form" model="ir.ui.view">
+        <field name="name">plan.ambiental.view.form.enterprise</field>
+        <field name="model">plan.ambiental</field>
+        <field name="inherit_id" ref="plan_sanitation.plan_ambiental_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']/button[@context=&quot;{'type_action':'change_request'}&quot;]" position="before">
+                <button type="object" name="openviews" context="{'type_action':'document'}" class="oe_stat_button" icon="fa-file-text-o">
+                    <field name="document_counts" widget="statinfo" string="Documentos"/>
+                </button>
+            </xpath>
+            <xpath expr="//page[field[@name='change_request']]" position="before">
+                <page string="Documentos">
+                    <field name="document" mode="kanban"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

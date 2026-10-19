@@ -14,12 +14,6 @@ class NewPlanP(models.Model):
     non_conformities = fields.Many2many(
         'mgmtsystem.nonconformity', string='No conformidades')
     target = fields.Many2many('mgmtsystem.target', string='Objetivos')
-    documents = fields.Many2many(
-        comodel_name='documents.document', 
-        relation='relation_documents', 
-        string='Documentos',
-        domain=[('type', '=', 'binary')],
-    )
     change_requests = fields.Many2many(
         'soycalidad.change_request', relation="relation_change_requests", string='Solicitudes de cambio')
     elaboration_step = fields.One2many(
@@ -35,8 +29,6 @@ class NewPlanP(models.Model):
         compute='_compute_nonconformities_counts', string='Cantidad de no conformidades')
     actions_counts = fields.Char(
         compute='_compute_actions_counts', string='Cantidad de acciones')
-    documents_counts = fields.Char(
-        compute='_compute_documents_counts', string='Cantidad de documentos')
     change_requests_counts = fields.Char(
         compute='_compute_change_requests_counts', string='Cantidad de solicitudes de cambio')
     plans_counts = fields.Char(
@@ -52,12 +44,6 @@ class NewPlanP(models.Model):
     def _compute_change_requests_counts(self):
         for each in self:
             each.change_requests_counts = len(each.change_requests)
-        pass
-
-    @api.depends('documents')
-    def _compute_documents_counts(self):
-        for each in self:
-            each.documents_counts = len(each.documents)
         pass
 
     @api.depends('non_conformities')
@@ -97,12 +83,6 @@ class NewPlanP(models.Model):
             action_rec = self.env.ref(
                 'mgmtsystem_process_integration.action_auditplan_action').read()[0]
             domain = [('id', 'in', self.actions.ids)]
-            action_rec['domain'] = domain
-
-        elif type_action == 'documents':
-            action_rec = self.env.ref(
-                'documents.document_action').read()[0]
-            domain = [('id', 'in', self.documents.ids)]
             action_rec['domain'] = domain
 
         elif type_action == 'change_requests':

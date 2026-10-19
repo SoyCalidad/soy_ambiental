@@ -28,9 +28,6 @@
                         <button type="object" name="openviews" context="{'type_action':'actions'}" class="oe_stat_button" icon="fa-edit">
                             <field name="actions_counts" widget="statinfo" string="Acciones" />
                         </button>
-                        <button type="object" name="openviews" context="{'type_action':'document'}" class="oe_stat_button" icon="fa-file-text-o">
-                            <field name="document_counts" widget="statinfo" string="Documentos" />
-                        </button>
                         <button type="object" name="openviews" context="{'type_action':'change_request'}" class="oe_stat_button" icon="fa-book">
                             <field name="change_request_counts" widget="statinfo" string="Solicitudes de cambio" />
                         </button>
@@ -81,9 +78,6 @@
                         </page>
                         <page string="Objetivos">
                             <field name="target" />
-                        </page>
-                        <page string="Documentos">
-                            <field name="document" mode="kanban" />
                         </page>
                         <page string="Solicitudes de cambio">
                             <field name="change_request" />

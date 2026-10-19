@@ -2,8 +2,8 @@
 <odoo>
     <menuitem id="sga_aspect_menu"
               name="Aspectos ambientales"
-              parent="soyambiental_base.sga_plan_menu"
-              sequence="70"/>
+              parent="soyambiental_base.sga_do_menu"
+              sequence="200"/>
 
     <menuitem id="sga_ideaa_matrix_menu"
               name="Matriz IDEAA"
