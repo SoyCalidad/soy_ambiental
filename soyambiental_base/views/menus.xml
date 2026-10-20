@@ -322,22 +322,7 @@
                   name="Listado de evaluaciones de seguimiento"
                   action="mgmtsystem_partner_qualification.action_res_partner_evaluation_history"
                   sequence="35" />
-                <menuitem id="partner_reports_menu"
-                  name="Reportes"
-                  sequence="100">
-                    <menuitem id="partner_suppliers_list_report_menu"
-                      name="Listado de proveedores"
-                      action="mgmtsystem_process_integration.action_report_supplier"
-                      sequence="10" />
-                    <menuitem id="partner_customers_list_report_menu"
-                      name="Listado de clientes"
-                      action="mgmtsystem_process_integration.action_report_customer"
-                      sequence="20" />
-                    <menuitem id="partner_evaluation_report_menu"
-                      name="Reporte de evaluación"
-                      action="mgmtsystem_partner_qualification.qualification_wizard_action"
-                      sequence="30" />
-                </menuitem>
+
       </menuitem>
 
       <menuitem id="sga_contigency_plan_menu"
