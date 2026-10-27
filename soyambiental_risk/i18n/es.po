@@ -223,92 +223,26 @@ msgid "Website Messages"
 msgstr "Mensajes de la página web"
 
 #. module: soyambiental_risk
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_evaluation_item_criterio__create_date
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_evaluation_item_value__create_date
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_evaluation_item__create_date
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_evaluation__create_date
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_process_evaluation_control__create_date
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_stage_task__create_date
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_stage_activity__create_date
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_stage__create_date
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_impact__create_date
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_stage_process__create_date
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_aspect__create_date
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_process__create_date
 #: model:ir.model.fields,field_description:soyambiental_risk.field_sga_ideaa_matrix__create_date
 msgid "Created on"
 msgstr "Creado el"
 
 #. module: soyambiental_risk
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_evaluation_item_criterio__create_uid
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_evaluation_item_value__create_uid
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_evaluation_item__create_uid
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_evaluation__create_uid
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_process_evaluation_control__create_uid
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_stage_task__create_uid
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_stage_activity__create_uid
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_stage__create_uid
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_impact__create_uid
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_stage_process__create_uid
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_aspect__create_uid
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_process__create_uid
 #: model:ir.model.fields,field_description:soyambiental_risk.field_sga_ideaa_matrix__create_uid
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: soyambiental_risk
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_evaluation_item_criterio__display_name
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_evaluation_item_value__display_name
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_evaluation_item__display_name
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_evaluation__display_name
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_process_evaluation_control__display_name
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_stage_task__display_name
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_stage_activity__display_name
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_stage__display_name
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_impact__display_name
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_stage_process__display_name
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_aspect__display_name
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_process__display_name
 #: model:ir.model.fields,field_description:soyambiental_risk.field_sga_ideaa_matrix__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: soyambiental_risk
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_evaluation_item_criterio__item_id
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_evaluation_item_value__item_id
-msgid "Item"
-msgstr "Ítem"
-
-#. module: soyambiental_risk
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_evaluation_item_criterio__write_date
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_evaluation_item_value__write_date
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_evaluation_item__write_date
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_evaluation__write_date
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_process_evaluation_control__write_date
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_stage_task__write_date
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_stage_activity__write_date
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_stage__write_date
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_impact__write_date
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_stage_process__write_date
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_aspect__write_date
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_process__write_date
 #: model:ir.model.fields,field_description:soyambiental_risk.field_sga_ideaa_matrix__write_date
 msgid "Last Updated on"
 msgstr "Última actualización el"
 
 #. module: soyambiental_risk
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_evaluation_item_criterio__write_uid
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_evaluation_item_value__write_uid
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_evaluation_item__write_uid
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_evaluation__write_uid
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_process_evaluation_control__write_uid
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_stage_task__write_uid
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_stage_activity__write_uid
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_stage__write_uid
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_impact__write_uid
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_stage_process__write_uid
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_aspect__write_uid
-#: model:ir.model.fields,field_description:soyambiental_risk.field_sga_matrix_process__write_uid
 #: model:ir.model.fields,field_description:soyambiental_risk.field_sga_ideaa_matrix__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización por"

@@ -1,337 +1,180 @@
 import base64
 import io
+import re
 
-from odoo import fields, models
 from PIL import Image
-from datetime import datetime
-import logging 
 
+from odoo import models
+
+from ..models.ideaa_matrix import CONDITION_SELECTION, SIGNIFICANCE_THRESHOLD
+
+import logging
 
 _logger = logging.getLogger(__name__)
+
+TITLE = 'MATRIZ IDENTIFICACIÓN DE ASPECTOS, EVALUACIÓN DE IMPACTOS AMBIENTALES'
+HEADERS = [
+    'Nº',
+    'ETAPA DEL CICLO DE VIDA',
+    'PROCESO',
+    'ACTIVIDAD',
+    'ASPECTO AMBIENTAL',
+    'IMPACTO AMBIENTAL',
+    'CONDICIÓN',
+    'CONTROLES',
+    'FRECUENCIA',
+    'SEVERIDAD',
+    'ALCANCE',
+    'NIVEL DE IMPACTO',
+    'SIGNIFICANCIA',
+    'CONTROL A IMPLEMENTAR',
+    'RESPONSABLE',
+]
+# Ancho de las columnas A:O (en caracteres), igual que la plantilla
+COLUMN_WIDTHS = [6.7, 22.3, 29.4, 32.9, 27.7, 24.6, 18, 32.1, 7.1, 7.1, 7.1, 16.3, 23.9, 43.9, 31.3]
+FIRST_ROW = 6   # fila (base 0) de los encabezados
+LOGO_COLUMNS = (0, 1, 2)
+LOGO_ROWS_HEIGHT = (26.25, 21.75, 21.75)    # alto en puntos de las filas 1 a 3
+SIGNIFICANT_TEXT = 'Significativo (S)'
+NOT_SIGNIFICANT_TEXT = 'No Significativo (NS)'
+
+
+def _col_pixels(width):
+    return int(width * 7 + 5) if width >= 1 else int(width * 12 + 0.5)
 
 
 class IDEAAMatrixXLSXReport(models.AbstractModel):
     _name = 'report.sga_ideaa_matrix_xlsx_report'
     _inherit = 'report.report_xlsx.abstract'
+    _description = 'Reporte XLSX de la matriz de identificación de aspectos ambientales'
+
+    @staticmethod
+    def _sheet_name(matrix, used):
+        base = re.sub(r'[\[\]:*?/\\]', ' ', matrix.code or matrix.name or 'MATRIZ').strip()[:28] or 'MATRIZ'
+        name, i = base, 1
+        while name.lower() in used:
+            i += 1
+            name = '%s (%d)' % (base[:28 - len(str(i))], i)
+        used.add(name.lower())
+        return name
+
+    def _insert_logo(self, sheet):
+        """Inserta el logo de la compañía centrado en el rango combinado A1:C3."""
+        logo = self.env.company.logo
+        if not logo:
+            return
+        data = base64.b64decode(logo)
+        image = Image.open(io.BytesIO(data))
+        width, height = image.size
+        box_w = sum(_col_pixels(COLUMN_WIDTHS[c]) for c in LOGO_COLUMNS)
+        box_h = sum(round(h * 4 / 3) for h in LOGO_ROWS_HEIGHT)
+        margin = 4
+        scale = min((box_w - 2 * margin) / width, (box_h - 2 * margin) / height)
+        sheet.insert_image('A1', 'logo.png', {
+            'image_data': io.BytesIO(data),
+            'x_scale': scale,
+            'y_scale': scale,
+            'x_offset': max(int((box_w - width * scale) / 2), 0),
+            'y_offset': max(int((box_h - height * scale) / 2), 0),
+            'object_position': 1,
+        })
+
+    @staticmethod
+    def _responsibles(action):
+        employees = action.exec_hr_resp_ids or action.exec_hr_resp
+        if employees:
+            return ', '.join(employees.mapped('name'))
+        return ''
 
     def generate_xlsx_report(self, workbook, data, matrixes):
-        format_title = workbook.add_format(
-            {'font_size': 18, 'font_name': 'Calibri', 'color': '#FFFFFF', 'bg_color': '#4F81BD',
-             'valign': 'vcenter', 'align': 'center', 'bold': True, 'text_wrap': True, 'border': 1})
-        format_header = workbook.add_format(
-            {'font_size': 12, 'font_name': 'Calibri', 'color': '#FFFFFF', 'bg_color': '#4F81BD',
-             'valign': 'vcenter', 'align': 'left', 'bold': True, 'text_wrap': True, 'border': 1})
+        def fmt(**kwargs):
+            base = {'font_name': 'Calibri', 'font_size': 10, 'align': 'center', 'valign': 'vcenter',
+                    'text_wrap': True, 'border': 1}
+            base.update(kwargs)
+            return workbook.add_format(base)
 
-        format_cell_left = workbook.add_format(
-            {'font_size': 11, 'font_name': 'Calibri', 'align': 'left', 'valign': 'vcenter',
-             'bold': False, 'text_wrap': True, 'border': 1})
-        format_cell_left_green = workbook.add_format({
-            'font_size': 11,
-            'font_name': 'Calibri',
-            'align': 'left',
-            'valign': 'vcenter',
-            'bold': False,
-            'text_wrap': True,
-            'border': 1,
-            'bg_color': '#3CB44B',   # Verde
-            'pattern': 1,
-        })
+        format_title = fmt(font_name='Arial', font_size=14, bold=True, bg_color='#D9D9D9')
+        format_info = fmt(font_name='Arial', font_size=11, bold=True, bg_color='#D9D9D9')
+        format_logo = fmt()
+        format_header = fmt(font_size=14, bold=True, bg_color='#E7E6E6')
+        format_header_rot = fmt(font_size=12, bold=True, bg_color='#E7E6E6', rotation=90)
+        format_number = fmt(font_name='Arial', font_size=8.5)
+        format_text = fmt(font_name='Arial', font_size=8.5)
+        format_center = fmt()
+        format_left = fmt(align='left')
+        format_level = fmt(font_size=11)
+        format_significant = workbook.add_format({'bg_color': '#FF0000'})
+        format_not_significant = workbook.add_format({'bg_color': '#00B050'})
 
-        format_cell_left_yellow = workbook.add_format({
-            'font_size': 11,
-            'font_name': 'Calibri',
-            'align': 'left',
-            'valign': 'vcenter',
-            'bold': False,
-            'text_wrap': True,
-            'border': 1,
-            'bg_color': '#FFF200',   # Amarillo
-            'pattern': 1,
-        })
-
-        format_cell_left_orange = workbook.add_format({
-            'font_size': 11,
-            'font_name': 'Calibri',
-            'align': 'left',
-            'valign': 'vcenter',
-            'bold': False,
-            'text_wrap': True,
-            'border': 1,
-            'bg_color': '#FFC000',   # Naranja
-            'pattern': 1,
-        })
-
-        format_cell_left_red = workbook.add_format({
-            'font_size': 11,
-            'font_name': 'Calibri',
-            'align': 'left',
-            'valign': 'vcenter',
-            'bold': False,
-            'text_wrap': True,
-            'border': 1,
-            'bg_color': '#FF0000',   # Rojo
-            'pattern': 1,
-        })
-
-        format_cell_right = workbook.add_format(
-            {'font_size': 11, 'font_name': 'Calibri', 'align': 'right', 'valign': 'vcenter',
-             'bold': False, 'text_wrap': True, 'border': 1})
-        format_cell_center = workbook.add_format(
-            {'font_size': 11, 'font_name': 'Calibri', 'align': 'center', 'valign': 'vcenter',
-             'bold': False, 'text_wrap': True, 'border': 1})
-        format_monetary = workbook.add_format(
-            {'num_format': '#,##0.00', 'font_size': 11, 'font_name': 'Arial Narrow', 'align': 'right',
-             'valign': 'vcenter', 'bold': False, 'text_wrap': True, 'border': 1})
-        format_percent = workbook.add_format(
-            {'num_format': '0.00"%"', 'font_size': 11, 'font_name': 'Arial Narrow', 'align': 'right',
-             'valign': 'vcenter', 'bold': False, 'text_wrap': True, 'border': 1})
-
-
-        format_header_group1 = workbook.add_format(
-            {'font_size': 10, 'bg_color': '#C4D79B', 'valign': 'vcenter', 'align': 'center', 'bold': True,
-             'text_wrap': True, 'border': 1})
-
-        format_header_group2 = workbook.add_format(
-            {'font_size': 10, 'bg_color': '#76933C', 'valign': 'vcenter', 'align': 'center', 'bold': True,
-             'text_wrap': True, 'border': 1})
-
-        format_header2_group2 = workbook.add_format(
-            {'font_size': 10, 'bg_color': '#76933C', 'valign': 'vcenter', 'align': 'center', 'bold': False,
-             'text_wrap': True, 'border': 1})
-
-        format_header_group3 = workbook.add_format(
-            {'font_size': 10, 'bg_color': '#00B050', 'valign': 'vcenter', 'align': 'center', 'bold': True,
-             'text_wrap': True, 'border': 1})
-
-        format_header2_group3 = workbook.add_format(
-            {'font_size': 10, 'bg_color': '#00B050', 'valign': 'vcenter', 'align': 'center', 'bold': False,
-             'text_wrap': True, 'border': 1})
-
-        format_header_group2_rotation = workbook.add_format(
-            {'font_size': 10, 'bg_color': '#76933C', 'valign': 'vcenter', 'align': 'center', 'bold': False,
-             'text_wrap': True, 'border': 1})
-        format_header_group2_rotation.set_rotation(90)
-
-        format_header_group3_rotation = workbook.add_format(
-            {'font_size': 10, 'bg_color': '#00B050', 'valign': 'vcenter', 'align': 'center', 'bold': False,
-             'text_wrap': True, 'border': 1})
-        format_header_group3_rotation.set_rotation(90)
-        format26_c_bold = workbook.add_format(
-                {'font_size': 26,   'align': 'center', 'valign': 'vcenter', 'bold': True, 'text_wrap': True})
-        format21_c_bold = workbook.add_format(
-                {'font_size': 10,   'align': 'center', 'valign': 'vcenter', 'bold': True, 'text_wrap': True})
-
-        def _get_format_of_calification(control_level):
-            if control_level == 'Alto':
-                return format_cell_left_red
-            elif control_level == 'Medio':
-                return format_cell_left_yellow
-            elif control_level == 'Monitoreable':
-                return format_cell_left_orange 
-            elif control_level == 'Bajo':
-                return format_cell_left_green
-            else:
-                return False
+        used_names = set()
         for matrix in matrixes:
-            sheet = workbook.add_worksheet('Matriz de identificación de aspectos ambientales')
-            #header 
-            
-            current_row = 0
-            sheet.merge_range('A1:C3', '', )
+            sheet = workbook.add_worksheet(self._sheet_name(matrix, used_names))
+            sheet.hide_gridlines(2)
+            sheet.set_landscape()
+            sheet.set_paper(9)
+            sheet.fit_to_pages(1, 0)
+            for col, width in enumerate(COLUMN_WIDTHS):
+                sheet.set_column(col, col, width)
+            for row, height in enumerate(LOGO_ROWS_HEIGHT):
+                sheet.set_row(row, height)
+            sheet.set_row(3, 11.4)
+            sheet.set_row(4, 9.6)
+            sheet.set_row(FIRST_ROW - 1, 130.2)
 
-            company_id = self.env.user.company_id
+            # Cabecera: logo, título y datos del documento
+            sheet.merge_range('A1:C3', '', format_logo)
+            self._insert_logo(sheet)
+            sheet.merge_range('D1:M3', TITLE, format_title)
+            sheet.merge_range('N1:O1', 'Código: %s' % (matrix.code or ''), format_info)
+            sheet.merge_range('N2:O2', 'Versión: %02d' % (matrix.version or 0), format_info)
+            validation_date = matrix.date_validate.strftime('%d/%m/%Y') if matrix.date_validate else 'Sin definir'
+            sheet.merge_range('N3:O3', 'Fecha de validación: %s' % validation_date, format_info)
 
-            buf_image = io.BytesIO(base64.b64decode(company_id.logo))
-            im = Image.open(buf_image)
-            width, height = im.size
-            image_width = width
-            image_height = height
-            cell_width = 48.0
-            cell_height = 48.0
+            for col, header in enumerate(HEADERS):
+                rotated = 8 <= col <= 10
+                sheet.write(FIRST_ROW - 1, col, header, format_header_rot if rotated else format_header)
 
-            x_scale = cell_width/image_width
-            y_scale = cell_height/image_height
-            sheet.insert_image('A1', "logo.png", {
-                'image_data': buf_image, 'x_scale': x_scale, 'y_scale': y_scale})
-            
-            sheet.merge_range(current_row, 3, current_row +2, 16, 'Matriz IDEAA', format26_c_bold)
-            sheet.merge_range(current_row, 17, current_row,21, 'Código: '+str(matrix.code or ''), format21_c_bold)
-            sheet.merge_range(current_row+1, 17, current_row+1,21,
-                                'Edición: '+str(matrix.version), format21_c_bold)
-            sheet.merge_range(current_row+2, 17, current_row+2,21, 'Fecha de aprobación: '+str(
-                matrix.date_validate or "Sin definir"), format21_c_bold)
-            
-            
-            current_row += 4
-            
-            sheet.merge_range(current_row, 0, current_row, 6, 'Identificación de Aspectos, Impactos y Riesgos Ambientales', format_header_group1)
-            sheet.merge_range(current_row, 7, current_row, 16, 'Evaluación de Significancia de Aspectos Ambientales', format_header_group2)
-            sheet.merge_range(current_row, 17, current_row, 21, 'Evaluación del Riesgo Residual / Oportunidad Implementada', format_header_group3)
-
-            current_row += 1
-            sheet.merge_range(current_row, 0, current_row +1, 0, 'NOMBRE', format_header_group1)
-            sheet.merge_range(current_row, 1, current_row+1, 1, 'ETAPA', format_header_group1)
-            sheet.merge_range(current_row, 2, current_row+1, 2, 'ACTIVIDAD', format_header_group1)
-            sheet.merge_range(current_row, 3, current_row+1, 3, 'TAREA', format_header_group1)
-            sheet.merge_range(current_row, 4, current_row+1, 4, 'PUESTOS DE TRABAJO', format_header_group1)
-            sheet.merge_range(current_row, 5, current_row+1, 5, 'ASPECTO', format_header_group1)
-            sheet.merge_range(current_row, 6, current_row+1, 6, 'IMPACTO', format_header_group1)
-
-            sheet.merge_range(current_row, 7, current_row+1, 7, 'PROBABILIDAD', format_header_group2)
-            sheet.merge_range(current_row, 8, current_row, 12, 'Criterios para valorar las consecuencias', format_header2_group2)
-            sheet.write(current_row+1, 8, 'Legal/Cumplimiento', format_header_group2_rotation)
-            sheet.write(current_row+1, 9, 'Medio Ambiente', format_header_group2_rotation)
-            sheet.write(current_row+1, 10, 'Partes interesadas (Regional, Nacional, Internacional)', format_header_group2_rotation)
-            sheet.write(current_row+1, 11, 'Capacidad de Producción', format_header_group2_rotation)
-            sheet.write(current_row+1, 12, 'Financiera', format_header_group2_rotation)
-            sheet.merge_range(current_row, 13, current_row+1, 13, 'CONSECUENCIA', format_header_group2)
-            sheet.merge_range(current_row, 14, current_row+1, 14, 'CALIFICACICÓN', format_header_group2)
-            sheet.merge_range(current_row, 15, current_row+1, 15, 'G=P*C', format_header_group2)
-            sheet.merge_range(current_row, 16, current_row+1, 16, 'REQUISITOS LEGALES', format_header_group2)
-
-            sheet.merge_range(current_row, 17, current_row+1, 17, 'CONTROL', format_header_group3)
-            sheet.merge_range(current_row, 18, current_row+1, 18, 'Frecuencia / Probabilidad', format_header_group3_rotation)
-            sheet.merge_range(current_row, 19, current_row+1, 19, 'Consecuencia ', format_header_group3_rotation)
-            sheet.merge_range(current_row, 20, current_row, 21, 'Riesgo Residual / Oportunidad Implementada ', format_header2_group3)
-            sheet.write(current_row+1, 20, 'PxC', format_header_group3_rotation)
-            sheet.write(current_row+1, 21, 'Calificación', format_header2_group3)
-
-            sheet.set_column('A:G', 20)
-            sheet.set_column('E:E', 25)
-            sheet.set_column('H:P', 10)
-            sheet.set_column('Q:Q', 15)
-            sheet.set_column('R:U', 12)
-            sheet.set_column('V:V', 15)
-            sheet.set_row(5, 50)
-            sheet.set_row(6, 100)
-
-            row = current_row +2
-            process_count = len(matrix.process_evaluation_ids)
-            control_count = len(matrix.process_control_ids)
-            max_records = max(process_count, control_count)
-            processes = matrix.process_evaluation_ids
-            controls = matrix.process_control_ids
-
-            if max_records > 1:
-                sheet.merge_range(row, 0, row + max_records - 1, 0, matrix.name or '', format_cell_left)
-            if max_records == 1:
-                sheet.write(row, 0, matrix.name or '', format_cell_left)
-
-            for i in range(max_records):
-                if i < process_count:
-                    process = processes[i]
-                    sheet.write(row, 1, process.stage_id.name or '', format_cell_left)
-                    sheet.write(row, 2, process.activity_id.name or '', format_cell_left)
-                    sheet.write(row, 3, process.task_id.name or '', format_cell_left)
-                    sheet.write(row, 4, '\n'.join(['- ' + x.name for x in process.job_ids]), format_cell_left)
-                    sheet.write(row, 5, '\n'.join(['- ' + x.name for x in process.aspect_ids]), format_cell_left)
-                    sheet.write(row, 6, '\n'.join(['- ' + x.name for x in process.impact_ids]), format_cell_left)
-
-                    probabilidad = next(
-                        (
-                            x.evaluation_value_id.name
-                            for x in process.evaluation_ids
-                            if x.evaluation_item_id.name == 'Probabilidad de ocurrencia' and x.evaluation_value_id
-                        ),
-                        ''
-                    )
-                    sheet.write(row, 7, probabilidad, format_cell_left)
-                    criterio_columns = {
-                        "Legal/Cumplimiento": 8,
-                        "Medio ambiente": 9,
-                        "Partes interesadas": 10,
-                        "Capacidad de producción": 11,
-                        "Financiera": 12
-                    }
-
-                    # for x in process.evaluation_ids:
-                    #     if x.evaluation_item_id.name == 'Consecuencia':
-                    #         for criterio in x.evaluation_item_id.criterio_ids:
-                    #             col_index = criterio_columns.get(criterio.name)
-                    #             if col_index:
-                    #                 value = criterio.item_value_id.name if criterio.item_value_id else ''
-                    #                 sheet.write(row, col_index, value, format_cell_left)
-
-                    # Para cada criterio, buscar el valor más alto entre todas las evaluaciones
-                    for criterio_name, col_index in criterio_columns.items():
-                        valores_criterio = []
-                        
-                        # Buscar en todas las evaluaciones de tipo que coincida con el criterio
-                        for x in process.evaluation_ids:
-                            if x.evaluation_item_criterio_id.name == criterio_name and x.evaluation_value_id:
-                                # Recopilar el valor de la evaluación
-                                valores_criterio.append(x.evaluation_value_id)
-                        
-                        # Obtener el valor más alto para este criterio específico
-                        if valores_criterio:
-                            max_valor = max(valores_criterio, key=lambda x: x.value)
-                            value = max_valor.name
-                        else:
-                            value = ''
-                        
-                       
-                        sheet.write(row, col_index, value, format_cell_left)
-                        
-
-                    # consecuencia = next(
-                    #     (
-                    #         x.evaluation_value_id.name
-                    #         for x in process.evaluation_ids
-                    #         if x.evaluation_item_id.name == 'Consecuencia' and x.evaluation_value_id
-                    #     ),
-                    #     ''
-                    # )
-                    # sheet.write(row, 13, consecuencia, format_cell_left)
-
-                    evaluaciones_consecuencia = [
-                        x.evaluation_value_id
-                        for x in process.evaluation_ids
-                        if x.evaluation_item_id.name == 'Consecuencia' and x.evaluation_value_id
-                    ]
-
-                    if evaluaciones_consecuencia:
-                        # Obtiene la evaluación con el mayor valor numérico
-                        max_evaluacion = max(evaluaciones_consecuencia, key=lambda x: x.value)
-                        consecuencia = max_evaluacion.name
+            conditions = dict(CONDITION_SELECTION)
+            row = FIRST_ROW
+            for number, line in enumerate(matrix.line_ids, start=1):
+                excel_row = row + 1
+                sheet.write_number(row, 0, number, format_number)
+                sheet.write(row, 1, line.stage or '', format_text)
+                sheet.write(row, 2, line.process or '', format_center)
+                sheet.write(row, 3, line.activity or '', format_center)
+                sheet.write(row, 4, line.aspect or '', format_center)
+                sheet.write(row, 5, line.impact or '', format_center)
+                sheet.write(row, 6, conditions.get(line.condition, ''), format_center)
+                sheet.write(row, 7, line.controls or '', format_left)
+                for col, value in ((8, line.frequency), (9, line.severity), (10, line.scope)):
+                    if value:
+                        sheet.write_number(row, col, int(value), format_level)
                     else:
-                        consecuencia = ''
-
-                    sheet.write(row, 13, consecuencia, format_cell_left)
-
-                    format_level = _get_format_of_calification(process.level) or format_cell_left
-                    sheet.write(row, 14, process.level, format_level)
-                    sheet.write(row, 15, process.evaluation_pxc, format_cell_left)
-                    sheet.write(row, 16, '\n'.join(['- ' + x.name for x in process.legal_ids]), format_cell_left)
-
-                if i < control_count:
-                    control = controls[i]
-                    sheet.write(row, 17, '\n'.join(['- ' + x.name for x in control.action_ids]), format_cell_left)
-
-                    probabilidad = next(
-                        (
-                            x.evaluation_value_id.name
-                            for x in control.reevaluation_ids
-                            if x.evaluation_item_id.name == 'Probabilidad de ocurrencia' and x.evaluation_value_id
-                        ),
-                        ''
-                    )
-                    sheet.write(row, 18, probabilidad, format_cell_left)
-
-                    consecuencia = next(
-                        (
-                            x.evaluation_value_id.name
-                            for x in control.reevaluation_ids
-                            if x.evaluation_item_id.name == 'Consecuencia' and x.evaluation_value_id
-                        ),
-                        ''
-                    )
-                    sheet.write(row, 19, consecuencia, format_cell_left)
-                    sheet.write(row, 20, control.control_pxc, format_cell_left)
-
-                    format_calification = _get_format_of_calification(control.control_level) or format_cell_left
-
-    
-                    sheet.write(row, 21, control.control_level or '', format_calification)
-
+                        sheet.write_blank(row, col, None, format_level)
+                sheet.write_formula(
+                    row, 11,
+                    '=IF(OR(I{r}="", J{r}="", K{r}=""), "", I{r}*J{r}*K{r})'.format(r=excel_row),
+                    format_level, line.impact_level or '')
+                sheet.write_formula(
+                    row, 12,
+                    '=IF(L{r}="", "", IF(L{r}>={t}, "{s}", "{ns}"))'.format(
+                        r=excel_row, t=SIGNIFICANCE_THRESHOLD, s=SIGNIFICANT_TEXT, ns=NOT_SIGNIFICANT_TEXT),
+                    format_center,
+                    {'significant': SIGNIFICANT_TEXT, 'not_significant': NOT_SIGNIFICANT_TEXT}.get(line.significance, ''))
+                sheet.write(row, 13, '\n'.join('- ' + a.name for a in line.action_ids), format_left)
+                sheet.write(row, 14, '\n'.join(self._responsibles(a) for a in line.action_ids), format_center)
                 row += 1
 
+            last_row = max(row, FIRST_ROW + 1)
+            sheet.autofilter(FIRST_ROW - 1, 2, last_row - 1, 14)
+            if matrix.line_ids:
+                sheet.data_validation(FIRST_ROW, 8, last_row - 1, 10, {
+                    'validate': 'list', 'source': ['1', '3', '5']})
+                sheet.data_validation(FIRST_ROW, 6, last_row - 1, 6, {
+                    'validate': 'list', 'source': list(conditions.values())})
+                sheet.conditional_format(FIRST_ROW, 12, last_row - 1, 12, {
+                    'type': 'cell', 'criteria': '==', 'value': '"%s"' % SIGNIFICANT_TEXT,
+                    'format': format_significant})
+                sheet.conditional_format(FIRST_ROW, 12, last_row - 1, 12, {
+                    'type': 'cell', 'criteria': '==', 'value': '"%s"' % NOT_SIGNIFICANT_TEXT,
+                    'format': format_not_significant})

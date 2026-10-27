@@ -14,16 +14,13 @@
         'mgmtsystem_process_integration',
         'mgmtsystem_survey',
         'mgmtsystem_opportunity',
+        'mgmtsystem_action',
     ],
     'data': [
         'security/ir.model.access.csv',
-        'views/evaluation_views.xml',
-        'views/process_evaluation_views.xml',
         'views/ideaa_matrix_views.xml',
         'views/menus.xml',
         'report/ideaa_matrix_xlsx.xml',
-
-        'data/data.xml',
     ],
     'auto_install': False,
     'application': False,
