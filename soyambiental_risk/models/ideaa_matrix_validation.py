@@ -84,15 +84,13 @@ class MatrixMatrix(models.Model):
                 'interpretation': ev.interpretation,
                 'process_id': ev.process_id.id,
                 'ideaa_matrix3_id': old_edition.id,
+                'evaluation_ids': [(0, 0, {
+                    'evaluation_item_id': item.evaluation_item_id.id,
+                    'evaluation_item_criterio_id': item.evaluation_item_criterio_id.id,
+                    'evaluation_value_id': item.evaluation_value_id.id,
+                }) for item in ev.evaluation_ids],
             }
-            new_ev = self.env['sga.matrix.process'].create(new)
-            for item in ev.evaluation_ids:
-                new_ = {
-                    'name': item.evaluation_value_id.name,
-                    'value_id': item.evaluation_value_id.id,
-                    'evaluation_process_id': new_ev.id,
-                }
-                self.env['sga.matrix.process.evaluation_control'].create(new_)
+            self.env['sga.matrix.process'].create(new)
         for con in self.process_control_ids:
             new = {
                 'name': con.name,
@@ -105,15 +103,14 @@ class MatrixMatrix(models.Model):
                 'interpretation': con.interpretation,
                 'process_id': con.process_id.id,
                 'action_ids': [(6, 0, con.action_ids.ids)],
-                'ideaa_matrix4_id': old_edition.id
+                'ideaa_matrix4_id': old_edition.id,
+                'reevaluation_ids': [(0, 0, {
+                    'evaluation_item_id': con_.evaluation_item_id.id,
+                    'evaluation_item_criterio_id': con_.evaluation_item_criterio_id.id,
+                    'evaluation_value_id': con_.evaluation_value_id.id,
+                }) for con_ in con.reevaluation_ids],
             }
-            con_new = self.env['sga.matrix.process'].create(new)
-            for con_ in con.reevaluation_ids:
-                new_con_ = {
-                    'name': con_.evaluation_item_id.name,
-                    'reevaluation_process_id': con_new.id,
-                }
-                self.env['sst.risk_matrix.evaluation.control'].create(new_con_)
+            self.env['sga.matrix.process'].create(new)
 
         revno = self.version
         self.remove_validation_steps_users()
